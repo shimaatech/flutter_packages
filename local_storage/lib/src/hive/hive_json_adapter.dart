@@ -1,8 +1,6 @@
 import 'dart:convert';
-
 import 'package:hive/hive.dart';
-
-import '../abstract/abstract.dart';
+import 'package:serializer/serializer.dart';
 
 class JsonTypeAdapter<T> implements TypeAdapter<T> {
   static int _nextTypeId = 0;

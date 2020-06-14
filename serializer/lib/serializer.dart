@@ -1,3 +1,5 @@
+library serializer;
+
 typedef Deserialize<T> = T Function(Map<String, dynamic> json);
 typedef Serialize<T> = Map<String, dynamic> Function(T obj);
 
@@ -7,3 +9,4 @@ class Serializer<T> {
 
   Serializer(this.serialize, this.deserialize);
 }
+
