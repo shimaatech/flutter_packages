@@ -1,9 +1,19 @@
+import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:repository/src/remote/remote_repository.dart';
 
 import '../../repository.dart';
 
 class DioRemoteRepository<E extends Entity<ID>, ID>
     implements RemoteRepository<E, ID> {
+
+  DioRemoteRepository(this.dio, this.resourceName);
+
+  @protected
+  final Dio dio;
+
+  @protected
+  final String resourceName;
 
   @override
   Future<void> delete(ID id) {
