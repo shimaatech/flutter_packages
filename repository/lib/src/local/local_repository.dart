@@ -2,5 +2,5 @@ import 'package:repository/repository.dart';
 
 import '../abstract/repository.dart';
 
-abstract class LocalRepository<P extends Persistent<ID>, ID>
-    extends Repository<P, ID> {}
+abstract class LocalRepository<E extends Entity<ID>, ID>
+    extends Repository<E, ID> {}

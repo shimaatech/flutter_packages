@@ -1,15 +1,15 @@
-abstract class Persistent<ID> {
+abstract class Entity<ID> {
   ID get id;
 }
 
-abstract class Repository<P extends Persistent<ID>, ID> {
+abstract class Repository<E extends Entity<ID>, ID> {
   Future<bool> exists(ID id);
 
-  Future<P> getById(ID id);
+  Future<E> getById(ID id);
 
-  Future<void> save(P persistent);
+  Future<void> save(E entity);
 
-  Future<void> saveAll(Iterable<P> persistentList);
+  Future<void> saveAll(Iterable<E> entities);
 
   Future<void> delete(ID id);
 }

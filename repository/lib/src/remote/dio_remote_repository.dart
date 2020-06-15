@@ -2,8 +2,8 @@ import 'package:repository/src/remote/remote_repository.dart';
 
 import '../../repository.dart';
 
-class DioRemoteRepository<P extends Persistent<ID>, ID>
-    implements RemoteRepository<P, ID> {
+class DioRemoteRepository<E extends Entity<ID>, ID>
+    implements RemoteRepository<E, ID> {
 
   @override
   Future<void> delete(ID id) {
@@ -12,19 +12,19 @@ class DioRemoteRepository<P extends Persistent<ID>, ID>
   }
 
   @override
-  Future<P> getById(ID id) {
+  Future<E> getById(ID id) {
     // TODO: implement getById
     throw UnimplementedError();
   }
 
   @override
-  Future<void> save(P persistent) {
+  Future<void> save(E entity) {
     // TODO: implement save
     throw UnimplementedError();
   }
 
   @override
-  Future<void> saveAll(Iterable<P> persistentList) {
+  Future<void> saveAll(Iterable<E> entities) {
     // TODO: implement saveAll
     throw UnimplementedError();
   }
