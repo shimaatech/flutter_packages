@@ -1,6 +1,6 @@
-# localstorage
+# repository
 
-local storage and repository
+Abstract repository class
 
 ## Getting Started
 

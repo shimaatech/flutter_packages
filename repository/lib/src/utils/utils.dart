@@ -1,0 +1,1 @@
+export 'hive_json_adapter.dart';

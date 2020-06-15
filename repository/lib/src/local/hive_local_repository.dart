@@ -1,5 +1,7 @@
 import 'package:hive/hive.dart';
+
 import '../abstract/abstract.dart';
+import 'local.dart';
 
 class HiveLocalRepository<P extends Persistent<ID>, ID>
     implements LocalRepository<P, ID> {
@@ -13,7 +15,7 @@ class HiveLocalRepository<P extends Persistent<ID>, ID>
   }
 
   @override
-  bool exists(ID id) {
+  Future<bool> exists(ID id) async {
     return _box.containsKey(id);
   }
 
