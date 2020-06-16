@@ -1,11 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:repository/src/remote/remote_repository.dart';
+import 'package:serializer/serializer.dart';
 
 import '../../repository.dart';
 
 class DioRemoteRepository<E extends Entity<ID>, ID>
-    implements RemoteRepository<E, ID> {
+    extends RemoteRepository<E, ID> {
 
   DioRemoteRepository(this.dio, this.resourceName);
 
@@ -44,5 +45,4 @@ class DioRemoteRepository<E extends Entity<ID>, ID>
     // TODO: implement exists
     throw UnimplementedError();
   }
-
 }

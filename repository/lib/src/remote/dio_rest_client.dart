@@ -1,24 +1,33 @@
+import 'package:dart_json_mapper/dart_json_mapper.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'dio_rest_client.g.dart';
 
-@RestApi()
-abstract class _DioRestClient<E> {
-  factory _DioRestClient(Dio dio, {String baseUrl}) =
-  __DioRestClient;
+@RestApi(parser: Parser.DartJsonMapper)
+abstract class _DioRestClient {
+  factory _DioRestClient(Dio dio, {String baseUrl}) = __DioRestClient;
 
   @GET('/{id}')
-  Future<E> get(@Path('id') int id);
+  Future<Map<String, dynamic>> _get(@Path('id') int id);
 
   @DELETE('/{id}')
   Future<void> delete(@Path('id') int id);
 
   @POST('/')
-  Future<void> post(@Query('data') E entity);
+  Future<void> _post(@Query('data') Map<String, dynamic> entity);
 
 }
 
-class DioRestClient extends __DioRestClient {
+class DioRestClient<E> extends __DioRestClient {
   DioRestClient(Dio dio, String baseUrl) : super(dio, baseUrl: baseUrl);
+
+  Future<E> get(int id) async {
+    return JsonMapper.fromMap<E>(await _get(id));
+  }
+
+  Future<void> post(E entity) {
+    return _post(JsonMapper.toMap(entity));
+  }
+
 }
