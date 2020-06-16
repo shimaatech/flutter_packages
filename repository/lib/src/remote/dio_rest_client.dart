@@ -5,7 +5,6 @@ import 'package:serializer/serializer.dart';
 part 'dio_rest_client.g.dart';
 
 class MapWrapper {
-
   final Map<String, dynamic> map;
 
   MapWrapper(this.map);
@@ -27,11 +26,11 @@ abstract class _DioRestClient {
 
   @POST('/')
   Future<void> _post(@Query('data') MapWrapper entity);
-
 }
 
 class DioRestClient<E> extends __DioRestClient {
-  DioRestClient(this.serializer, Dio dio, String baseUrl) : super(dio, baseUrl: baseUrl);
+  DioRestClient(this.serializer, Dio dio, String baseUrl)
+      : super(dio, baseUrl: baseUrl);
 
   final Serializer<E> serializer;
 
@@ -43,5 +42,4 @@ class DioRestClient<E> extends __DioRestClient {
   Future<void> post(E entity) {
     return _post(MapWrapper(serializer.serialize(entity)));
   }
-
 }
