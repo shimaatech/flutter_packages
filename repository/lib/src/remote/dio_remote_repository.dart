@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:repository/src/remote/remote_repository.dart';
-import 'package:serializer/serializer.dart';
 
 import '../../repository.dart';
 

@@ -16,9 +16,6 @@ dependencies:
   retrofit: ^1.3.4
   dart_json_mapper: ^1.5.15
 
-  serializer:
-    path: ../serializer
-
 
 dev_dependencies:
   flutter_test:
