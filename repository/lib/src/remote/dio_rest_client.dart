@@ -1,33 +1,47 @@
-import 'package:dart_json_mapper/dart_json_mapper.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
+import 'package:serializer/serializer.dart';
 
 part 'dio_rest_client.g.dart';
 
-@RestApi(parser: Parser.DartJsonMapper)
+class MapWrapper {
+
+  final Map<String, dynamic> map;
+
+  MapWrapper(this.map);
+
+  static MapWrapper fromJson(Map<String, dynamic> map) => MapWrapper(map);
+
+  Map<String, dynamic> toJson() => map;
+}
+
+@RestApi()
 abstract class _DioRestClient {
   factory _DioRestClient(Dio dio, {String baseUrl}) = __DioRestClient;
 
   @GET('/{id}')
-  Future<Map<String, dynamic>> _get(@Path('id') int id);
+  Future<MapWrapper> _get(@Path('id') int id);
 
   @DELETE('/{id}')
   Future<void> delete(@Path('id') int id);
 
   @POST('/')
-  Future<void> _post(@Query('data') Map<String, dynamic> entity);
+  Future<void> _post(@Query('data') MapWrapper entity);
 
 }
 
 class DioRestClient<E> extends __DioRestClient {
-  DioRestClient(Dio dio, String baseUrl) : super(dio, baseUrl: baseUrl);
+  DioRestClient(this.serializer, Dio dio, String baseUrl) : super(dio, baseUrl: baseUrl);
+
+  final Serializer<E> serializer;
 
   Future<E> get(int id) async {
-    return JsonMapper.fromMap<E>(await _get(id));
+    MapWrapper mapWrapper = await _get(id);
+    return serializer.deserialize(mapWrapper.toJson());
   }
 
   Future<void> post(E entity) {
-    return _post(JsonMapper.toMap(entity));
+    return _post(MapWrapper(serializer.serialize(entity)));
   }
 
 }

@@ -1,13 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:repository/src/remote/remote_repository.dart';
+import 'package:serializer/serializer.dart';
 
 import '../../repository.dart';
 
 class DioRemoteRepository<E extends Entity<ID>, ID>
     extends RemoteRepository<E, ID> {
-
-  DioRemoteRepository(this.dio, this.resourceName);
+  DioRemoteRepository(this.dio, this.resourceName, Serializer<E> serializer)
+      : super(serializer);
 
   @protected
   final Dio dio;
