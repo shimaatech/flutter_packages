@@ -19,10 +19,10 @@ abstract class _DioRestClient {
   factory _DioRestClient(Dio dio, {String baseUrl}) = __DioRestClient;
 
   @GET('/{id}')
-  Future<MapWrapper> _get(@Path('id') int id);
+  Future<MapWrapper> _get(@Path('id') String id);
 
   @DELETE('/{id}')
-  Future<void> delete(@Path('id') int id);
+  Future<void> delete(@Path('id') String id);
 
   @POST('/')
   Future<void> _post(@Query('data') MapWrapper entity);
@@ -34,7 +34,7 @@ class DioRestClient<E> extends __DioRestClient {
 
   final Serializer<E> serializer;
 
-  Future<E> get(int id) async {
+  Future<E> get(String id) async {
     MapWrapper mapWrapper = await _get(id);
     return serializer.deserialize(mapWrapper.toJson());
   }

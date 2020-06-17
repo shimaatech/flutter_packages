@@ -364,9 +364,11 @@ packages:
   serializer:
     dependency: "direct main"
     description:
-      path: "../serializer"
-      relative: true
-    source: path
+      path: serializer
+      ref: HEAD
+      resolved-ref: c59cf8bffb2198a6916cfc63da322d9191ca3339
+      url: "https://github.com/shimaatech/flutter_packages"
+    source: git
     version: "0.0.1"
   shelf:
     dependency: transitive

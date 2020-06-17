@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:repository/src/remote/dio_rest_client.dart';
 import 'package:repository/src/remote/remote_repository.dart';
 import 'package:serializer/serializer.dart';
 
@@ -8,7 +9,8 @@ import '../../repository.dart';
 class DioRemoteRepository<E extends Entity<ID>, ID>
     extends RemoteRepository<E, ID> {
   DioRemoteRepository(this.dio, this.resourceName, Serializer<E> serializer)
-      : super(serializer);
+      : dioRestClient = DioRestClient(serializer, dio, resourceName),
+        super(serializer);
 
   @protected
   final Dio dio;
@@ -16,22 +18,22 @@ class DioRemoteRepository<E extends Entity<ID>, ID>
   @protected
   final String resourceName;
 
+  @protected
+  final DioRestClient<E> dioRestClient;
+
   @override
   Future<void> delete(ID id) {
-    // TODO: implement delete
-    throw UnimplementedError();
+    return dioRestClient.delete(id.toString());
   }
 
   @override
   Future<E> getById(ID id) {
-    // TODO: implement getById
-    throw UnimplementedError();
+    return dioRestClient.get(id.toString());
   }
 
   @override
   Future<void> save(E entity) {
-    // TODO: implement save
-    throw UnimplementedError();
+    return dioRestClient.post(entity);
   }
 
   @override
@@ -41,8 +43,7 @@ class DioRemoteRepository<E extends Entity<ID>, ID>
   }
 
   @override
-  Future<bool> exists(ID id) {
-    // TODO: implement exists
-    throw UnimplementedError();
+  Future<bool> exists(ID id) async {
+    return (await getById(id)) != null;
   }
 }
