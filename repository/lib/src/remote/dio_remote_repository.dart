@@ -9,7 +9,8 @@ import '../../repository.dart';
 class DioRemoteRepository<E extends Entity<ID>, ID>
     extends RemoteRepository<E, ID> {
   DioRemoteRepository(this.dio, this.resourceName, Serializer<E> serializer)
-      : dioRestClient = DioRestClient(serializer, dio, resourceName),
+      : dioRestClient = DioRestClient(
+            serializer, dio, '${dio.options.baseUrl}/$resourceName'),
         super(serializer);
 
   @protected
