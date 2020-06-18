@@ -70,4 +70,10 @@ class CachedRemoteRepository<E extends Entity<ID>, ID>
       return localRepository.delete(id);
     }
   }
+
+  @override
+  Future<int> count() {
+    // return remote count always...
+    return remoteRepository.count();
+  }
 }

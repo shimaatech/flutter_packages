@@ -12,4 +12,6 @@ abstract class Repository<E extends Entity<ID>, ID> {
   Future<void> saveAll(Iterable<E> entities);
 
   Future<void> delete(ID id);
+
+  Future<int> count();
 }

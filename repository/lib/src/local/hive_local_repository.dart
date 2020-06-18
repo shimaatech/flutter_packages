@@ -35,4 +35,9 @@ class HiveLocalRepository<E extends Entity<ID>, ID>
     return _box.putAll(
         Map.fromIterable(entities, key: (p) => p.getId(), value: (p) => p));
   }
+
+  @override
+  Future<int> count() async {
+    return _box.keys.length;
+  }
 }

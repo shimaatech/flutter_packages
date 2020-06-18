@@ -26,6 +26,9 @@ abstract class _DioRestClient {
 
   @POST('/')
   Future<void> _post(@Query('data') MapWrapper entity);
+
+  @GET('/count')
+  Future<int> count();
 }
 
 class DioRestClient<E> extends __DioRestClient {

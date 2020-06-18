@@ -47,4 +47,10 @@ class DioRemoteRepository<E extends Entity<ID>, ID>
   Future<bool> exists(ID id) async {
     return (await getById(id)) != null;
   }
+
+  @override
+  Future<int> count() {
+    return dioRestClient.count();
+  }
+
 }
