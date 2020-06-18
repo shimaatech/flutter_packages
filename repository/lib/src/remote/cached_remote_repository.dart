@@ -28,7 +28,8 @@ class CachedRemoteRepository<E extends Entity<ID>, ID>
       return entity;
     }
     entity = await remoteRepository.getById(id);
-    await save(entity);
+    // cache entity locally
+    await localRepository.save(entity);
     return entity;
   }
 
