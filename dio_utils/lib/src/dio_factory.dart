@@ -11,5 +11,4 @@ class DioFactory {
     );
     return Dio(options)..interceptors.addAll(interceptors);
   }
-
 }
