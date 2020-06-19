@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:diou_tils/dio_utils.dart';
+import 'package:dio_utils/dio_utils.dart';
 
 class DioFactory {
 
