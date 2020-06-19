@@ -1,4 +1,4 @@
-library diou_utils;
+library dio_utils;
 
 export 'src/dio_factory.dart';
 export 'src/api_properties.dart';
