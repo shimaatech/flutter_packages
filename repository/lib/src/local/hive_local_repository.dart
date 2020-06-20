@@ -21,8 +21,14 @@ class HiveLocalRepository<E extends Entity<ID>, ID>
   }
 
   @override
-  Future<E> getById(ID id) {
+  Future<E> findById(ID id) {
     return _box.get(id);
+  }
+
+  @override
+  Future<List<E>> findAll(List<ID> ids) {
+    // TODO: implement findAll
+    throw UnimplementedError();
   }
 
   @override

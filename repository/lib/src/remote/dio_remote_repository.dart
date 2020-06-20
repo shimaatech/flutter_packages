@@ -28,7 +28,7 @@ class DioRemoteRepository<E extends Entity<ID>, ID>
   }
 
   @override
-  Future<E> getById(ID id) {
+  Future<E> findById(ID id) {
     return dioRestClient.get(id.toString());
   }
 
@@ -45,12 +45,18 @@ class DioRemoteRepository<E extends Entity<ID>, ID>
 
   @override
   Future<bool> exists(ID id) async {
-    return (await getById(id)) != null;
+    return (await findById(id)) != null;
   }
 
   @override
   Future<int> count() {
     return dioRestClient.count();
+  }
+
+  @override
+  Future<List<E>> findAll(List<ID> ids) {
+    // TODO: implement findAll
+    throw UnimplementedError();
   }
 
 }

@@ -22,12 +22,12 @@ class CachedRemoteRepository<E extends Entity<ID>, ID>
   }
 
   @override
-  Future<E> getById(ID id) async {
-    E entity = await localRepository.getById(id);
+  Future<E> findById(ID id) async {
+    E entity = await localRepository.findById(id);
     if (entity != null) {
       return entity;
     }
-    entity = await remoteRepository.getById(id);
+    entity = await remoteRepository.findById(id);
     // cache entity locally
     await localRepository.save(entity);
     return entity;
@@ -63,7 +63,7 @@ class CachedRemoteRepository<E extends Entity<ID>, ID>
 
   /// refreshes the local repository with current data from the remote repo
   Future<void> refresh(ID id, {invalidateOnNonExist = true}) async {
-    E remoteEntity = await remoteRepository.getById(id);
+    E remoteEntity = await remoteRepository.findById(id);
     if (remoteEntity != null) {
       return localRepository.save(remoteEntity);
     } else if (invalidateOnNonExist) {
@@ -75,5 +75,11 @@ class CachedRemoteRepository<E extends Entity<ID>, ID>
   Future<int> count() {
     // return remote count always...
     return remoteRepository.count();
+  }
+
+  @override
+  Future<List<E>> findAll(List<ID> ids) {
+    // TODO: implement findAll
+    throw UnimplementedError();
   }
 }

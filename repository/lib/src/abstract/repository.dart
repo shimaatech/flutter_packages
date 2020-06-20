@@ -5,7 +5,9 @@ abstract class Entity<ID> {
 abstract class Repository<E extends Entity<ID>, ID> {
   Future<bool> exists(ID id);
 
-  Future<E> getById(ID id);
+  Future<E> findById(ID id);
+
+  Future<List<E>> findAll(List<ID> ids);
 
   Future<void> save(E entity);
 
