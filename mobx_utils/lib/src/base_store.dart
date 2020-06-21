@@ -63,8 +63,10 @@ abstract class _BaseStore with Store {
   @protected
   void observeAndCatchError(Future future, {Function onSuccess}) {
     lastError = null;
-    future.then((_) => onSuccess(), onError: (e, stacktrace) {
-      _logger.e('An error occurred at "${this.runtimeType}": $e', e, stacktrace);
+    future.then((_) => onSuccess != null ? onSuccess() : null,
+        onError: (e, stacktrace) {
+      _logger.e(
+          'An error occurred at "${this.runtimeType}": $e', e, stacktrace);
       lastError = StoreError('An error occurred', e, stacktrace);
     });
   }
