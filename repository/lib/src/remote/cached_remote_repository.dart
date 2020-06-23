@@ -82,4 +82,10 @@ class CachedRemoteRepository<E extends Entity<ID>, ID>
     // TODO: implement findAll
     throw UnimplementedError();
   }
+
+  @override
+  Future<List<E>> list(Map<String, dynamic> filter) {
+    // always list from remote repository... (maybe unless the filter hasn't changed?)
+    return remoteRepository.list(filter);
+  }
 }

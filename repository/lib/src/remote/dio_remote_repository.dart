@@ -59,4 +59,9 @@ class DioRemoteRepository<E extends Entity<ID>, ID>
     throw UnimplementedError();
   }
 
+  @override
+  Future<List<E>> list(Map<String, dynamic> filter) {
+    return dioRestClient.list(filter);
+  }
+
 }

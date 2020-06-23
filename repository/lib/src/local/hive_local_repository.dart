@@ -32,6 +32,12 @@ class HiveLocalRepository<E extends Entity<ID>, ID>
   }
 
   @override
+  Future<List<E>> list(Map<String, dynamic> filter) {
+    // TODO: implement list
+    throw UnimplementedError();
+  }
+
+  @override
   Future<void> save(E entity) {
     return _box.put(entity.id, entity);
   }

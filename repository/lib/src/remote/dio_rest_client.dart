@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:serializer/serializer.dart';
 
@@ -18,14 +19,20 @@ class MapWrapper {
 abstract class _DioRestClient {
   factory _DioRestClient(Dio dio, {String baseUrl}) = __DioRestClient;
 
+  @protected
   @GET('/{id}')
-  Future<MapWrapper> _get(@Path('id') String id);
+  Future<MapWrapper> doGet(@Path('id') String id);
+
+  @protected
+  @GET('/')
+  Future<List<MapWrapper>> doList(@Queries() Map<String, dynamic> queries);
 
   @DELETE('/{id}')
   Future<void> delete(@Path('id') String id);
 
+  @protected
   @POST('/')
-  Future<void> _post(@Query('data') MapWrapper entity);
+  Future<void> doPost(@Query('data') MapWrapper entity);
 
   @GET('/count')
   Future<int> count();
@@ -38,11 +45,16 @@ class DioRestClient<E> extends __DioRestClient {
   final Serializer<E> serializer;
 
   Future<E> get(String id) async {
-    MapWrapper mapWrapper = await _get(id);
+    MapWrapper mapWrapper = await doGet(id);
     return serializer.deserialize(mapWrapper.toJson());
   }
 
+  Future<List<E>> list(Map<String, dynamic> queries) async {
+    List<MapWrapper> mapWrapperList = await doList(queries);
+    return mapWrapperList.map((e) => serializer.deserialize(e.toJson()));
+  }
+
   Future<void> post(E entity) {
-    return _post(MapWrapper(serializer.serialize(entity)));
+    return doPost(MapWrapper(serializer.serialize(entity)));
   }
 }
