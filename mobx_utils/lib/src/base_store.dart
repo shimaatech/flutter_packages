@@ -70,4 +70,7 @@ abstract class _BaseStore with Store {
       lastError = StoreError('An error occurred', e, stacktrace);
     });
   }
+
+  @mustCallSuper
+  void dispose() {}
 }
