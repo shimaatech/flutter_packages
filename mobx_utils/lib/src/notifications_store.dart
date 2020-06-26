@@ -19,11 +19,13 @@ abstract class _NotificationsStore extends BaseStore with Store {
   @observable
   NotificationMessage _clickedNotification;
 
+  @computed
   NotificationMessage get clickedNotification => _clickedNotification;
 
   @observable
   NotificationMessage _receivedNotification;
 
+  @computed
   NotificationMessage get receivedNotification => _receivedNotification;
 
   _NotificationsStore(this.notificationsServices) {

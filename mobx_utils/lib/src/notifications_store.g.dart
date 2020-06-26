@@ -9,6 +9,23 @@ part of 'notifications_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$NotificationsStore on _NotificationsStore, Store {
+  Computed<NotificationMessage> _$clickedNotificationComputed;
+
+  @override
+  NotificationMessage get clickedNotification =>
+      (_$clickedNotificationComputed ??= Computed<NotificationMessage>(
+              () => super.clickedNotification,
+              name: '_NotificationsStore.clickedNotification'))
+          .value;
+  Computed<NotificationMessage> _$receivedNotificationComputed;
+
+  @override
+  NotificationMessage get receivedNotification =>
+      (_$receivedNotificationComputed ??= Computed<NotificationMessage>(
+              () => super.receivedNotification,
+              name: '_NotificationsStore.receivedNotification'))
+          .value;
+
   final _$_clickedNotificationAtom =
       Atom(name: '_NotificationsStore._clickedNotification');
 
@@ -71,7 +88,8 @@ mixin _$NotificationsStore on _NotificationsStore, Store {
   @override
   String toString() {
     return '''
-
+clickedNotification: ${clickedNotification},
+receivedNotification: ${receivedNotification}
     ''';
   }
 }
