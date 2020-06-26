@@ -42,7 +42,7 @@ abstract class _RepositoryStore<R extends Repository<E, ID>,
 
   // it's not good that this depends on DioError... but it's OK for now...
   @computed
-  bool get hasConnectionError => hasError && lastError is DioError;
+  bool get hasConnectionError => hasError && lastError.exception is DioError;
 
   @action
   void fetchEntity(ID id) {
