@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
@@ -35,8 +36,13 @@ abstract class _RepositoryStore<R extends Repository<E, ID>,
   @computed
   E get entity => entityReady ? entityFuture.value : null;
 
+  @computed
   List<E> get entitiesList =>
       entitiesListReady ? entitiesListFuture.value : null;
+
+  // it's not good that this depends on DioError... but it's OK for now...
+  @computed
+  bool get hasConnectionError => hasError && lastError is DioError;
 
   @action
   void fetchEntity(ID id) {

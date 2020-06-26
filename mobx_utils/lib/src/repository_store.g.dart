@@ -30,6 +30,13 @@ mixin _$RepositoryStore<R extends Repository<E, ID>, E extends Entity<ID>, ID>
   E get entity => (_$entityComputed ??=
           Computed<E>(() => super.entity, name: '_RepositoryStore.entity'))
       .value;
+  Computed<List<E>> _$entitiesListComputed;
+
+  @override
+  List<E> get entitiesList =>
+      (_$entitiesListComputed ??= Computed<List<E>>(() => super.entitiesList,
+              name: '_RepositoryStore.entitiesList'))
+          .value;
 
   final _$entityFutureAtom = Atom(name: '_RepositoryStore.entityFuture');
 
@@ -105,7 +112,8 @@ entityFuture: ${entityFuture},
 entitiesListFuture: ${entitiesListFuture},
 entityReady: ${entityReady},
 entitiesListReady: ${entitiesListReady},
-entity: ${entity}
+entity: ${entity},
+entitiesList: ${entitiesList}
     ''';
   }
 }
