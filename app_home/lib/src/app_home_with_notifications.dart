@@ -1,6 +1,8 @@
 import 'package:app_home/app_home.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:mobx/mobx.dart';
 import 'package:mobx_utils/mobx_utils.dart';
+import 'package:notifications/notifications.dart';
 
 abstract class AppHomeWithNotifications extends BaseAppHome {
   final NotificationsStore notificationsStore;
@@ -9,17 +11,19 @@ abstract class AppHomeWithNotifications extends BaseAppHome {
       : super(appStore);
 
   @override
-  void observe(Reaction reaction) {
-    super.observe(reaction);
+  void observe(BuildContext context, Reaction reaction) {
+    super.observe(context, reaction);
     if (notificationsStore.receivedNotification != null) {
-      onNotificationReceived(notificationsStore.receivedNotification.data);
+      onNotificationReceived(context, notificationsStore.receivedNotification);
     }
     if (notificationsStore.clickedNotification != null) {
-      onNotificationClicked(notificationsStore.clickedNotification.data);
+      onNotificationClicked(context, notificationsStore.clickedNotification);
     }
   }
 
-  void onNotificationReceived(Map data);
+  void onNotificationReceived(
+      BuildContext context, NotificationMessage notification);
 
-  void onNotificationClicked(Map data);
+  void onNotificationClicked(
+      BuildContext context, NotificationMessage notification);
 }

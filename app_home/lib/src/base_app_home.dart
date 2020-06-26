@@ -12,7 +12,7 @@ abstract class BaseAppHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ObserverListener(
-      listener: observe,
+      listener: (reaction) => observe(context, reaction),
       child: buildHome(context),
     );
   }
@@ -21,5 +21,5 @@ abstract class BaseAppHome extends StatelessWidget {
 
 
   @mustCallSuper
-  void observe(Reaction reaction) {}
+  void observe(BuildContext context, Reaction reaction) {}
 }
