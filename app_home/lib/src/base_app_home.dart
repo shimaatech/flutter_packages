@@ -1,0 +1,25 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_mobx_helpers/flutter_mobx_helpers.dart';
+import 'package:mobx/mobx.dart';
+import 'package:mobx_utils/mobx_utils.dart';
+
+abstract class BaseAppHome extends StatelessWidget {
+
+  final BaseAppStore appStore;
+
+  BaseAppHome(this.appStore);
+
+  @override
+  Widget build(BuildContext context) {
+    return ObserverListener(
+      listener: observe,
+      child: buildHome(context),
+    );
+  }
+
+  Widget buildHome(BuildContext context);
+
+
+  @mustCallSuper
+  void observe(Reaction reaction) {}
+}
