@@ -13,11 +13,11 @@ abstract class BaseAppHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return ObserverListener(
       listener: (reaction) => observe(context, reaction),
-      child: buildHome(context),
+      child: buildHomePage(context),
     );
   }
 
-  Widget buildHome(BuildContext context);
+  Widget buildHomePage(BuildContext context);
 
 
   @mustCallSuper
