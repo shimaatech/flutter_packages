@@ -27,7 +27,7 @@ abstract class _BaseStore with Store {
   }
 
   @protected
-  List<ReactionDisposer> reactions;
+  List<ReactionDisposer> reactions = List();
 
   @observable
   StoreError _lastError;
