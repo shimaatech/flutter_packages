@@ -26,6 +26,9 @@ abstract class _BaseStore with Store {
     _initialize();
   }
 
+  @protected
+  List<ReactionDisposer> reactions;
+
   @observable
   StoreError _lastError;
 
@@ -72,5 +75,9 @@ abstract class _BaseStore with Store {
   }
 
   @mustCallSuper
-  void dispose() {}
+  void dispose() {
+    for (final disposer in reactions) {
+      disposer();
+    }
+  }
 }
