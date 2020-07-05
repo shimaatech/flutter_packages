@@ -9,7 +9,7 @@ abstract class Repository<E extends Entity<ID>, ID> {
 
   Future<List<E>> findAll(List<ID> ids);
 
-  Future<List<E>> list(Map<String, dynamic> filter);
+  Future<List<E>> list({Map<String, dynamic> filter});
 
   Future<void> save(E entity);
 

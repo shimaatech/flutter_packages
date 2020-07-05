@@ -50,6 +50,9 @@ class DioRestClient<E> extends __DioRestClient {
   }
 
   Future<List<E>> list(Map<String, dynamic> queries) async {
+    if (queries == null) {
+      queries = const {};
+    }
     List<MapWrapper> mapWrapperList = await doList(queries);
     return mapWrapperList.map((e) => serializer.deserialize(e.toJson()));
   }

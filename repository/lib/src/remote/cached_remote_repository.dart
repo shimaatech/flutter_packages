@@ -3,14 +3,12 @@ import 'package:repository/repository.dart';
 
 class CachedRemoteRepository<E extends Entity<ID>, ID>
     implements Repository<E, ID> {
-
   CachedRemoteRepository(this.remoteRepository, this.localRepository);
 
   @protected
   final RemoteRepository<E, ID> remoteRepository;
   @protected
   final LocalRepository<E, ID> localRepository;
-
 
   @override
   Future<void> delete(ID id) {
@@ -29,7 +27,9 @@ class CachedRemoteRepository<E extends Entity<ID>, ID>
     }
     entity = await remoteRepository.findById(id);
     // cache entity locally
-    await localRepository.save(entity);
+    if (entity != null) {
+      await localRepository.save(entity);
+    }
     return entity;
   }
 
@@ -78,20 +78,48 @@ class CachedRemoteRepository<E extends Entity<ID>, ID>
   }
 
   @override
-  Future<List<E>> findAll(List<ID> ids) {
-    // TODO: implement findAll
-    throw UnimplementedError();
+  Future<List<E>> findAll(List<ID> ids) async {
+    List<E> localEntities = await localRepository.findAll(ids);
+    if (localEntities.length == ids.length) {
+      return localEntities;
+    }
+    List<ID> notFoundIds =
+        ids.toSet().difference(localEntities.map((e) => e.id).toSet()).toList();
+    List<E> remoteEntities = await remoteRepository.findAll(notFoundIds);
+    if (remoteEntities != null) {
+      await localRepository.saveAll(remoteEntities);
+      return localEntities + remoteEntities;
+    } else {
+      return localEntities;
+    }
   }
 
-  @override
-  Future<List<E>> list(Map<String, dynamic> filter) {
-    // always list from remote repository... (maybe unless the filter hasn't changed?)
-    return remoteRepository.list(filter);
+  Future<List<E>> listRemote({Map<String, dynamic> filter}) async {
+    List<E> entities = await remoteRepository.list(filter: filter);
+    if (entities != null) {
+      await localRepository.saveAll(entities);
+    }
+    return entities;
+  }
+
+  Future<List<E>> listLocal() {
+    return localRepository.list();
   }
 
   @override
   Future<void> deleteAll() {
-    // TODO: implement deleteAll
-    throw UnimplementedError();
+    return Future.wait([
+      localRepository.deleteAll(),
+      remoteRepository.deleteAll(),
+    ]);
+  }
+
+  Future<void> deleteAllLocal() {
+    return localRepository.deleteAll();
+  }
+
+  @override
+  Future<List<E>> list({Map<String, dynamic> filter}) {
+    throw UnsupportedError('Use listRemote() or listLocal() instead');
   }
 }

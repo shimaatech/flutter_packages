@@ -6,7 +6,7 @@ import 'local.dart';
 class HiveLocalRepository<E extends Entity<ID>, ID>
     implements LocalRepository<E, ID> {
 
-  final LazyBox<E> _box;
+  final Box<E> _box;
 
   HiveLocalRepository(this._box);
 
@@ -21,20 +21,28 @@ class HiveLocalRepository<E extends Entity<ID>, ID>
   }
 
   @override
-  Future<E> findById(ID id) {
+  Future<E> findById(ID id) async {
     return _box.get(id);
   }
 
   @override
-  Future<List<E>> findAll(List<ID> ids) {
-    // TODO: implement findAll
-    throw UnimplementedError();
+  Future<List<E>> findAll(List<ID> ids) async {
+    List<E> entities = [];
+    for (ID id in ids) {
+      E foundEntity = await findById(id);
+      if (foundEntity != null) {
+        entities.add(await findById(id));
+      }
+    }
+    return entities;
   }
 
   @override
-  Future<List<E>> list(Map<String, dynamic> filter) {
-    // TODO: implement list
-    throw UnimplementedError();
+  Future<List<E>> list({Map<String, dynamic> filter}) async {
+    if (filter != null) {
+      throw UnsupportedError('Filtering is not supported');
+    }
+    return _box.values;
   }
 
   @override
