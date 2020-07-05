@@ -52,4 +52,9 @@ class HiveLocalRepository<E extends Entity<ID>, ID>
   Future<int> count() async {
     return _box.keys.length;
   }
+
+  @override
+  Future<void> deleteAll() {
+    return _box.clear();
+  }
 }

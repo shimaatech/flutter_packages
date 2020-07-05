@@ -88,4 +88,10 @@ class CachedRemoteRepository<E extends Entity<ID>, ID>
     // always list from remote repository... (maybe unless the filter hasn't changed?)
     return remoteRepository.list(filter);
   }
+
+  @override
+  Future<void> deleteAll() {
+    // TODO: implement deleteAll
+    throw UnimplementedError();
+  }
 }

@@ -64,4 +64,10 @@ class DioRemoteRepository<E extends Entity<ID>, ID>
     return dioRestClient.list(filter);
   }
 
+  @override
+  Future<void> deleteAll() {
+    // TODO: implement deleteAll
+    throw UnimplementedError();
+  }
+
 }

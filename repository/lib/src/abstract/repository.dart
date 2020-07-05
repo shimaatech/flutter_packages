@@ -17,5 +17,7 @@ abstract class Repository<E extends Entity<ID>, ID> {
 
   Future<void> delete(ID id);
 
+  Future<void> deleteAll();
+
   Future<int> count();
 }
