@@ -7,14 +7,14 @@ packages:
       name: _fe_analyzer_shared
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.0"
+    version: "5.0.0"
   analyzer:
     dependency: transitive
     description:
       name: analyzer
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.39.10"
+    version: "0.39.11"
   archive:
     dependency: transitive
     description:
@@ -338,7 +338,7 @@ packages:
     description:
       path: notifications
       ref: HEAD
-      resolved-ref: "21aa1eb74f542a9f30c0e274220f156a13c41f57"
+      resolved-ref: "8fafc6dc60fa950823b5541eeb43d9da74677917"
       url: "https://github.com/shimaatech/flutter_packages"
     source: git
     version: "0.0.1"
@@ -417,7 +417,7 @@ packages:
     description:
       path: repository
       ref: HEAD
-      resolved-ref: "21aa1eb74f542a9f30c0e274220f156a13c41f57"
+      resolved-ref: "8fafc6dc60fa950823b5541eeb43d9da74677917"
       url: "https://github.com/shimaatech/flutter_packages"
     source: git
     version: "0.0.1"
@@ -440,7 +440,7 @@ packages:
     description:
       path: serializer
       ref: HEAD
-      resolved-ref: "21aa1eb74f542a9f30c0e274220f156a13c41f57"
+      resolved-ref: "8fafc6dc60fa950823b5541eeb43d9da74677917"
       url: "https://github.com/shimaatech/flutter_packages"
     source: git
     version: "0.0.1"

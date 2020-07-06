@@ -66,7 +66,7 @@ abstract class _RepositoryStore<R extends Repository<E, ID>,
 
   @protected
   Future<void> doFetchEntitiesList({Map<String, dynamic> filter}) async {
-    entitiesListFuture = ObservableFuture(repository.list(filter));
+    entitiesListFuture = ObservableFuture(repository.list(filter: filter));
     await entitiesListFuture;
   }
 
