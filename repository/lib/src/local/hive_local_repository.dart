@@ -3,6 +3,8 @@ import 'package:hive/hive.dart';
 import '../abstract/abstract.dart';
 import 'local.dart';
 
+// TODO implement HiveLazyLocalRepository for LazyBox (good when you have repository with many data)
+
 class HiveLocalRepository<E extends Entity<ID>, ID>
     implements LocalRepository<E, ID> {
 

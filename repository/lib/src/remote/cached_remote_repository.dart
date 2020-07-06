@@ -94,7 +94,7 @@ class CachedRemoteRepository<E extends Entity<ID>, ID>
     }
   }
 
-  Future<List<E>> listRemote({Map<String, dynamic> filter}) async {
+  Future<List<E>> list({Map<String, dynamic> filter}) async {
     List<E> entities = await remoteRepository.list(filter: filter);
     if (entities != null) {
       await localRepository.saveAll(entities);
@@ -118,8 +118,4 @@ class CachedRemoteRepository<E extends Entity<ID>, ID>
     return localRepository.deleteAll();
   }
 
-  @override
-  Future<List<E>> list({Map<String, dynamic> filter}) {
-    throw UnsupportedError('Use listRemote() or listLocal() instead');
-  }
 }
