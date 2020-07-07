@@ -22,13 +22,6 @@ mixin _$BaseStore on _BaseStore, Store {
   bool get hasError => (_$hasErrorComputed ??=
           Computed<bool>(() => super.hasError, name: '_BaseStore.hasError'))
       .value;
-  Computed<bool> _$initializedComputed;
-
-  @override
-  bool get initialized =>
-      (_$initializedComputed ??= Computed<bool>(() => super.initialized,
-              name: '_BaseStore.initialized'))
-          .value;
 
   final _$_lastErrorAtom = Atom(name: '_BaseStore._lastError');
 
@@ -45,18 +38,18 @@ mixin _$BaseStore on _BaseStore, Store {
     });
   }
 
-  final _$_initializedAtom = Atom(name: '_BaseStore._initialized');
+  final _$initializeFutureAtom = Atom(name: '_BaseStore.initializeFuture');
 
   @override
-  bool get _initialized {
-    _$_initializedAtom.reportRead();
-    return super._initialized;
+  ObservableFuture<void> get initializeFuture {
+    _$initializeFutureAtom.reportRead();
+    return super.initializeFuture;
   }
 
   @override
-  set _initialized(bool value) {
-    _$_initializedAtom.reportWrite(value, super._initialized, () {
-      super._initialized = value;
+  set initializeFuture(ObservableFuture<void> value) {
+    _$initializeFutureAtom.reportWrite(value, super.initializeFuture, () {
+      super.initializeFuture = value;
     });
   }
 
@@ -70,9 +63,9 @@ mixin _$BaseStore on _BaseStore, Store {
   @override
   String toString() {
     return '''
+initializeFuture: ${initializeFuture},
 lastError: ${lastError},
-hasError: ${hasError},
-initialized: ${initialized}
+hasError: ${hasError}
     ''';
   }
 }

@@ -23,7 +23,8 @@ class BaseStore = _BaseStore with _$BaseStore;
 
 abstract class _BaseStore with Store {
   _BaseStore() {
-    _initialize();
+    reactions.add(when((_) => initialized, onInitialized));
+    observeAndCatchError(initializeFuture = initialize());
   }
 
   @protected
@@ -41,19 +42,13 @@ abstract class _BaseStore with Store {
   @computed
   bool get hasError => _lastError != null;
 
-  @observable
-  bool _initialized = false;
-
-  @computed
-  bool get initialized => _initialized;
-
   @protected
-  void _initialize() {
-    observeAndCatchError(initialize(), onSuccess: () {
-      _initialized = true;
-      onInitialized();
-    });
-  }
+  @observable
+  ObservableFuture<void> initializeFuture;
+
+  bool get initialized =>
+      initializeFuture != null &&
+      initializeFuture.status == FutureStatus.fulfilled;
 
   @mustCallSuper
   @protected

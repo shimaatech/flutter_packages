@@ -46,34 +46,18 @@ abstract class _RepositoryStore<R extends Repository<E, ID>,
 
   @action
   void fetchEntity(ID id) {
-    observeAndCatchError(doFetchEntity(id));
+    observeAndCatchError(
+        entityFuture = ObservableFuture(repository.findById(id)));
   }
 
-  @action fetchMultipleEntities(List<ID> ids) {
-    observeAndCatchError(doFetchMultipleEntities(ids));
+  @action
+  fetchMultipleEntities(List<ID> ids) {
+    observeAndCatchError(
+        entitiesListFuture = ObservableFuture(repository.findAll(ids)));
   }
 
   @action
   void fetchEntitiesList({Map<String, dynamic> filter}) {
-    observeAndCatchError(doFetchEntitiesList(filter: filter));
+    observeAndCatchError(ObservableFuture(repository.list(filter: filter)));
   }
-
-  @protected
-  Future<void> doFetchEntity(ID id) async {
-    entityFuture = ObservableFuture(repository.findById(id));
-    await entityFuture;
-  }
-
-  @protected
-  Future<void> doFetchEntitiesList({Map<String, dynamic> filter}) async {
-    entitiesListFuture = ObservableFuture(repository.list(filter: filter));
-    await entitiesListFuture;
-  }
-
-  @protected
-  Future<void> doFetchMultipleEntities(List<ID> ids) async {
-    entitiesListFuture = ObservableFuture(repository.findAll(ids));
-    await entitiesListFuture;
-  }
-
 }

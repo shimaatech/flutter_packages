@@ -37,6 +37,13 @@ mixin _$RepositoryStore<R extends Repository<E, ID>, E extends Entity<ID>, ID>
       (_$entitiesListComputed ??= Computed<List<E>>(() => super.entitiesList,
               name: '_RepositoryStore.entitiesList'))
           .value;
+  Computed<bool> _$hasConnectionErrorComputed;
+
+  @override
+  bool get hasConnectionError => (_$hasConnectionErrorComputed ??=
+          Computed<bool>(() => super.hasConnectionError,
+              name: '_RepositoryStore.hasConnectionError'))
+      .value;
 
   final _$entityFutureAtom = Atom(name: '_RepositoryStore.entityFuture');
 
@@ -113,7 +120,8 @@ entitiesListFuture: ${entitiesListFuture},
 entityReady: ${entityReady},
 entitiesListReady: ${entitiesListReady},
 entity: ${entity},
-entitiesList: ${entitiesList}
+entitiesList: ${entitiesList},
+hasConnectionError: ${hasConnectionError}
     ''';
   }
 }
