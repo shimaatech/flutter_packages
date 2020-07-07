@@ -24,7 +24,7 @@ class BaseStore = _BaseStore with _$BaseStore;
 abstract class _BaseStore with Store {
   _BaseStore() {
     reactions.add(when((_) => initialized, onInitialized));
-    observeAndCatchError(initializeFuture = initialize());
+    observeAndCatchError(initializeFuture = ObservableFuture(initialize()));
   }
 
   @protected
@@ -59,7 +59,7 @@ abstract class _BaseStore with Store {
   void onInitialized() {}
 
   @protected
-  void observeAndCatchError(Future future, {Function onSuccess}) {
+  void observeAndCatchError(ObservableFuture future, {Function onSuccess}) {
     lastError = null;
     future.then((_) => onSuccess != null ? onSuccess() : null,
         onError: (e, stacktrace) {
