@@ -54,7 +54,9 @@ class DioRestClient<E> extends __DioRestClient {
       queries = const {};
     }
     List<MapWrapper> mapWrapperList = await doList(queries);
-    return mapWrapperList.map((e) => serializer.deserialize(e.toJson()));
+    return mapWrapperList
+        .map((e) => serializer.deserialize(e.toJson()))
+        .toList();
   }
 
   Future<void> post(E entity) {
