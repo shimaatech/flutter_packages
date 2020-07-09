@@ -47,17 +47,21 @@ abstract class _RepositoryStore<R extends Repository<E, ID>,
   @action
   void fetchEntity(ID id) {
     observeAndCatchError(
-        entityFuture = ObservableFuture(repository.findById(id)));
+      entityFuture = ObservableFuture(repository.findById(id)),
+    );
   }
 
   @action
   fetchMultipleEntities(List<ID> ids) {
     observeAndCatchError(
-        entitiesListFuture = ObservableFuture(repository.findAll(ids)));
+      entitiesListFuture = ObservableFuture(repository.findAll(ids)),
+    );
   }
 
   @action
   void fetchEntitiesList({Map<String, dynamic> filter}) {
-    observeAndCatchError(ObservableFuture(repository.list(filter: filter)));
+    observeAndCatchError(
+      entitiesListFuture = ObservableFuture(repository.list(filter: filter)),
+    );
   }
 }
