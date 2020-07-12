@@ -1,0 +1,70 @@
+{
+  "@@last_modified": "2020-07-13T02:16:46.762722",
+  "now": "עכשיו",
+  "@now": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oneMinute": "דקה",
+  "@oneMinute": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "twoMinutes": "2 דקות",
+  "@twoMinutes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fewMinutes": "{count} דקות",
+  "@fewMinutes": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "manyMinutes": "{count} דקות",
+  "@manyMinutes": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "oneHour": "שעה",
+  "@oneHour": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "twoHours": "2 שעות",
+  "@twoHours": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fewHours": "{count} שעות",
+  "@fewHours": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "manyHours": "{count} שעות",
+  "@manyHours": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "today": "היום {time}",
+  "@today": {
+    "type": "text",
+    "placeholders": {
+      "time": {}
+    }
+  },
+  "yesterday": "אתמול {time}",
+  "@yesterday": {
+    "type": "text",
+    "placeholders": {
+      "time": {}
+    }
+  }
+}
