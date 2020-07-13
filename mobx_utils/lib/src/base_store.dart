@@ -46,6 +46,7 @@ abstract class _BaseStore with Store {
   @observable
   ObservableFuture<void> initializeFuture;
 
+  @computed
   bool get initialized =>
       initializeFuture != null &&
       initializeFuture.status == FutureStatus.fulfilled;
