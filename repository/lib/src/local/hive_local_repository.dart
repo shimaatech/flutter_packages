@@ -7,7 +7,6 @@ import 'local.dart';
 
 class HiveLocalRepository<E extends Entity<ID>, ID>
     implements LocalRepository<E, ID> {
-
   final Box<E> _box;
 
   HiveLocalRepository(this._box);
@@ -55,8 +54,8 @@ class HiveLocalRepository<E extends Entity<ID>, ID>
 
   @override
   Future<void> saveAll(Iterable<E> entities) {
-    return _box.putAll(
-        Map.fromIterable(entities, key: (p) => p.getId(), value: (p) => p));
+    return _box
+        .putAll(Map.fromIterable(entities, key: (p) => p.id, value: (p) => p));
   }
 
   @override
