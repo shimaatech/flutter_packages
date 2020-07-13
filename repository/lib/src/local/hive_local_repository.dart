@@ -44,7 +44,8 @@ class HiveLocalRepository<E extends Entity<ID>, ID>
     if (filter != null) {
       throw UnsupportedError('Filtering is not supported');
     }
-    return _box.values;
+    // TODO shouldn't we return an iterable here instead of list?
+    return _box.values.toList();
   }
 
   @override
