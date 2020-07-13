@@ -22,6 +22,20 @@ mixin _$BaseStore on _BaseStore, Store {
   bool get hasError => (_$hasErrorComputed ??=
           Computed<bool>(() => super.hasError, name: '_BaseStore.hasError'))
       .value;
+  Computed<bool> _$hasConnectionErrorComputed;
+
+  @override
+  bool get hasConnectionError => (_$hasConnectionErrorComputed ??=
+          Computed<bool>(() => super.hasConnectionError,
+              name: '_BaseStore.hasConnectionError'))
+      .value;
+  Computed<bool> _$initializedComputed;
+
+  @override
+  bool get initialized =>
+      (_$initializedComputed ??= Computed<bool>(() => super.initialized,
+              name: '_BaseStore.initialized'))
+          .value;
 
   final _$_lastErrorAtom = Atom(name: '_BaseStore._lastError');
 
@@ -65,7 +79,9 @@ mixin _$BaseStore on _BaseStore, Store {
     return '''
 initializeFuture: ${initializeFuture},
 lastError: ${lastError},
-hasError: ${hasError}
+hasError: ${hasError},
+hasConnectionError: ${hasConnectionError},
+initialized: ${initialized}
     ''';
   }
 }

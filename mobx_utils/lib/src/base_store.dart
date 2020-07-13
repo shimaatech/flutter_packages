@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
 import 'package:mobx/mobx.dart';
@@ -41,6 +42,10 @@ abstract class _BaseStore with Store {
 
   @computed
   bool get hasError => _lastError != null;
+
+  // it's not good that this depends on DioError... but it's OK for now...
+  @computed
+  bool get hasConnectionError => hasError && lastError.exception is DioError;
 
   @protected
   @observable
