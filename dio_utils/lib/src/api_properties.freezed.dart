@@ -18,7 +18,8 @@ class _$ApiPropertiesTearOff {
       int receiveTimeout,
       int connectTimeout,
       String username,
-      String password}) {
+      String password,
+      String tenant}) {
     return _ApiProperties(
       baseUrl: baseUrl,
       version: version,
@@ -26,6 +27,7 @@ class _$ApiPropertiesTearOff {
       connectTimeout: connectTimeout,
       username: username,
       password: password,
+      tenant: tenant,
     );
   }
 }
@@ -40,6 +42,7 @@ mixin _$ApiProperties {
   int get connectTimeout;
   String get username;
   String get password;
+  String get tenant;
 
   $ApiPropertiesCopyWith<ApiProperties> get copyWith;
 }
@@ -54,7 +57,8 @@ abstract class $ApiPropertiesCopyWith<$Res> {
       int receiveTimeout,
       int connectTimeout,
       String username,
-      String password});
+      String password,
+      String tenant});
 }
 
 class _$ApiPropertiesCopyWithImpl<$Res>
@@ -73,6 +77,7 @@ class _$ApiPropertiesCopyWithImpl<$Res>
     Object connectTimeout = freezed,
     Object username = freezed,
     Object password = freezed,
+    Object tenant = freezed,
   }) {
     return _then(_value.copyWith(
       baseUrl: baseUrl == freezed ? _value.baseUrl : baseUrl as String,
@@ -85,6 +90,7 @@ class _$ApiPropertiesCopyWithImpl<$Res>
           : connectTimeout as int,
       username: username == freezed ? _value.username : username as String,
       password: password == freezed ? _value.password : password as String,
+      tenant: tenant == freezed ? _value.tenant : tenant as String,
     ));
   }
 }
@@ -101,7 +107,8 @@ abstract class _$ApiPropertiesCopyWith<$Res>
       int receiveTimeout,
       int connectTimeout,
       String username,
-      String password});
+      String password,
+      String tenant});
 }
 
 class __$ApiPropertiesCopyWithImpl<$Res>
@@ -122,6 +129,7 @@ class __$ApiPropertiesCopyWithImpl<$Res>
     Object connectTimeout = freezed,
     Object username = freezed,
     Object password = freezed,
+    Object tenant = freezed,
   }) {
     return _then(_ApiProperties(
       baseUrl: baseUrl == freezed ? _value.baseUrl : baseUrl as String,
@@ -134,6 +142,7 @@ class __$ApiPropertiesCopyWithImpl<$Res>
           : connectTimeout as int,
       username: username == freezed ? _value.username : username as String,
       password: password == freezed ? _value.password : password as String,
+      tenant: tenant == freezed ? _value.tenant : tenant as String,
     ));
   }
 }
@@ -145,7 +154,8 @@ class _$_ApiProperties implements _ApiProperties {
       this.receiveTimeout,
       this.connectTimeout,
       this.username,
-      this.password});
+      this.password,
+      this.tenant});
 
   @override
   final String baseUrl;
@@ -159,10 +169,12 @@ class _$_ApiProperties implements _ApiProperties {
   final String username;
   @override
   final String password;
+  @override
+  final String tenant;
 
   @override
   String toString() {
-    return 'ApiProperties(baseUrl: $baseUrl, version: $version, receiveTimeout: $receiveTimeout, connectTimeout: $connectTimeout, username: $username, password: $password)';
+    return 'ApiProperties(baseUrl: $baseUrl, version: $version, receiveTimeout: $receiveTimeout, connectTimeout: $connectTimeout, username: $username, password: $password, tenant: $tenant)';
   }
 
   @override
@@ -186,7 +198,9 @@ class _$_ApiProperties implements _ApiProperties {
                     .equals(other.username, username)) &&
             (identical(other.password, password) ||
                 const DeepCollectionEquality()
-                    .equals(other.password, password)));
+                    .equals(other.password, password)) &&
+            (identical(other.tenant, tenant) ||
+                const DeepCollectionEquality().equals(other.tenant, tenant)));
   }
 
   @override
@@ -197,7 +211,8 @@ class _$_ApiProperties implements _ApiProperties {
       const DeepCollectionEquality().hash(receiveTimeout) ^
       const DeepCollectionEquality().hash(connectTimeout) ^
       const DeepCollectionEquality().hash(username) ^
-      const DeepCollectionEquality().hash(password);
+      const DeepCollectionEquality().hash(password) ^
+      const DeepCollectionEquality().hash(tenant);
 
   @override
   _$ApiPropertiesCopyWith<_ApiProperties> get copyWith =>
@@ -211,7 +226,8 @@ abstract class _ApiProperties implements ApiProperties {
       int receiveTimeout,
       int connectTimeout,
       String username,
-      String password}) = _$_ApiProperties;
+      String password,
+      String tenant}) = _$_ApiProperties;
 
   @override
   String get baseUrl;
@@ -225,6 +241,8 @@ abstract class _ApiProperties implements ApiProperties {
   String get username;
   @override
   String get password;
+  @override
+  String get tenant;
   @override
   _$ApiPropertiesCopyWith<_ApiProperties> get copyWith;
 }

@@ -11,5 +11,6 @@ abstract class ApiProperties with _$ApiProperties {
     int connectTimeout,
     String username,
     String password,
+    String tenant,
   }) = _ApiProperties;
 }
