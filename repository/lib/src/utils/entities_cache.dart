@@ -9,4 +9,6 @@ class EntitiesCache<E extends Entity<ID>, ID> {
   E get(ID id) => _cache[id];
 
   bool exists(ID id) => _cache.containsKey(id);
+
+  Iterable<E> get values => _cache.values;
 }
