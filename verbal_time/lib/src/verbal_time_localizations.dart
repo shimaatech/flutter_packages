@@ -9,19 +9,23 @@ class VerbalTimeLocalizations {
   static const String _defaultTimeFormat = 'HH:mm';
   static const String _defaultDateFormat = 'dd/MM';
   static const String _defaultSeparator = ' ';
+  static const Locale defaultDateFormatLocale = Locale('en');
 
   final Locale locale;
+  final Locale dateFormatLocale;
 
-  VerbalTimeLocalizations(this.locale);
+  VerbalTimeLocalizations(this.locale, bool useLocaleForDate)
+      : dateFormatLocale = useLocaleForDate ? locale : defaultDateFormatLocale;
 
-  static Future<VerbalTimeLocalizations> load(Locale locale) {
+  static Future<VerbalTimeLocalizations> load(
+      Locale locale, bool useLocaleForDate) {
     final String name =
         locale.countryCode == null ? locale.languageCode : locale.toString();
     final String localeName = Intl.canonicalizedLocale(name);
 
     return initializeMessages(localeName).then((bool _) {
       Intl.defaultLocale = localeName;
-      return new VerbalTimeLocalizations(locale);
+      return new VerbalTimeLocalizations(locale, useLocaleForDate);
     });
   }
 
@@ -37,8 +41,9 @@ class VerbalTimeLocalizations {
   ];
 
   // Static member to have a simple access to the delegate from the MaterialApp
-  static LocalizationsDelegate<VerbalTimeLocalizations> get delegate =>
-      _VerbalTimeLocalizationsDelegate();
+  static LocalizationsDelegate<VerbalTimeLocalizations> delegate(
+          {bool useLocaleForDate = false}) =>
+      _VerbalTimeLocalizationsDelegate(useLocaleForDate);
 
   @protected
   String minutes(int count) {
@@ -114,7 +119,8 @@ class VerbalTimeLocalizations {
         time.month == yesterdayTime.month &&
         time.year == time.year) {
       String strTime =
-          DateFormat(_defaultTimeFormat, locale.languageCode).format(time);
+          DateFormat(_defaultTimeFormat, dateFormatLocale.languageCode)
+              .format(time);
       return this.yesterday(strTime);
     }
 
@@ -139,7 +145,9 @@ class VerbalTimeLocalizations {
 
 class _VerbalTimeLocalizationsDelegate
     extends LocalizationsDelegate<VerbalTimeLocalizations> {
-  const _VerbalTimeLocalizationsDelegate();
+  const _VerbalTimeLocalizationsDelegate(this.useLocaleForDate);
+
+  final bool useLocaleForDate;
 
   @override
   bool isSupported(Locale locale) {
@@ -148,7 +156,7 @@ class _VerbalTimeLocalizationsDelegate
 
   @override
   Future<VerbalTimeLocalizations> load(Locale locale) {
-    return VerbalTimeLocalizations.load(locale);
+    return VerbalTimeLocalizations.load(locale, useLocaleForDate);
   }
 
   @override
