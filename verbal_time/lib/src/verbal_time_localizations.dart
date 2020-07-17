@@ -131,7 +131,7 @@ class VerbalTimeLocalizations {
     if (timeDiffDuration.inDays > 0) {
       return DateFormat(
               '$_defaultDateFormat$_defaultSeparator$_defaultTimeFormat',
-              locale.languageCode)
+              dateFormatLocale.languageCode)
           .format(time);
     }
 
