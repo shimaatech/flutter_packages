@@ -20,4 +20,25 @@ abstract class Repository<E extends Entity<ID>, ID> {
   Future<void> deleteAll();
 
   Future<int> count();
+
+}
+
+abstract class StorageCachedRepository<E extends Entity<ID>, ID> {
+  bool exists(ID id);
+
+  E findById(ID id);
+
+  Iterable<E> findAll(List<ID> ids);
+
+  Iterable<E> list({Map<String, dynamic> filter});
+
+  Future<void> save(E entity);
+
+  Future<void> saveAll(Iterable<E> entities);
+
+  Future<void> delete(ID id);
+
+  Future<void> deleteAll();
+
+  int count();
 }
