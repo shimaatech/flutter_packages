@@ -4,4 +4,9 @@ abstract class LocalStorage {
 
   Future<void> save<T>(String key, T value);
 
+  Future<void> remove(String key);
+
+  bool exists(String key);
+
+  Future<void> clearAll();
 }

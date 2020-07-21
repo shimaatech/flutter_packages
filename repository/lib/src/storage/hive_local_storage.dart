@@ -16,4 +16,19 @@ class HiveLocalStorage implements LocalStorage {
   Future<void> save<T>(String key, T value) {
     return _box.put(key, value);
   }
+
+  @override
+  bool exists(String key) {
+    return _box.containsKey(key);
+  }
+
+  @override
+  Future<void> clearAll() {
+    return _box.clear();
+  }
+
+  @override
+  Future<void> remove(String key) {
+    return _box.delete(key);
+  }
 }
