@@ -23,7 +23,11 @@ class UtcIsoDateConverter implements JsonConverter<DateTime, String> {
     if (json == null) {
       return null;
     }
-    return DateTime.parse(json);
+    DateTime dateTime = DateTime.parse(json);
+    if (dateTime.isUtc) {
+      return dateTime.toLocal();
+    }
+    return dateTime;
   }
 
   @override
@@ -31,10 +35,7 @@ class UtcIsoDateConverter implements JsonConverter<DateTime, String> {
     if (datetime == null) {
       return null;
     }
-    if (!datetime.isUtc) {
-      throw Exception('DateTime must be in utc');
-    }
-    String json = datetime.toIso8601String();
+    String json = datetime.toUtc().toIso8601String();
     if (json.contains('.')) {
       json = '${json.replaceRange(json.indexOf('.'), json.length, '')}Z';
     }
