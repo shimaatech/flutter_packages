@@ -20,11 +20,19 @@ class UtcIsoDateConverter implements JsonConverter<DateTime, String> {
     if (json == null) {
       return null;
     }
+
     return DateTime.parse(json)?.toLocal();
   }
 
   @override
   String toJson(DateTime datetime) {
-    return datetime?.toUtc()?.toIso8601String();
+    if (datetime == null) {
+      return null;
+    }
+    String json = datetime.toUtc().toIso8601String();
+    if (json.contains('.')) {
+      json = '${json.replaceRange(json.indexOf('.'), json.length, '')}Z';
+    }
+    return json;
   }
 }
