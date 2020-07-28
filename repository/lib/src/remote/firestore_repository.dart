@@ -3,8 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:repository/repository.dart';
 import 'package:serializer/serializer.dart';
 
-// TODO move to flutter_packages
-
 class FirestoreRepository<E extends Entity<String>>
     implements RemoteRepository<E, String> {
   FirestoreRepository(this.firestore, String collectionName, this.serializer)
