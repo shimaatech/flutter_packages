@@ -5,15 +5,12 @@ import '../system_messages.dart';
 
 class SystemMessageCard extends StatefulWidget {
   SystemMessageCard({
-    @required this.langCode,
     this.systemMessagesService,
     this.dismissable = true,
     Key key,
-  })  : assert(langCode != null),
-        super(key: key);
+  }) : super(key: key);
 
   final SystemMessagesService systemMessagesService;
-  final String langCode;
   final bool dismissable;
 
   @override
@@ -31,8 +28,8 @@ class _SystemMessageCardState extends State<SystemMessageCard> {
     service = widget.systemMessagesService ??
         Provider.of<SystemMessagesService>(context);
     if (messageFuture == null) {
-      messageFuture = service.getLatestUnexpiredMessage(
-          widget.langCode, SystemMessageType.normal);
+      messageFuture =
+          service.getLatestUnexpiredMessage(SystemMessageType.normal);
     }
   }
 

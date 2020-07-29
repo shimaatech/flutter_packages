@@ -5,7 +5,6 @@ import 'package:repository/repository.dart';
 import 'package:serializer/serializer.dart';
 
 import '../system_messages.dart';
-import '../system_messages.dart';
 
 /// We are using firestore directly here instead of FirestoreRepository.
 /// This is because the RemoteRepository doesn't support complex queries
@@ -16,14 +15,15 @@ class SystemMessagesService {
   static const String dismissedMessagesKey =
       'systemMessagesService.dismissedMessages';
 
-  SystemMessagesService(this.firestore, this.storage);
+  SystemMessagesService(this.firestore, this.storage, this.langCode);
 
   final Firestore firestore;
   final LocalStorage storage;
+  final String langCode;
   final JsonConverter<DateTime, String> dateConverter = UtcIsoDateConverter();
 
-  Future<SystemMessage> getLatestUnexpiredMessage(
-      String langCode, SystemMessageType type) async {
+
+  Future<SystemMessage> getLatestUnexpiredMessage(SystemMessageType type) async {
     // get one non-expired message only
     List<DocumentSnapshot> snapshots = (await firestore
             .collection(collectionName)
