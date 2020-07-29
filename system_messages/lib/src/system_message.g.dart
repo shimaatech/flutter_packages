@@ -13,6 +13,8 @@ _$_SystemMessage _$_$_SystemMessageFromJson(Map json) {
     content: json['content'] as String,
     langCode: json['langCode'] as String,
     type: _$enumDecodeNullable(_$SystemMessageTypeEnumMap, json['type']),
+    package: json['package'] as String,
+    testMode: json['testMode'] as bool,
     expirationDate:
         const UtcIsoDateConverter().fromJson(json['expirationDate'] as String),
   );
@@ -25,6 +27,8 @@ Map<String, dynamic> _$_$_SystemMessageToJson(_$_SystemMessage instance) =>
       'content': instance.content,
       'langCode': instance.langCode,
       'type': _$SystemMessageTypeEnumMap[instance.type],
+      'package': instance.package,
+      'testMode': instance.testMode,
       'expirationDate':
           const UtcIsoDateConverter().toJson(instance.expirationDate),
     };

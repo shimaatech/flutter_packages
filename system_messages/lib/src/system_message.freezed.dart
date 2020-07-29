@@ -22,6 +22,8 @@ class _$SystemMessageTearOff {
       String content,
       String langCode,
       SystemMessageType type,
+      String package,
+      bool testMode,
       @UtcIsoDateConverter() DateTime expirationDate}) {
     return _SystemMessage(
       id: id,
@@ -29,6 +31,8 @@ class _$SystemMessageTearOff {
       content: content,
       langCode: langCode,
       type: type,
+      package: package,
+      testMode: testMode,
       expirationDate: expirationDate,
     );
   }
@@ -43,6 +47,8 @@ mixin _$SystemMessage {
   String get content;
   String get langCode;
   SystemMessageType get type;
+  String get package;
+  bool get testMode;
   @UtcIsoDateConverter()
   DateTime get expirationDate;
 
@@ -60,6 +66,8 @@ abstract class $SystemMessageCopyWith<$Res> {
       String content,
       String langCode,
       SystemMessageType type,
+      String package,
+      bool testMode,
       @UtcIsoDateConverter() DateTime expirationDate});
 }
 
@@ -78,6 +86,8 @@ class _$SystemMessageCopyWithImpl<$Res>
     Object content = freezed,
     Object langCode = freezed,
     Object type = freezed,
+    Object package = freezed,
+    Object testMode = freezed,
     Object expirationDate = freezed,
   }) {
     return _then(_value.copyWith(
@@ -86,6 +96,8 @@ class _$SystemMessageCopyWithImpl<$Res>
       content: content == freezed ? _value.content : content as String,
       langCode: langCode == freezed ? _value.langCode : langCode as String,
       type: type == freezed ? _value.type : type as SystemMessageType,
+      package: package == freezed ? _value.package : package as String,
+      testMode: testMode == freezed ? _value.testMode : testMode as bool,
       expirationDate: expirationDate == freezed
           ? _value.expirationDate
           : expirationDate as DateTime,
@@ -105,6 +117,8 @@ abstract class _$SystemMessageCopyWith<$Res>
       String content,
       String langCode,
       SystemMessageType type,
+      String package,
+      bool testMode,
       @UtcIsoDateConverter() DateTime expirationDate});
 }
 
@@ -125,6 +139,8 @@ class __$SystemMessageCopyWithImpl<$Res>
     Object content = freezed,
     Object langCode = freezed,
     Object type = freezed,
+    Object package = freezed,
+    Object testMode = freezed,
     Object expirationDate = freezed,
   }) {
     return _then(_SystemMessage(
@@ -133,6 +149,8 @@ class __$SystemMessageCopyWithImpl<$Res>
       content: content == freezed ? _value.content : content as String,
       langCode: langCode == freezed ? _value.langCode : langCode as String,
       type: type == freezed ? _value.type : type as SystemMessageType,
+      package: package == freezed ? _value.package : package as String,
+      testMode: testMode == freezed ? _value.testMode : testMode as bool,
       expirationDate: expirationDate == freezed
           ? _value.expirationDate
           : expirationDate as DateTime,
@@ -148,6 +166,8 @@ class _$_SystemMessage implements _SystemMessage {
       this.content,
       this.langCode,
       this.type,
+      this.package,
+      this.testMode,
       @UtcIsoDateConverter() this.expirationDate});
 
   factory _$_SystemMessage.fromJson(Map<String, dynamic> json) =>
@@ -164,12 +184,16 @@ class _$_SystemMessage implements _SystemMessage {
   @override
   final SystemMessageType type;
   @override
+  final String package;
+  @override
+  final bool testMode;
+  @override
   @UtcIsoDateConverter()
   final DateTime expirationDate;
 
   @override
   String toString() {
-    return 'SystemMessage(id: $id, title: $title, content: $content, langCode: $langCode, type: $type, expirationDate: $expirationDate)';
+    return 'SystemMessage(id: $id, title: $title, content: $content, langCode: $langCode, type: $type, package: $package, testMode: $testMode, expirationDate: $expirationDate)';
   }
 
   @override
@@ -188,6 +212,12 @@ class _$_SystemMessage implements _SystemMessage {
                     .equals(other.langCode, langCode)) &&
             (identical(other.type, type) ||
                 const DeepCollectionEquality().equals(other.type, type)) &&
+            (identical(other.package, package) ||
+                const DeepCollectionEquality()
+                    .equals(other.package, package)) &&
+            (identical(other.testMode, testMode) ||
+                const DeepCollectionEquality()
+                    .equals(other.testMode, testMode)) &&
             (identical(other.expirationDate, expirationDate) ||
                 const DeepCollectionEquality()
                     .equals(other.expirationDate, expirationDate)));
@@ -201,6 +231,8 @@ class _$_SystemMessage implements _SystemMessage {
       const DeepCollectionEquality().hash(content) ^
       const DeepCollectionEquality().hash(langCode) ^
       const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(package) ^
+      const DeepCollectionEquality().hash(testMode) ^
       const DeepCollectionEquality().hash(expirationDate);
 
   @override
@@ -220,6 +252,8 @@ abstract class _SystemMessage implements SystemMessage {
       String content,
       String langCode,
       SystemMessageType type,
+      String package,
+      bool testMode,
       @UtcIsoDateConverter() DateTime expirationDate}) = _$_SystemMessage;
 
   factory _SystemMessage.fromJson(Map<String, dynamic> json) =
@@ -235,6 +269,10 @@ abstract class _SystemMessage implements SystemMessage {
   String get langCode;
   @override
   SystemMessageType get type;
+  @override
+  String get package;
+  @override
+  bool get testMode;
   @override
   @UtcIsoDateConverter()
   DateTime get expirationDate;
