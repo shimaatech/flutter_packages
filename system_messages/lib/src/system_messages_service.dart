@@ -50,7 +50,7 @@ class SystemMessagesService {
             .toJson((data['expirationDate'] as Timestamp).toDate());
       }
       SystemMessage message =
-          SystemMessage.serializer.deserialize(snapshots.first.data);
+          SystemMessage.serializer.deserialize(data);
       if (!isMessageDismissed(message)) {
         return message;
       }
