@@ -49,8 +49,7 @@ class SystemMessagesService {
         data['expirationDate'] = dateConverter
             .toJson((data['expirationDate'] as Timestamp).toDate());
       }
-      SystemMessage message =
-          SystemMessage.serializer.deserialize(data);
+      SystemMessage message = SystemMessage.serializer.deserialize(data);
       if (!isMessageDismissed(message)) {
         return message;
       }
@@ -59,7 +58,8 @@ class SystemMessagesService {
   }
 
   Future<void> dismissMessage(String id) {
-    return storage.save(dismissedMessagesKey, List.from(getDismissedMessages())..add(id));
+    return storage.save<List<String>>(dismissedMessagesKey,
+        List<String>.from(getDismissedMessages())..add(id));
   }
 
   @protected
