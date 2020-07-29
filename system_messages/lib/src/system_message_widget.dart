@@ -64,20 +64,19 @@ class _SystemMessageCardState extends State<SystemMessageCard> {
   Widget buildMessageCard(SystemMessage message) {
     return Card(
       color: widget.backgroundColor,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          children: <Widget>[
-            Padding(
+      child: Row(
+        children: <Widget>[
+          widget.dismissible ? buildDismissButton(message) : Container(),
+          Expanded(
+            child: Padding(
               padding: const EdgeInsets.all(15.0),
               child: Text(
                 message.content,
                 style: Theme.of(context).textTheme.bodyText1,
               ),
             ),
-            widget.dismissible ? buildDismissButton(message) : Container(),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
