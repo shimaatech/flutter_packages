@@ -7,12 +7,12 @@ import '../system_messages.dart';
 class SystemMessageCard extends StatefulWidget {
   SystemMessageCard({
     this.systemMessagesService,
-    this.dismissable = true,
+    this.dismissible = true,
     Key key,
   }) : super(key: key);
 
   final SystemMessagesService systemMessagesService;
-  final bool dismissable;
+  final bool dismissible;
 
   @override
   _SystemMessageCardState createState() => _SystemMessageCardState();
@@ -23,7 +23,6 @@ class _SystemMessageCardState extends State<SystemMessageCard> {
   Future<SystemMessage> messageFuture;
   SystemMessagesService service;
   final Logger logger = Logger();
-
 
   @override
   void didChangeDependencies() {
@@ -46,7 +45,13 @@ class _SystemMessageCardState extends State<SystemMessageCard> {
         }
         if (!isDismissed && snapshot.hasData && snapshot.data != null) {
           logger.i('Loaded system messasge: ${snapshot.data}');
-          return buildMessageCard(snapshot.data);
+          return widget.dismissible
+              ? Dismissible(
+                  key: Key('system_message'),
+                  onDismissed: (direction) => dismissMessage(),
+                  child: buildMessageCard(snapshot.data),
+                )
+              : buildMessageCard(snapshot.data);
         } else {
           return Container();
         }
@@ -55,29 +60,36 @@ class _SystemMessageCardState extends State<SystemMessageCard> {
   }
 
   Widget buildMessageCard(SystemMessage message) {
-    return Card(
-      child: Column(
-        children: <Widget>[
-          widget.dismissable ? buildDismissButton(message) : Container(),
-          Text(message.content),
-        ],
-      ),
+    return Stack(
+      children: <Widget>[
+        widget.dismissible
+            ? Container(
+                alignment: Alignment.topRight,
+                child: buildDismissButton(message),
+              )
+            : Container(),
+        Card(
+          child: Text(
+            message.content,
+          ),
+        ),
+      ],
     );
   }
 
   Widget buildDismissButton(SystemMessage message) {
-    return Row(
-      children: <Widget>[
-        IconButton(
-          icon: Icon(Icons.clear),
-          onPressed: () {
-            service.dismissMessage(message.id);
-            setState(() {
-              isDismissed = true;
-            });
-          },
-        ),
-      ],
+    return IconButton(
+      icon: Icon(Icons.clear),
+      onPressed: () {
+        service.dismissMessage(message.id);
+        dismissMessage();
+      },
     );
+  }
+
+  void dismissMessage() {
+    setState(() {
+      isDismissed = true;
+    });
   }
 }
