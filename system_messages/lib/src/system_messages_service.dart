@@ -15,15 +15,19 @@ class SystemMessagesService {
   static const String dismissedMessagesKey =
       'systemMessagesService.dismissedMessages';
 
-  SystemMessagesService(this.firestore, this.storage, this.langCode);
+  SystemMessagesService(
+      this.firestore, this.storage, this.langCode, this.package,
+      {this.testMode = false});
 
   final Firestore firestore;
   final LocalStorage storage;
   final String langCode;
+  final String package;
+  final bool testMode;
   final JsonConverter<DateTime, String> dateConverter = UtcIsoDateConverter();
 
-
-  Future<SystemMessage> getLatestUnexpiredMessage(SystemMessageType type) async {
+  Future<SystemMessage> getLatestUnexpiredMessage(
+      SystemMessageType type) async {
     // get one non-expired message only
     List<DocumentSnapshot> snapshots = (await firestore
             .collection(collectionName)
@@ -31,6 +35,8 @@ class SystemMessagesService {
                 isGreaterThanOrEqualTo: dateConverter.toJson(DateTime.now()))
             .where('langCode', isEqualTo: langCode)
             .where('type', isEqualTo: describeEnum(type))
+            .where('package', isEqualTo: package)
+            .where('testMode', isEqualTo: testMode)
             .limit(1)
             .getDocuments())
         .documents;

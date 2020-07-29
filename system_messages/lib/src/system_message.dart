@@ -20,6 +20,8 @@ abstract class SystemMessage extends Entity<String>  with _$SystemMessage {
     String content,
     String langCode,
     SystemMessageType type,
+    String package,
+    bool testMode,
     @UtcIsoDateConverter() DateTime expirationDate,
   }) = _SystemMessage;
 
