@@ -66,21 +66,16 @@ class _SystemMessageCardState extends State<SystemMessageCard> {
       color: widget.backgroundColor,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Stack(
+        child: Row(
           children: <Widget>[
-            widget.dismissible
-                ? Container(
-                    alignment: Alignment.topRight,
-                    child: buildDismissButton(message),
-                  )
-                : Container(),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(15.0),
               child: Text(
                 message.content,
                 style: Theme.of(context).textTheme.bodyText1,
               ),
             ),
+            widget.dismissible ? buildDismissButton(message) : Container(),
           ],
         ),
       ),
@@ -89,6 +84,7 @@ class _SystemMessageCardState extends State<SystemMessageCard> {
 
   Widget buildDismissButton(SystemMessage message) {
     return IconButton(
+      padding: EdgeInsets.all(0.0),
       icon: Icon(
         Icons.clear,
         color: Colors.grey,
