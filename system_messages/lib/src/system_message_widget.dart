@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 
 import '../system_messages.dart';
@@ -21,6 +22,8 @@ class _SystemMessageCardState extends State<SystemMessageCard> {
   bool isDismissed = false;
   Future<SystemMessage> messageFuture;
   SystemMessagesService service;
+  final Logger logger = Logger();
+
 
   @override
   void didChangeDependencies() {
@@ -38,7 +41,11 @@ class _SystemMessageCardState extends State<SystemMessageCard> {
     return FutureBuilder<SystemMessage>(
       future: messageFuture,
       builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          logger.e('Error while loading system messages: ${snapshot.error}');
+        }
         if (!isDismissed && snapshot.hasData && snapshot.data != null) {
+          logger.i('Loaded system messasge: ${snapshot.data}');
           return buildMessageCard(snapshot.data);
         } else {
           return Container();
