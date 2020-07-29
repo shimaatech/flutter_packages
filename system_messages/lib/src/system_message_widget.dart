@@ -8,11 +8,13 @@ class SystemMessageCard extends StatefulWidget {
   SystemMessageCard({
     this.systemMessagesService,
     this.dismissible = true,
+    this.backgroundColor,
     Key key,
   }) : super(key: key);
 
   final SystemMessagesService systemMessagesService;
   final bool dismissible;
+  final Color backgroundColor;
 
   @override
   _SystemMessageCardState createState() => _SystemMessageCardState();
@@ -60,26 +62,37 @@ class _SystemMessageCardState extends State<SystemMessageCard> {
   }
 
   Widget buildMessageCard(SystemMessage message) {
-    return Stack(
-      children: <Widget>[
-        widget.dismissible
-            ? Container(
-                alignment: Alignment.topRight,
-                child: buildDismissButton(message),
-              )
-            : Container(),
-        Card(
-          child: Text(
-            message.content,
-          ),
+    return Card(
+      color: widget.backgroundColor,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Stack(
+          children: <Widget>[
+            widget.dismissible
+                ? Container(
+                    alignment: Alignment.topRight,
+                    child: buildDismissButton(message),
+                  )
+                : Container(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                message.content,
+                style: Theme.of(context).textTheme.bodyText1,
+              ),
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 
   Widget buildDismissButton(SystemMessage message) {
     return IconButton(
-      icon: Icon(Icons.clear),
+      icon: Icon(
+        Icons.clear,
+        color: Colors.grey,
+      ),
       onPressed: () {
         service.dismissMessage(message.id);
         dismissMessage();
