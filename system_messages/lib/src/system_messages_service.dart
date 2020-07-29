@@ -41,6 +41,14 @@ class SystemMessagesService {
         .documents;
 
     if (snapshots.isNotEmpty) {
+      Map<String, dynamic> data = snapshots.first.data;
+      // convert Firestore timestamp to Date...
+      // Not sure if this is the correct way... But we cannot change the to/from
+      // Json of system message just because of Firestore...
+      if (data.containsKey('expirationDate')) {
+        data['expirationDate'] = dateConverter
+            .toJson((data['expirationDate'] as Timestamp).toDate());
+      }
       SystemMessage message =
           SystemMessage.serializer.deserialize(snapshots.first.data);
       if (!isMessageDismissed(message)) {
