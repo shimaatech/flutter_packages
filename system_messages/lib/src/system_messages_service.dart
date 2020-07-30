@@ -54,7 +54,7 @@ class SystemMessagesService {
             .where('type', isEqualTo: describeEnum(type))
             .where('package', isEqualTo: appPackage)
             .where('testMode', isEqualTo: testMode)
-            .limit(1)
+            .limit(20)
             .getDocuments())
         .documents;
 
