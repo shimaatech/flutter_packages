@@ -67,9 +67,9 @@ class _SystemMessageCardState extends State<SystemMessageCard> {
                 handleClickEvent(message.titleIconClickSpec, context),
             linkText: message.linkText,
             onLinkClick: () => handleClickEvent(message.linkClickSpec, context),
-            imageUrl: message.image.url,
-            imageWidth: message.image.width,
-            imageHeight: message.image.height,
+            imageUrl: message.image?.url,
+            imageWidth: message.image?.width ?? 80,
+            imageHeight: message.image?.height ?? 80,
             backgroundColor:
                 Color(message.backgroundColor) ?? widget.backgroundColor,
             onCardClick: () => handleClickEvent(message.cardClickSpec, context),

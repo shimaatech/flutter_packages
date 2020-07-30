@@ -68,15 +68,18 @@ class _DismissibleCardState extends State<DismissibleCard> {
     return Dismissible(
       key: widget.key,
       onDismissed: (_) => onDismiss(),
-      child: Card(
-        color: widget.backgroundColor,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            buildHeader(context),
-            buildBody(context),
-            buildFooter(context),
-          ],
+      child: InkWell(
+        onTap: widget.onCardClick,
+        child: Card(
+          color: widget.backgroundColor,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              buildHeader(context),
+              buildBody(context),
+              buildFooter(context),
+            ],
+          ),
         ),
       ),
     );
