@@ -78,7 +78,7 @@ class SystemMessagesService {
 
   Future<void> dismissMessage(String id) {
     return storage.save<StringList>(
-        dismissedMessagesKey, StringList(getDismissedMessages()..add(id)));
+        dismissedMessagesKey, StringList(getDismissedMessages())..data.add(id));
   }
 
   @protected
