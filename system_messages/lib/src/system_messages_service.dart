@@ -85,7 +85,7 @@ class SystemMessagesService {
   }
 
   List<String> getDismissedMessages() {
-    return storage.get<List<String>>(dismissedMessagesKey, const []);
+    return storage.get<List<String>>(dismissedMessagesKey, List<String>());
   }
 
   bool needToFetch() {
