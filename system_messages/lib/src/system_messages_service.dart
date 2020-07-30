@@ -17,13 +17,15 @@ class SystemMessagesService {
   static const String dismissedMessagesKey =
       'systemMessagesService.dismissedMessages';
   static const String lastCheckKey = 'systemMessageService.lastCheck';
+  static const String lastMessageKey = 'systemMessageService.lastMessage';
 
   /// interval in days for fetching from firestore
-  static const int fetchDaysInterval = 1;
+  static const int defaultFetchDaysInterval = 1;
 
   SystemMessagesService(this.firestore, this.storage, this.langCode,
       this.appPackage, this.appVersion,
-      {this.testMode = false});
+      {this.fetchDaysInterval = defaultFetchDaysInterval,
+      this.testMode = false});
 
   final Firestore firestore;
   final LocalStorage storage;
@@ -31,7 +33,10 @@ class SystemMessagesService {
   final String appPackage;
   final double appVersion;
   final bool testMode;
+  final int fetchDaysInterval;
   final JsonConverter<DateTime, String> dateConverter = UtcIsoDateConverter();
+
+  SystemMessage lastMessage;
 
   Future<SystemMessage> getLatestUnexpiredMessage(
       SystemMessageType type) async {
@@ -70,10 +75,11 @@ class SystemMessagesService {
       // queries do not allow having multiple whereEqualTo queries on different
       // fields
       if (!isMessageDismissed(message) && isApplicableForAppVersion(message)) {
-        return message;
+        // save last message (because we don't always fetch from firebase)
+        return saveLastMessage(message);
       }
     }
-    return null;
+    return getLastMessage();
   }
 
   Future<void> dismissMessage(String id) {
@@ -110,5 +116,32 @@ class SystemMessagesService {
     assert(message.minAppVersion != null && message.maxAppVersion != null);
     return appVersion >= message.minAppVersion &&
         appVersion <= message.maxAppVersion;
+  }
+
+  /// save last message so that it will be shown to the user if not dismissed
+  /// because we don't always fetch messages from firestore
+  Future<SystemMessage> saveLastMessage(SystemMessage message) async {
+    await storage.save<SystemMessage>(lastMessageKey, message);
+    return message;
+  }
+
+  /// return last message if is applicable and not expired or dismissed yet
+  Future<SystemMessage> getLastMessage() async {
+    SystemMessage message = storage.get<SystemMessage>(lastMessageKey);
+    if (message != null &&
+        !isExpired(message) &&
+        isMessageDismissed(message) &&
+        isApplicableForAppVersion(message)) {
+      return message;
+    } else {
+      if (message != null) {
+        await storage.remove(lastMessageKey);
+      }
+      return null;
+    }
+  }
+
+  bool isExpired(SystemMessage message) {
+    return message.expirationDate.isBefore(DateTime.now());
   }
 }
