@@ -6,6 +6,8 @@ import 'package:serializer/serializer.dart';
 
 import '../system_messages.dart';
 
+// TODO add country to the system message...
+
 /// We are using firestore directly here instead of FirestoreRepository.
 /// This is because the RemoteRepository doesn't support complex queries
 /// it supports the equals operator only and it doesn't support streaming also
@@ -75,8 +77,8 @@ class SystemMessagesService {
   }
 
   Future<void> dismissMessage(String id) {
-    return storage.saveList<String>(dismissedMessagesKey,
-        List<String>.from(getDismissedMessages())..add(id));
+    return storage.save<StringList>(
+        dismissedMessagesKey, StringList(getDismissedMessages()..add(id)));
   }
 
   @protected
@@ -85,7 +87,9 @@ class SystemMessagesService {
   }
 
   List<String> getDismissedMessages() {
-    return storage.getList<String>(dismissedMessagesKey, const []);
+    return storage
+        .get<StringList>(dismissedMessagesKey, StringList(const []))
+        .data;
   }
 
   bool needToFetch() {
