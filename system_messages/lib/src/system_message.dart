@@ -7,6 +7,8 @@ part 'system_message.g.dart';
 
 // TODO maybe we can use dynamic widgets package?
 
+
+
 enum SystemMessageType {
   normal,
   dialog
@@ -21,6 +23,8 @@ abstract class SystemMessage extends Entity<String>  with _$SystemMessage {
     String langCode,
     SystemMessageType type,
     String package,
+    double minAppVersion,
+    double maxAppVersion,
     bool testMode,
     @UtcIsoDateConverter() DateTime expirationDate,
   }) = _SystemMessage;

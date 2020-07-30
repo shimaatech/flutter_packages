@@ -23,6 +23,8 @@ class _$SystemMessageTearOff {
       String langCode,
       SystemMessageType type,
       String package,
+      double minAppVersion,
+      double maxAppVersion,
       bool testMode,
       @UtcIsoDateConverter() DateTime expirationDate}) {
     return _SystemMessage(
@@ -32,6 +34,8 @@ class _$SystemMessageTearOff {
       langCode: langCode,
       type: type,
       package: package,
+      minAppVersion: minAppVersion,
+      maxAppVersion: maxAppVersion,
       testMode: testMode,
       expirationDate: expirationDate,
     );
@@ -48,6 +52,8 @@ mixin _$SystemMessage {
   String get langCode;
   SystemMessageType get type;
   String get package;
+  double get minAppVersion;
+  double get maxAppVersion;
   bool get testMode;
   @UtcIsoDateConverter()
   DateTime get expirationDate;
@@ -67,6 +73,8 @@ abstract class $SystemMessageCopyWith<$Res> {
       String langCode,
       SystemMessageType type,
       String package,
+      double minAppVersion,
+      double maxAppVersion,
       bool testMode,
       @UtcIsoDateConverter() DateTime expirationDate});
 }
@@ -87,6 +95,8 @@ class _$SystemMessageCopyWithImpl<$Res>
     Object langCode = freezed,
     Object type = freezed,
     Object package = freezed,
+    Object minAppVersion = freezed,
+    Object maxAppVersion = freezed,
     Object testMode = freezed,
     Object expirationDate = freezed,
   }) {
@@ -97,6 +107,12 @@ class _$SystemMessageCopyWithImpl<$Res>
       langCode: langCode == freezed ? _value.langCode : langCode as String,
       type: type == freezed ? _value.type : type as SystemMessageType,
       package: package == freezed ? _value.package : package as String,
+      minAppVersion: minAppVersion == freezed
+          ? _value.minAppVersion
+          : minAppVersion as double,
+      maxAppVersion: maxAppVersion == freezed
+          ? _value.maxAppVersion
+          : maxAppVersion as double,
       testMode: testMode == freezed ? _value.testMode : testMode as bool,
       expirationDate: expirationDate == freezed
           ? _value.expirationDate
@@ -118,6 +134,8 @@ abstract class _$SystemMessageCopyWith<$Res>
       String langCode,
       SystemMessageType type,
       String package,
+      double minAppVersion,
+      double maxAppVersion,
       bool testMode,
       @UtcIsoDateConverter() DateTime expirationDate});
 }
@@ -140,6 +158,8 @@ class __$SystemMessageCopyWithImpl<$Res>
     Object langCode = freezed,
     Object type = freezed,
     Object package = freezed,
+    Object minAppVersion = freezed,
+    Object maxAppVersion = freezed,
     Object testMode = freezed,
     Object expirationDate = freezed,
   }) {
@@ -150,6 +170,12 @@ class __$SystemMessageCopyWithImpl<$Res>
       langCode: langCode == freezed ? _value.langCode : langCode as String,
       type: type == freezed ? _value.type : type as SystemMessageType,
       package: package == freezed ? _value.package : package as String,
+      minAppVersion: minAppVersion == freezed
+          ? _value.minAppVersion
+          : minAppVersion as double,
+      maxAppVersion: maxAppVersion == freezed
+          ? _value.maxAppVersion
+          : maxAppVersion as double,
       testMode: testMode == freezed ? _value.testMode : testMode as bool,
       expirationDate: expirationDate == freezed
           ? _value.expirationDate
@@ -167,6 +193,8 @@ class _$_SystemMessage implements _SystemMessage {
       this.langCode,
       this.type,
       this.package,
+      this.minAppVersion,
+      this.maxAppVersion,
       this.testMode,
       @UtcIsoDateConverter() this.expirationDate});
 
@@ -186,6 +214,10 @@ class _$_SystemMessage implements _SystemMessage {
   @override
   final String package;
   @override
+  final double minAppVersion;
+  @override
+  final double maxAppVersion;
+  @override
   final bool testMode;
   @override
   @UtcIsoDateConverter()
@@ -193,7 +225,7 @@ class _$_SystemMessage implements _SystemMessage {
 
   @override
   String toString() {
-    return 'SystemMessage(id: $id, title: $title, content: $content, langCode: $langCode, type: $type, package: $package, testMode: $testMode, expirationDate: $expirationDate)';
+    return 'SystemMessage(id: $id, title: $title, content: $content, langCode: $langCode, type: $type, package: $package, minAppVersion: $minAppVersion, maxAppVersion: $maxAppVersion, testMode: $testMode, expirationDate: $expirationDate)';
   }
 
   @override
@@ -215,6 +247,12 @@ class _$_SystemMessage implements _SystemMessage {
             (identical(other.package, package) ||
                 const DeepCollectionEquality()
                     .equals(other.package, package)) &&
+            (identical(other.minAppVersion, minAppVersion) ||
+                const DeepCollectionEquality()
+                    .equals(other.minAppVersion, minAppVersion)) &&
+            (identical(other.maxAppVersion, maxAppVersion) ||
+                const DeepCollectionEquality()
+                    .equals(other.maxAppVersion, maxAppVersion)) &&
             (identical(other.testMode, testMode) ||
                 const DeepCollectionEquality()
                     .equals(other.testMode, testMode)) &&
@@ -232,6 +270,8 @@ class _$_SystemMessage implements _SystemMessage {
       const DeepCollectionEquality().hash(langCode) ^
       const DeepCollectionEquality().hash(type) ^
       const DeepCollectionEquality().hash(package) ^
+      const DeepCollectionEquality().hash(minAppVersion) ^
+      const DeepCollectionEquality().hash(maxAppVersion) ^
       const DeepCollectionEquality().hash(testMode) ^
       const DeepCollectionEquality().hash(expirationDate);
 
@@ -253,6 +293,8 @@ abstract class _SystemMessage implements SystemMessage {
       String langCode,
       SystemMessageType type,
       String package,
+      double minAppVersion,
+      double maxAppVersion,
       bool testMode,
       @UtcIsoDateConverter() DateTime expirationDate}) = _$_SystemMessage;
 
@@ -271,6 +313,10 @@ abstract class _SystemMessage implements SystemMessage {
   SystemMessageType get type;
   @override
   String get package;
+  @override
+  double get minAppVersion;
+  @override
+  double get maxAppVersion;
   @override
   bool get testMode;
   @override

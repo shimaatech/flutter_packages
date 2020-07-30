@@ -15,14 +15,15 @@ class SystemMessagesService {
   static const String dismissedMessagesKey =
       'systemMessagesService.dismissedMessages';
 
-  SystemMessagesService(
-      this.firestore, this.storage, this.langCode, this.package,
+  SystemMessagesService(this.firestore, this.storage, this.langCode,
+      this.appPackage, this.appVersion,
       {this.testMode = false});
 
   final Firestore firestore;
   final LocalStorage storage;
   final String langCode;
-  final String package;
+  final String appPackage;
+  final double appVersion;
   final bool testMode;
   final JsonConverter<DateTime, String> dateConverter = UtcIsoDateConverter();
 
@@ -34,14 +35,16 @@ class SystemMessagesService {
             .where('expirationDate', isGreaterThanOrEqualTo: DateTime.now())
             .where('langCode', isEqualTo: langCode)
             .where('type', isEqualTo: describeEnum(type))
-            .where('package', isEqualTo: package)
+            .where('package', isEqualTo: appPackage)
+            .where('maxAppVersion', isLessThanOrEqualTo: appVersion)
+            .where('minAppVersion', isGreaterThanOrEqualTo: appVersion)
             .where('testMode', isEqualTo: testMode)
             .limit(1)
             .getDocuments())
         .documents;
 
-    if (snapshots.isNotEmpty) {
-      Map<String, dynamic> data = snapshots.first.data;
+    for (DocumentSnapshot snapshot in snapshots) {
+      Map<String, dynamic> data = snapshot.data;
       // convert Firestore timestamp to Date...
       // Not sure if this is the correct way... But we cannot change the to/from
       // Json of system message just because of Firestore...

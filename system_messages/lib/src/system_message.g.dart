@@ -14,6 +14,8 @@ _$_SystemMessage _$_$_SystemMessageFromJson(Map json) {
     langCode: json['langCode'] as String,
     type: _$enumDecodeNullable(_$SystemMessageTypeEnumMap, json['type']),
     package: json['package'] as String,
+    minAppVersion: (json['minAppVersion'] as num)?.toDouble(),
+    maxAppVersion: (json['maxAppVersion'] as num)?.toDouble(),
     testMode: json['testMode'] as bool,
     expirationDate:
         const UtcIsoDateConverter().fromJson(json['expirationDate'] as String),
@@ -28,6 +30,8 @@ Map<String, dynamic> _$_$_SystemMessageToJson(_$_SystemMessage instance) =>
       'langCode': instance.langCode,
       'type': _$SystemMessageTypeEnumMap[instance.type],
       'package': instance.package,
+      'minAppVersion': instance.minAppVersion,
+      'maxAppVersion': instance.maxAppVersion,
       'testMode': instance.testMode,
       'expirationDate':
           const UtcIsoDateConverter().toJson(instance.expirationDate),
