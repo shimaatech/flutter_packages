@@ -76,13 +76,19 @@ class SystemMessagesService {
       // we check the app version here and not in the query because firestore
       // queries do not allow having multiple whereEqualTo queries on different
       // fields
-      if (!isMessageDismissed(message) && isApplicableForAppVersion(message)) {
+      if (isValidMessage(message)) {
         // save last message (because we don't always fetch from firebase)
         return saveLastMessage(message);
       }
     }
     return getLastMessage();
   }
+
+  bool isValidMessage(SystemMessage message) =>
+      message != null &&
+      !isMessageDismissed(message) &&
+      isApplicableForAppVersion(message) &&
+      !isExpired(message);
 
   Future<void> dismissMessage(String id) {
     return storage.save<StringList>(dismissedMessagesKey,
@@ -130,10 +136,7 @@ class SystemMessagesService {
   /// return last message if is applicable and not expired or dismissed yet
   Future<SystemMessage> getLastMessage() async {
     SystemMessage message = storage.get<SystemMessage>(lastMessageKey);
-    if (message != null &&
-        !isExpired(message) &&
-        !isMessageDismissed(message) &&
-        isApplicableForAppVersion(message)) {
+    if (isValidMessage(message)) {
       return message;
     } else {
       if (message != null) {
