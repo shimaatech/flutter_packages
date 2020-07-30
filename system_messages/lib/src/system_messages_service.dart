@@ -75,7 +75,7 @@ class SystemMessagesService {
   }
 
   Future<void> dismissMessage(String id) {
-    return storage.save<List<String>>(dismissedMessagesKey,
+    return storage.saveList<String>(dismissedMessagesKey,
         List<String>.from(getDismissedMessages())..add(id));
   }
 
@@ -85,7 +85,7 @@ class SystemMessagesService {
   }
 
   List<String> getDismissedMessages() {
-    return storage.get<List<String>>(dismissedMessagesKey, List<String>());
+    return storage.getList<String>(dismissedMessagesKey, const []);
   }
 
   bool needToFetch() {
