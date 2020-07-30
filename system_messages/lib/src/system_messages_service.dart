@@ -19,6 +19,7 @@ class SystemMessagesService {
   static const String lastCheckKey = 'systemMessageService.lastCheck';
   static const String lastMessageKey = 'systemMessageService.lastMessage';
 
+
   /// interval in days for fetching from firestore
   static const int defaultFetchDaysInterval = 1;
 
@@ -36,14 +37,12 @@ class SystemMessagesService {
   final int fetchDaysInterval;
   final JsonConverter<DateTime, String> dateConverter = UtcIsoDateConverter();
 
-  SystemMessage lastMessage;
-
   Future<SystemMessage> getLatestUnexpiredMessage(
       SystemMessageType type) async {
     // fetch once a day only because we may retrieve many documents due to
     // firestore queries limitation
     if (!needToFetch()) {
-      return null;
+      return getLastMessage(type);
     }
 
     // get one non-expired message only
@@ -58,8 +57,7 @@ class SystemMessagesService {
             .getDocuments())
         .documents;
 
-    // TODO do wen need to await here?
-    await markFetched();
+    markFetched();
 
     for (DocumentSnapshot snapshot in snapshots) {
       Map<String, dynamic> data = snapshot.data;
@@ -81,7 +79,7 @@ class SystemMessagesService {
         return saveLastMessage(message);
       }
     }
-    return getLastMessage();
+    return getLastMessage(type);
   }
 
   bool isValidMessage(SystemMessage message) =>
@@ -129,18 +127,19 @@ class SystemMessagesService {
   /// save last message so that it will be shown to the user if not dismissed
   /// because we don't always fetch messages from firestore
   Future<SystemMessage> saveLastMessage(SystemMessage message) async {
-    await storage.save<SystemMessage>(lastMessageKey, message);
+    await storage.save<SystemMessage>(getMessageStorageKey(message.type), message);
     return message;
   }
 
   /// return last message if is applicable and not expired or dismissed yet
-  Future<SystemMessage> getLastMessage() async {
-    SystemMessage message = storage.get<SystemMessage>(lastMessageKey);
+  Future<SystemMessage> getLastMessage(SystemMessageType type) async {
+    String key = getMessageStorageKey(type);
+    SystemMessage message = storage.get<SystemMessage>(key);
     if (isValidMessage(message)) {
       return message;
     } else {
       if (message != null) {
-        await storage.remove(lastMessageKey);
+        await storage.remove(key);
       }
       return null;
     }
@@ -148,5 +147,9 @@ class SystemMessagesService {
 
   bool isExpired(SystemMessage message) {
     return message.expirationDate.isBefore(DateTime.now());
+  }
+
+  String getMessageStorageKey(SystemMessageType type) {
+    return "$lastMessageKey.${describeEnum(type)}";
   }
 }
