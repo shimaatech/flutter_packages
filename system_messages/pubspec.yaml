@@ -29,6 +29,16 @@ dependencies:
       url: https://github.com/shimaatech/flutter_packages
       path: serializer
 
+  dismissible_card:
+    git:
+      url: https://github.com/shimaatech/flutter_packages
+      path: dismissible_card
+
+  website_viewer:
+    git:
+      url: https://github.com/shimaatech/flutter_packages
+      path: website_viewer
+
 
 dev_dependencies:
   flutter_test:

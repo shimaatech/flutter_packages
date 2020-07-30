@@ -1,30 +1,35 @@
+import 'package:dismissible_card/dismissible_card.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
+import 'package:website_viewer/website_viewer.dart';
 
 import '../system_messages.dart';
 
-// TODO this can be converted a general DismissibleCard and SystemMessageCard
-// can use it
+// TODO maybe it's better to use dynamic widgets in the future...
+
+// TODO add onError, onLoading and onNoData widgets
+// Currently we show empty Container() on all these cases...
 
 class SystemMessageCard extends StatefulWidget {
   SystemMessageCard({
     this.systemMessagesService,
     this.dismissible = true,
     this.backgroundColor,
-    Key key,
+    this.onMessageLoading,
+    Key key = const Key('__system_message'),
   }) : super(key: key);
 
   final SystemMessagesService systemMessagesService;
   final bool dismissible;
   final Color backgroundColor;
+  final Widget onMessageLoading;
 
   @override
   _SystemMessageCardState createState() => _SystemMessageCardState();
 }
 
 class _SystemMessageCardState extends State<SystemMessageCard> {
-  bool isDismissed = false;
   Future<SystemMessage> messageFuture;
   SystemMessagesService service;
   final Logger logger = Logger();
@@ -48,15 +53,27 @@ class _SystemMessageCardState extends State<SystemMessageCard> {
         if (snapshot.hasError) {
           logger.e('Error while loading system messages: ${snapshot.error}');
         }
-        if (!isDismissed && snapshot.hasData && snapshot.data != null) {
-          logger.i('Loaded system messasge: ${snapshot.data}');
-          return widget.dismissible
-              ? Dismissible(
-                  key: Key('system_message'),
-                  onDismissed: (direction) => dismissMessage(),
-                  child: buildMessageCard(snapshot.data),
-                )
-              : buildMessageCard(snapshot.data);
+        if (snapshot.hasData && snapshot.data != null) {
+          SystemMessage message = snapshot.data;
+          return DismissibleCard(
+            key: widget.key,
+            content: message.content,
+            title: message.title,
+            isDismissible: widget.dismissible,
+            onDismiss: () => service.dismissMessage(message.id),
+            titleIconData:
+                IconData(message.titleIcon, fontFamily: 'MaterialIcons'),
+            onTitleIconClick: () =>
+                handleClickEvent(message.titleIconClickSpec, context),
+            linkText: message.linkText,
+            onLinkClick: () => handleClickEvent(message.linkClickSpec, context),
+            imageUrl: message.image.url,
+            imageWidth: message.image.width,
+            imageHeight: message.image.height,
+            backgroundColor:
+                Color(message.backgroundColor) ?? widget.backgroundColor,
+            onCardClick: () => handleClickEvent(message.cardClickSpec, context),
+          );
         } else {
           return Container();
         }
@@ -64,44 +81,16 @@ class _SystemMessageCardState extends State<SystemMessageCard> {
     );
   }
 
-  Widget buildMessageCard(SystemMessage message) {
-    return Card(
-      color: widget.backgroundColor,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          widget.dismissible ? buildDismissButton(message) : Container(),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Text(
-                message.content,
-                style: Theme.of(context).textTheme.bodyText1,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget buildDismissButton(SystemMessage message) {
-    return IconButton(
-      padding: EdgeInsets.all(0.0),
-      icon: Icon(
-        Icons.clear,
-        color: Colors.grey,
-      ),
-      onPressed: () {
-        service.dismissMessage(message.id);
-        dismissMessage();
-      },
-    );
-  }
-
-  void dismissMessage() {
-    setState(() {
-      isDismissed = true;
-    });
+  void handleClickEvent(
+      SystemMessageClickSpec clickSpec, BuildContext context) {
+    if (clickSpec == null) {
+      return;
+    }
+    if (clickSpec.navigationType == NavigationType.internal) {
+      Navigator.pushNamed(context, clickSpec.url);
+    } else {
+      showDialog(
+          context: context, builder: (context) => WebsiteViewer(clickSpec.url));
+    }
   }
 }
