@@ -132,7 +132,7 @@ class SystemMessagesService {
     SystemMessage message = storage.get<SystemMessage>(lastMessageKey);
     if (message != null &&
         !isExpired(message) &&
-        isMessageDismissed(message) &&
+        !isMessageDismissed(message) &&
         isApplicableForAppVersion(message)) {
       return message;
     } else {
