@@ -32,13 +32,4 @@ class HiveLocalStorage implements LocalStorage {
     return _box.delete(key);
   }
 
-  @override
-  List<T> getList<T>(String key, [List<T> defaultValue]) {
-    return _box.get(key, defaultValue: defaultValue) as List<T>;
-  }
-
-  @override
-  Future<void> saveList<T>(String key, List<T> value) {
-    return _box.put(key, value);
-  }
 }
