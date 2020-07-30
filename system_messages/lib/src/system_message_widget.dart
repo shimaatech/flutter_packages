@@ -61,8 +61,9 @@ class _SystemMessageCardState extends State<SystemMessageCard> {
             title: message.title,
             isDismissible: widget.dismissible,
             onDismiss: () => service.dismissMessage(message.id),
-            titleIconData:
-                IconData(message.titleIcon, fontFamily: 'MaterialIcons'),
+            titleIconData: message.titleIcon != null
+                ? IconData(message.titleIcon, fontFamily: 'MaterialIcons')
+                : null,
             onTitleIconClick: () =>
                 handleClickEvent(message.titleIconClickSpec, context),
             linkText: message.linkText,
