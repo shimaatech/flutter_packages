@@ -70,8 +70,9 @@ class _SystemMessageCardState extends State<SystemMessageCard> {
             imageUrl: message.image?.url,
             imageWidth: message.image?.width ?? 80,
             imageHeight: message.image?.height ?? 80,
-            backgroundColor:
-                Color(message.backgroundColor) ?? widget.backgroundColor,
+            backgroundColor: message.backgroundColor != null
+                ? Color(message.backgroundColor)
+                : widget.backgroundColor,
             onCardClick: () => handleClickEvent(message.cardClickSpec, context),
           );
         } else {
