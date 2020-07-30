@@ -4,6 +4,9 @@ import 'package:provider/provider.dart';
 
 import '../system_messages.dart';
 
+// TODO this can be converted a general DismissibleCard and SystemMessageCard
+// can use it
+
 class SystemMessageCard extends StatefulWidget {
   SystemMessageCard({
     this.systemMessagesService,
