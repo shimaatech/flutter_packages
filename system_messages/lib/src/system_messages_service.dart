@@ -14,6 +14,10 @@ class SystemMessagesService {
   static const String collectionName = 'system_messages';
   static const String dismissedMessagesKey =
       'systemMessagesService.dismissedMessages';
+  static const String lastCheckKey = 'systemMessageService.lastCheck';
+
+  /// interval in days for fetching from firestore
+  static const int fetchDaysInterval = 1;
 
   SystemMessagesService(this.firestore, this.storage, this.langCode,
       this.appPackage, this.appVersion,
@@ -29,6 +33,12 @@ class SystemMessagesService {
 
   Future<SystemMessage> getLatestUnexpiredMessage(
       SystemMessageType type) async {
+    // fetch once a day only because we may retrieve many documents due to
+    // firestore queries limitation
+    if (!needToFetch()) {
+      return null;
+    }
+
     // get one non-expired message only
     List<DocumentSnapshot> snapshots = (await firestore
             .collection(collectionName)
@@ -36,12 +46,13 @@ class SystemMessagesService {
             .where('langCode', isEqualTo: langCode)
             .where('type', isEqualTo: describeEnum(type))
             .where('package', isEqualTo: appPackage)
-            .where('maxAppVersion', isLessThanOrEqualTo: appVersion)
-            .where('minAppVersion', isGreaterThanOrEqualTo: appVersion)
             .where('testMode', isEqualTo: testMode)
             .limit(1)
             .getDocuments())
         .documents;
+
+    // TODO do wen need to await here?
+    await markFetched();
 
     for (DocumentSnapshot snapshot in snapshots) {
       Map<String, dynamic> data = snapshot.data;
@@ -53,7 +64,10 @@ class SystemMessagesService {
             .toJson((data['expirationDate'] as Timestamp).toDate());
       }
       SystemMessage message = SystemMessage.serializer.deserialize(data);
-      if (!isMessageDismissed(message)) {
+      // we check the app version here and not in the query because firestore
+      // queries do not allow having multiple whereEqualTo queries on different
+      // fields
+      if (!isMessageDismissed(message) && isApplicableForAppVersion(message)) {
         return message;
       }
     }
@@ -72,5 +86,25 @@ class SystemMessagesService {
 
   List<String> getDismissedMessages() {
     return storage.get<List<String>>(dismissedMessagesKey, const []);
+  }
+
+  bool needToFetch() {
+    if (testMode) {
+      // always fetch in test mode
+      return true;
+    }
+    DateTime lastCheckTime = storage.get<DateTime>(lastCheckKey);
+    return lastCheckTime == null ||
+        DateTime.now().difference(lastCheckTime).inDays >= fetchDaysInterval;
+  }
+
+  Future<void> markFetched() {
+    return storage.save<DateTime>(lastCheckKey, DateTime.now());
+  }
+
+  bool isApplicableForAppVersion(SystemMessage message) {
+    assert(message.minAppVersion != null && message.maxAppVersion != null);
+    return appVersion >= message.minAppVersion &&
+        appVersion <= message.maxAppVersion;
   }
 }
