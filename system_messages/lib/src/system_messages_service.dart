@@ -70,7 +70,9 @@ class SystemMessagesService {
         data['expirationDate'] = dateConverter
             .toJson((data['expirationDate'] as Timestamp).toDate());
       }
-      SystemMessage message = SystemMessage.serializer.deserialize(data);
+      SystemMessage message = SystemMessage.serializer
+          .deserialize(data)
+          .copyWith(id: snapshot.documentID);
       // we check the app version here and not in the query because firestore
       // queries do not allow having multiple whereEqualTo queries on different
       // fields
