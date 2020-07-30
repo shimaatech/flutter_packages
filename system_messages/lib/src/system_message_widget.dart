@@ -65,6 +65,7 @@ class _SystemMessageCardState extends State<SystemMessageCard> {
     return Card(
       color: widget.backgroundColor,
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           widget.dismissible ? buildDismissButton(message) : Container(),
           Expanded(
