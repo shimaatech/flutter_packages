@@ -11,6 +11,9 @@ _$_SystemMessageClickSpec _$_$_SystemMessageClickSpecFromJson(Map json) {
     navigationType:
         _$enumDecodeNullable(_$NavigationTypeEnumMap, json['navigationType']),
     url: json['url'] as String,
+    args: (json['args'] as Map)?.map(
+      (k, e) => MapEntry(k as String, e),
+    ),
   );
 }
 
@@ -19,6 +22,7 @@ Map<String, dynamic> _$_$_SystemMessageClickSpecToJson(
     <String, dynamic>{
       'navigationType': _$NavigationTypeEnumMap[instance.navigationType],
       'url': instance.url,
+      'args': instance.args,
     };
 
 T _$enumDecode<T>(

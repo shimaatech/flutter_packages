@@ -17,10 +17,12 @@ class _$SystemMessageClickSpecTearOff {
   const _$SystemMessageClickSpecTearOff();
 
 // ignore: unused_element
-  _SystemMessageClickSpec call({NavigationType navigationType, String url}) {
+  _SystemMessageClickSpec call(
+      {NavigationType navigationType, String url, Map<String, dynamic> args}) {
     return _SystemMessageClickSpec(
       navigationType: navigationType,
       url: url,
+      args: args,
     );
   }
 }
@@ -31,6 +33,7 @@ const $SystemMessageClickSpec = _$SystemMessageClickSpecTearOff();
 mixin _$SystemMessageClickSpec {
   NavigationType get navigationType;
   String get url;
+  Map<String, dynamic> get args;
 
   Map<String, dynamic> toJson();
   $SystemMessageClickSpecCopyWith<SystemMessageClickSpec> get copyWith;
@@ -40,7 +43,8 @@ abstract class $SystemMessageClickSpecCopyWith<$Res> {
   factory $SystemMessageClickSpecCopyWith(SystemMessageClickSpec value,
           $Res Function(SystemMessageClickSpec) then) =
       _$SystemMessageClickSpecCopyWithImpl<$Res>;
-  $Res call({NavigationType navigationType, String url});
+  $Res call(
+      {NavigationType navigationType, String url, Map<String, dynamic> args});
 }
 
 class _$SystemMessageClickSpecCopyWithImpl<$Res>
@@ -55,12 +59,14 @@ class _$SystemMessageClickSpecCopyWithImpl<$Res>
   $Res call({
     Object navigationType = freezed,
     Object url = freezed,
+    Object args = freezed,
   }) {
     return _then(_value.copyWith(
       navigationType: navigationType == freezed
           ? _value.navigationType
           : navigationType as NavigationType,
       url: url == freezed ? _value.url : url as String,
+      args: args == freezed ? _value.args : args as Map<String, dynamic>,
     ));
   }
 }
@@ -71,7 +77,8 @@ abstract class _$SystemMessageClickSpecCopyWith<$Res>
           $Res Function(_SystemMessageClickSpec) then) =
       __$SystemMessageClickSpecCopyWithImpl<$Res>;
   @override
-  $Res call({NavigationType navigationType, String url});
+  $Res call(
+      {NavigationType navigationType, String url, Map<String, dynamic> args});
 }
 
 class __$SystemMessageClickSpecCopyWithImpl<$Res>
@@ -88,19 +95,21 @@ class __$SystemMessageClickSpecCopyWithImpl<$Res>
   $Res call({
     Object navigationType = freezed,
     Object url = freezed,
+    Object args = freezed,
   }) {
     return _then(_SystemMessageClickSpec(
       navigationType: navigationType == freezed
           ? _value.navigationType
           : navigationType as NavigationType,
       url: url == freezed ? _value.url : url as String,
+      args: args == freezed ? _value.args : args as Map<String, dynamic>,
     ));
   }
 }
 
 @JsonSerializable()
 class _$_SystemMessageClickSpec implements _SystemMessageClickSpec {
-  _$_SystemMessageClickSpec({this.navigationType, this.url});
+  _$_SystemMessageClickSpec({this.navigationType, this.url, this.args});
 
   factory _$_SystemMessageClickSpec.fromJson(Map<String, dynamic> json) =>
       _$_$_SystemMessageClickSpecFromJson(json);
@@ -109,10 +118,12 @@ class _$_SystemMessageClickSpec implements _SystemMessageClickSpec {
   final NavigationType navigationType;
   @override
   final String url;
+  @override
+  final Map<String, dynamic> args;
 
   @override
   String toString() {
-    return 'SystemMessageClickSpec(navigationType: $navigationType, url: $url)';
+    return 'SystemMessageClickSpec(navigationType: $navigationType, url: $url, args: $args)';
   }
 
   @override
@@ -123,14 +134,17 @@ class _$_SystemMessageClickSpec implements _SystemMessageClickSpec {
                 const DeepCollectionEquality()
                     .equals(other.navigationType, navigationType)) &&
             (identical(other.url, url) ||
-                const DeepCollectionEquality().equals(other.url, url)));
+                const DeepCollectionEquality().equals(other.url, url)) &&
+            (identical(other.args, args) ||
+                const DeepCollectionEquality().equals(other.args, args)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(navigationType) ^
-      const DeepCollectionEquality().hash(url);
+      const DeepCollectionEquality().hash(url) ^
+      const DeepCollectionEquality().hash(args);
 
   @override
   _$SystemMessageClickSpecCopyWith<_SystemMessageClickSpec> get copyWith =>
@@ -144,8 +158,10 @@ class _$_SystemMessageClickSpec implements _SystemMessageClickSpec {
 }
 
 abstract class _SystemMessageClickSpec implements SystemMessageClickSpec {
-  factory _SystemMessageClickSpec({NavigationType navigationType, String url}) =
-      _$_SystemMessageClickSpec;
+  factory _SystemMessageClickSpec(
+      {NavigationType navigationType,
+      String url,
+      Map<String, dynamic> args}) = _$_SystemMessageClickSpec;
 
   factory _SystemMessageClickSpec.fromJson(Map<String, dynamic> json) =
       _$_SystemMessageClickSpec.fromJson;
@@ -154,6 +170,8 @@ abstract class _SystemMessageClickSpec implements SystemMessageClickSpec {
   NavigationType get navigationType;
   @override
   String get url;
+  @override
+  Map<String, dynamic> get args;
   @override
   _$SystemMessageClickSpecCopyWith<_SystemMessageClickSpec> get copyWith;
 }
