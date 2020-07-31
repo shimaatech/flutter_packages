@@ -76,6 +76,7 @@ class _DismissibleCardState extends State<DismissibleCard> {
           color: widget.backgroundColor,
           child: Column(
             mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               buildHeader(context),
               buildBody(context),
