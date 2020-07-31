@@ -23,6 +23,7 @@ abstract class SystemMessageClickSpec with _$SystemMessageClickSpec {
   factory SystemMessageClickSpec({
     NavigationType navigationType,
     String url,
+    Map<String, dynamic> args,
   }) = _SystemMessageClickSpec;
 
   factory SystemMessageClickSpec.fromJson(Map<String, dynamic> json) => _$SystemMessageClickSpecFromJson(json);

@@ -11,12 +11,18 @@ import '../system_messages.dart';
 // TODO add onError, onLoading and onNoData widgets
 // Currently we show empty Container() on all these cases...
 
+abstract class NavigatorHelper {
+  Future<void> navigate(
+      BuildContext context, String routeName, Map<String, dynamic> args);
+}
+
 class SystemMessageCard extends StatefulWidget {
   SystemMessageCard({
     this.systemMessagesService,
     this.dismissible = true,
     this.backgroundColor,
     this.onMessageLoading,
+    this.navigatorHelper,
     Key key = const Key('__system_message'),
   }) : super(key: key);
 
@@ -24,6 +30,7 @@ class SystemMessageCard extends StatefulWidget {
   final bool dismissible;
   final Color backgroundColor;
   final Widget onMessageLoading;
+  final NavigatorHelper navigatorHelper;
 
   @override
   _SystemMessageCardState createState() => _SystemMessageCardState();
@@ -85,11 +92,11 @@ class _SystemMessageCardState extends State<SystemMessageCard> {
 
   void handleClickEvent(
       SystemMessageClickSpec clickSpec, BuildContext context) {
-    if (clickSpec == null) {
+    if (widget.navigatorHelper == null || clickSpec == null) {
       return;
     }
     if (clickSpec.navigationType == NavigationType.internal) {
-      Navigator.pushNamed(context, clickSpec.url);
+      widget.navigatorHelper.navigate(context, clickSpec.url, clickSpec.args);
     } else {
       showDialog(
           context: context, builder: (context) => WebsiteViewer(clickSpec.url));
