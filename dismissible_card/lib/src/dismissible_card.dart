@@ -11,6 +11,7 @@ class DismissibleCard extends StatefulWidget {
     this.isDismissible = true,
     this.onDismiss,
     this.linkText,
+    this.linkColor = Colors.blue,
     this.onLinkClick,
     this.titleIconData,
     this.onTitleIconClick,
@@ -28,6 +29,7 @@ class DismissibleCard extends StatefulWidget {
   final bool isDismissible;
   final VoidCallback onDismiss;
   final String linkText;
+  final Color linkColor;
   final IconData titleIconData;
   final VoidCallback onTitleIconClick;
   final VoidCallback onLinkClick;
@@ -117,9 +119,7 @@ class _DismissibleCardState extends State<DismissibleCard> {
       return Container();
     }
     return FlatButton(
-      child: Html(
-        data: widget.linkText,
-      ),
+      child: Text(widget.linkText, style: Theme.of(context).textTheme.bodyText1.copyWith(color: widget.linkColor),),
       onPressed: widget.onLinkClick,
     );
   }
