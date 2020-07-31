@@ -98,7 +98,7 @@ class _DismissibleCardState extends State<DismissibleCard> {
 
   buildBody(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(15.0),
+      padding: const EdgeInsets.all(5.0),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
