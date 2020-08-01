@@ -23,6 +23,9 @@ class SystemMessagesService {
   /// interval in days for fetching from firestore
   static const int defaultFetchDaysInterval = 1;
 
+
+  // TODO I think that langCode should not be passed to constructor... It should
+  // be passed to the method that fetches the messages
   SystemMessagesService(this.firestore, this.storage, this.langCode,
       this.appPackage, this.appVersion,
       {this.fetchDaysInterval = defaultFetchDaysInterval,
