@@ -140,6 +140,9 @@ class SystemMessageDialog {
       context: context,
       dialogType: DialogType.INFO,
       onDissmissCallback: () => service.dismissMessage(message.id),
+      btnOkIcon: Icons.done,
+      btnOkColor: Colors.green,
+      btnOkOnPress: () => service.dismissMessage(message.id),
       body: DismissibleMessage(
         message: message,
         key: key,
