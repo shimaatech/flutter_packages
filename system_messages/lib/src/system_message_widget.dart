@@ -144,5 +144,7 @@ class SystemMessageDialog {
         dismissible: false,
       ),
     );
+
+    return dialog.show();
   }
 }
