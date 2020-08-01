@@ -65,6 +65,10 @@ class DismissibleMessage extends StatelessWidget {
     if (navigatorHelper == null || clickSpec == null) {
       return;
     }
+    if (message.type == SystemMessageType.dialog) {
+      // hide the dialog before navigating...
+      Navigator.pop(context);
+    }
     if (clickSpec.navigationType == NavigationType.internal) {
       navigatorHelper.navigate(context, clickSpec.url, clickSpec.args);
     } else {
