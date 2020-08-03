@@ -92,9 +92,13 @@ class _DismissibleMessageState extends State<DismissibleMessage> {
         builder: (context) => Scaffold(
           body: Column(
             children: <Widget>[
-              IconButton(
-                icon: Icon(Icons.clear),
-                onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
+              Container(
+                color: widget.backgroundColor,
+                child: IconButton(
+                  icon: Icon(Icons.clear),
+                  onPressed: () =>
+                      Navigator.of(context, rootNavigator: true).pop(),
+                ),
               ),
               Expanded(child: WebsiteViewer(clickSpec.url)),
             ],
