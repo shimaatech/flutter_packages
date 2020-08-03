@@ -19,7 +19,7 @@ abstract class NavigatorHelper {
       BuildContext context, String routeName, Map<String, dynamic> args);
 }
 
-class DismissibleMessage extends StatelessWidget {
+class DismissibleMessage extends StatefulWidget {
   DismissibleMessage({
     @required this.message,
     @required Key key,
@@ -38,47 +38,62 @@ class DismissibleMessage extends StatelessWidget {
   final bool dismissOnNavigation;
 
   @override
+  _DismissibleMessageState createState() => _DismissibleMessageState();
+}
+
+class _DismissibleMessageState extends State<DismissibleMessage> {
+
+  /// For supporting dismiss on navigation
+  bool isDismissed = false;
+
+  @override
   Widget build(BuildContext context) {
+    if (isDismissed) {
+      return Container();
+    }
     return DismissibleCard(
-      key: key,
-      content: message.content,
-      title: message.title,
-      isDismissible: dismissible,
-      onDismiss: onDismiss,
-      titleIconData: message.titleIcon != null
-          ? IconData(message.titleIcon, fontFamily: 'MaterialIcons')
+      key: widget.key,
+      content: widget.message.content,
+      title: widget.message.title,
+      isDismissible: widget.dismissible,
+      onDismiss: widget.onDismiss,
+      titleIconData: widget.message.titleIcon != null
+          ? IconData(widget.message.titleIcon, fontFamily: 'MaterialIcons')
           : null,
       onTitleIconClick: () =>
-          handleClickEvent(context, message.titleIconClickSpec),
-      linkText: message.linkText,
-      onLinkClick: () => handleClickEvent(context, message.linkClickSpec),
-      imageUrl: message.image?.url,
-      imageWidth: message.image?.width ?? 80,
-      imageHeight: message.image?.height ?? 80,
-      backgroundColor: message.backgroundColor != null
-          ? Color(message.backgroundColor)
-          : backgroundColor,
-      onCardClick: () => handleClickEvent(context, message.cardClickSpec),
+          handleClickEvent(context, widget.message.titleIconClickSpec),
+      linkText: widget.message.linkText,
+      onLinkClick: () => handleClickEvent(context, widget.message.linkClickSpec),
+      imageUrl: widget.message.image?.url,
+      imageWidth: widget.message.image?.width ?? 80,
+      imageHeight: widget.message.image?.height ?? 80,
+      backgroundColor: widget.message.backgroundColor != null
+          ? Color(widget.message.backgroundColor)
+          : widget.backgroundColor,
+      onCardClick: () => handleClickEvent(context, widget.message.cardClickSpec),
     );
   }
 
   void handleClickEvent(
       BuildContext context, SystemMessageClickSpec clickSpec) {
-    if (navigatorHelper == null || clickSpec == null) {
+    if (widget.navigatorHelper == null || clickSpec == null) {
       return;
     }
-    if (message.type == SystemMessageType.dialog) {
+    if (widget.message.type == SystemMessageType.dialog) {
       // hide the dialog before navigating...
       Navigator.pop(context);
     }
     if (clickSpec.navigationType == NavigationType.internal) {
-      navigatorHelper.navigate(context, clickSpec.url, clickSpec.args);
+      widget.navigatorHelper.navigate(context, clickSpec.url, clickSpec.args);
     } else {
       showDialog(
           context: context, builder: (context) => WebsiteViewer(clickSpec.url));
     }
-    if (dismissOnNavigation) {
-      onDismiss();
+    if (widget.dismissOnNavigation) {
+      widget.onDismiss();
+      setState(() {
+        isDismissed = true;
+      });
     }
   }
 }
