@@ -42,7 +42,6 @@ class DismissibleMessage extends StatefulWidget {
 }
 
 class _DismissibleMessageState extends State<DismissibleMessage> {
-
   /// For supporting dismiss on navigation
   bool isDismissed = false;
 
@@ -63,14 +62,16 @@ class _DismissibleMessageState extends State<DismissibleMessage> {
       onTitleIconClick: () =>
           handleClickEvent(context, widget.message.titleIconClickSpec),
       linkText: widget.message.linkText,
-      onLinkClick: () => handleClickEvent(context, widget.message.linkClickSpec),
+      onLinkClick: () =>
+          handleClickEvent(context, widget.message.linkClickSpec),
       imageUrl: widget.message.image?.url,
       imageWidth: widget.message.image?.width ?? 80,
       imageHeight: widget.message.image?.height ?? 80,
       backgroundColor: widget.message.backgroundColor != null
           ? Color(widget.message.backgroundColor)
           : widget.backgroundColor,
-      onCardClick: () => handleClickEvent(context, widget.message.cardClickSpec),
+      onCardClick: () =>
+          handleClickEvent(context, widget.message.cardClickSpec),
     );
   }
 
@@ -87,7 +88,17 @@ class _DismissibleMessageState extends State<DismissibleMessage> {
       widget.navigatorHelper.navigate(context, clickSpec.url, clickSpec.args);
     } else {
       showDialog(
-          context: context, builder: (context) => WebsiteViewer(clickSpec.url));
+        context: context,
+        builder: (context) => Column(
+          children: <Widget>[
+            IconButton(
+              icon: Icon(Icons.clear),
+              onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
+            ),
+            Expanded(child: WebsiteViewer(clickSpec.url)),
+          ],
+        ),
+      );
     }
     if (widget.dismissOnNavigation) {
       widget.onDismiss();
