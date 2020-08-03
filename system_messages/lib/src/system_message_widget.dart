@@ -87,24 +87,7 @@ class _DismissibleMessageState extends State<DismissibleMessage> {
     if (clickSpec.navigationType == NavigationType.internal) {
       widget.navigatorHelper.navigate(context, clickSpec.url, clickSpec.args);
     } else {
-      showDialog(
-        context: context,
-        builder: (context) => Scaffold(
-          body: Column(
-            children: <Widget>[
-              Container(
-                color: widget.backgroundColor,
-                child: IconButton(
-                  icon: Icon(Icons.clear),
-                  onPressed: () =>
-                      Navigator.of(context, rootNavigator: true).pop(),
-                ),
-              ),
-              Expanded(child: WebsiteViewer(clickSpec.url)),
-            ],
-          ),
-        ),
-      );
+      WebsiteViewerDialog.show(context, clickSpec.url);
     }
     if (widget.dismissOnNavigation) {
       widget.onDismiss();

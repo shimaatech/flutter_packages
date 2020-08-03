@@ -91,7 +91,7 @@ packages:
       name: build_runner_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.0.0"
+    version: "6.0.1"
   built_collection:
     dependency: transitive
     description:
@@ -237,7 +237,7 @@ packages:
     description:
       path: dismissible_card
       ref: HEAD
-      resolved-ref: e942e606b0771a1ac841c8b83b816b5c7b156b64
+      resolved-ref: "0585d792df39034d41a4610fe89eadda424917e2"
       url: "https://github.com/shimaatech/flutter_packages"
     source: git
     version: "0.0.1"
@@ -353,7 +353,16 @@ packages:
       name: freezed_annotation
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.11.0"
+    version: "0.11.0+1"
+  general_utils:
+    dependency: transitive
+    description:
+      path: general_utils
+      ref: HEAD
+      resolved-ref: "0585d792df39034d41a4610fe89eadda424917e2"
+      url: "https://github.com/shimaatech/flutter_packages"
+    source: git
+    version: "0.0.1"
   glob:
     dependency: transitive
     description:
@@ -639,7 +648,7 @@ packages:
     description:
       path: repository
       ref: HEAD
-      resolved-ref: e942e606b0771a1ac841c8b83b816b5c7b156b64
+      resolved-ref: "0585d792df39034d41a4610fe89eadda424917e2"
       url: "https://github.com/shimaatech/flutter_packages"
     source: git
     version: "0.0.1"
@@ -697,7 +706,7 @@ packages:
     description:
       path: serializer
       ref: HEAD
-      resolved-ref: e942e606b0771a1ac841c8b83b816b5c7b156b64
+      resolved-ref: "0585d792df39034d41a4610fe89eadda424917e2"
       url: "https://github.com/shimaatech/flutter_packages"
     source: git
     version: "0.0.1"
@@ -886,7 +895,7 @@ packages:
     description:
       path: website_viewer
       ref: HEAD
-      resolved-ref: e942e606b0771a1ac841c8b83b816b5c7b156b64
+      resolved-ref: "0585d792df39034d41a4610fe89eadda424917e2"
       url: "https://github.com/shimaatech/flutter_packages"
     source: git
     version: "0.0.1"
