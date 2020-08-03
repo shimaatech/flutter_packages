@@ -15,8 +15,8 @@ typedef ClickEventHandler = Function(
     BuildContext context, SystemMessageClickSpec spec);
 
 abstract class NavigatorHelper {
-  Future<void> navigate(BuildContext context, String routeName,
-      Map<String, dynamic> args);
+  Future<void> navigate(
+      BuildContext context, String routeName, Map<String, dynamic> args);
 }
 
 class DismissibleMessage extends StatelessWidget {
@@ -27,6 +27,7 @@ class DismissibleMessage extends StatelessWidget {
     this.onDismiss,
     this.backgroundColor,
     this.navigatorHelper,
+    this.dismissOnNavigation = true,
   }) : super(key: key);
 
   final SystemMessage message;
@@ -34,6 +35,7 @@ class DismissibleMessage extends StatelessWidget {
   final VoidCallback onDismiss;
   final Color backgroundColor;
   final NavigatorHelper navigatorHelper;
+  final bool dismissOnNavigation;
 
   @override
   Widget build(BuildContext context) {
@@ -60,8 +62,8 @@ class DismissibleMessage extends StatelessWidget {
     );
   }
 
-  void handleClickEvent(BuildContext context,
-      SystemMessageClickSpec clickSpec) {
+  void handleClickEvent(
+      BuildContext context, SystemMessageClickSpec clickSpec) {
     if (navigatorHelper == null || clickSpec == null) {
       return;
     }
@@ -75,6 +77,9 @@ class DismissibleMessage extends StatelessWidget {
       showDialog(
           context: context, builder: (context) => WebsiteViewer(clickSpec.url));
     }
+    if (dismissOnNavigation) {
+      onDismiss();
+    }
   }
 }
 
@@ -85,6 +90,7 @@ class SystemMessageCard extends StatelessWidget {
     this.backgroundColor,
     this.onMessageLoading,
     this.navigatorHelper,
+    this.dismissOnNavigation = true,
     Key key = const Key('__system_message'),
   }) : super(key: key);
 
@@ -93,6 +99,7 @@ class SystemMessageCard extends StatelessWidget {
   final Color backgroundColor;
   final Widget onMessageLoading;
   final NavigatorHelper navigatorHelper;
+  final bool dismissOnNavigation;
   final Logger logger = Logger();
 
   @override
@@ -113,6 +120,7 @@ class SystemMessageCard extends StatelessWidget {
             onDismiss: () => systemMessagesService.dismissMessage(message.id),
             navigatorHelper: navigatorHelper,
             backgroundColor: backgroundColor,
+            dismissOnNavigation: dismissOnNavigation,
           );
         } else {
           return Container();
@@ -123,7 +131,6 @@ class SystemMessageCard extends StatelessWidget {
 }
 
 class SystemMessageDialog {
-
   static const Key key = const Key('__system_message_dialog');
 
   static Future<void> showNewMessage({
@@ -131,9 +138,10 @@ class SystemMessageDialog {
     @required SystemMessagesService service,
     Color backgroundColor,
     NavigatorHelper navigatorHelper,
+    bool dismissOnNavigation = true,
   }) async {
-    SystemMessage message = await service.getLatestUnexpiredMessage(
-        SystemMessageType.dialog);
+    SystemMessage message =
+        await service.getLatestUnexpiredMessage(SystemMessageType.dialog);
     if (message == null) {
       return;
     }
@@ -152,6 +160,8 @@ class SystemMessageDialog {
         navigatorHelper: navigatorHelper,
         backgroundColor: backgroundColor,
         dismissible: false,
+        dismissOnNavigation: true,
+        onDismiss: () => service.dismissMessage(message.id),
       ),
     );
 
