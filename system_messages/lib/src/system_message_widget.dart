@@ -111,6 +111,8 @@ class SystemMessageCard extends StatelessWidget {
             message: message,
             dismissible: dismissible,
             onDismiss: () => systemMessagesService.dismissMessage(message.id),
+            navigatorHelper: navigatorHelper,
+            backgroundColor: backgroundColor,
           );
         } else {
           return Container();
