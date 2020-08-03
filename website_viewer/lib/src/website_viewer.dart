@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:general_utils/general_utils.dart';
 
 class WebsiteViewer extends StatefulWidget {
   WebsiteViewer(this.url);
@@ -37,5 +38,12 @@ class _WebsiteViewerState extends State<WebsiteViewer> {
     setState(() {
       _progress = progress / 100;
     });
+  }
+}
+
+class WebsiteViewerDialog {
+  static Future<void> show(BuildContext context, String url) {
+    return GeneralUtils.showFullScreenDialog(
+        context: context, builder: (context) => WebsiteViewer(url));
   }
 }

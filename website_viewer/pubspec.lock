@@ -74,6 +74,15 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  general_utils:
+    dependency: "direct main"
+    description:
+      path: general_utils
+      ref: HEAD
+      resolved-ref: "1b3f9b15b84f65225f2ae9b5fd4f06ebe13cb8a2"
+      url: "https://github.com/shimaatech/flutter_packages"
+    source: git
+    version: "0.0.1"
   image:
     dependency: transitive
     description:
