@@ -60,6 +60,8 @@ T _$enumDecodeNullable<T>(
 const _$NavigationTypeEnumMap = {
   NavigationType.internal: 'internal',
   NavigationType.external: 'external',
+  NavigationType.embedded: 'embedded',
+  NavigationType.upgrade: 'upgrade',
 };
 
 _$_SystemMessageImage _$_$_SystemMessageImageFromJson(Map json) {
