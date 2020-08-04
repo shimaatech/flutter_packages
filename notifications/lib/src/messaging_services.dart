@@ -2,23 +2,42 @@ import 'dart:convert';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
 import 'package:rxdart/rxdart.dart';
 
 Logger _logger = Logger();
+
+enum NotificationType { system, upgrade, other }
 
 class NotificationMessage {
   final Map data;
   final String title;
   final String body;
   final bool isLaunchNotification;
+  final NotificationType type;
 
   NotificationMessage(this.data,
-      {this.title, this.body, this.isLaunchNotification = false});
+      {this.title, this.body, this.isLaunchNotification = false})
+      : type = getNotificationType(data);
 
   @override
   String toString() {
-    return jsonEncode({'title': title, 'body': body, 'data': data});
+    return jsonEncode({
+      'title': title,
+      'body': body,
+      'data': data,
+      'type': describeEnum(type)
+    });
+  }
+
+  static NotificationType getNotificationType(Map data) {
+    if (data == null || data['type'] == null) {
+      return NotificationType.other;
+    }
+    NotificationType type = NotificationType.values
+        .firstWhere((e) => describeEnum(e) == data['type']);
+    return type ?? NotificationType.other;
   }
 }
 
