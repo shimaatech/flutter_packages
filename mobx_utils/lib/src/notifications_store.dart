@@ -31,11 +31,11 @@ abstract class _NotificationsStore extends BaseStore with Store {
   _NotificationsStore(this.notificationsServices) {
     _notificationReceivedSubscription = notificationsServices
         .onNotificationReceived
-        .listen(_onNotificationClicked);
+        .listen(_onNotificationReceived);
 
     _notificationClickedSubscription = notificationsServices
         .onNotificationClicked
-        .listen(_onNotificationReceived);
+        .listen(_onNotificationClicked);
   }
 
   @action
