@@ -1,7 +1,9 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:dismissible_card/dismissible_card.dart';
 import 'package:flutter/material.dart';
+import 'package:launch_review/launch_review.dart';
 import 'package:logger/logger.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:website_viewer/website_viewer.dart';
 
 import '../system_messages.dart';
@@ -86,8 +88,12 @@ class _DismissibleMessageState extends State<DismissibleMessage> {
     }
     if (clickSpec.navigationType == NavigationType.internal) {
       widget.navigatorHelper.navigate(context, clickSpec.url, clickSpec.args);
-    } else {
+    } else if (clickSpec.navigationType == NavigationType.embedded) {
       WebsiteViewerDialog.show(context, clickSpec.url);
+    } else if (clickSpec.navigationType == NavigationType.upgrade) {
+      LaunchReview.launch();
+    } else {
+      launch(clickSpec.url);
     }
     if (widget.dismissOnNavigation) {
       widget.onDismiss();

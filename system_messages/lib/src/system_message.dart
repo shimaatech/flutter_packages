@@ -11,6 +11,8 @@ part 'system_message.g.dart';
 enum NavigationType {
   internal,
   external,
+  embedded,
+  upgrade,
 }
 
 enum SystemMessageType {
