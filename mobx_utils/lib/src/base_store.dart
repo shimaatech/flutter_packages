@@ -25,6 +25,11 @@ class BaseStore = _BaseStore with _$BaseStore;
 abstract class _BaseStore with Store {
   _BaseStore() {
     reactions.add(when((_) => initialized, onInitialized));
+    reinitialize();
+  }
+
+  @action
+  void reinitialize() {
     observeAndCatchError(initializeFuture = ObservableFuture(initialize()));
   }
 
