@@ -52,7 +52,6 @@ abstract class _BaseStore with Store {
   @computed
   bool get hasConnectionError => hasError && lastError.exception is DioError;
 
-  @protected
   @observable
   ObservableFuture<void> initializeFuture;
 
