@@ -90,7 +90,8 @@ class _DismissibleMessageState extends State<DismissibleMessage> {
       widget.navigatorHelper.navigate(context, clickSpec.url, clickSpec.args);
     } else if (clickSpec.navigationType == NavigationType.embedded) {
       WebsiteViewerDialog.show(context, clickSpec.url);
-    } else if (clickSpec.navigationType == NavigationType.upgrade) {
+    } else if (clickSpec.navigationType == NavigationType.upgrade ||
+        clickSpec.navigationType == NavigationType.rate) {
       LaunchReview.launch();
     } else {
       launch(clickSpec.url);

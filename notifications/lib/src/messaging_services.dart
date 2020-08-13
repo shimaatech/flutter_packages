@@ -8,7 +8,7 @@ import 'package:rxdart/rxdart.dart';
 
 Logger _logger = Logger();
 
-enum NotificationType { system, upgrade, other }
+enum NotificationType { system, upgrade, rate, other }
 
 class NotificationMessage {
   final Map data;

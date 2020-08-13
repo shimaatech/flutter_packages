@@ -15,6 +15,12 @@ dependencies:
   firebase_messaging: ^6.0.15
   rxdart: ^0.24.1
   flutter_local_notifications: ^1.4.3
+  launch_review: ^2.0.0
+
+  website_viewer:
+    git:
+      url: https://github.com/shimaatech/flutter_packages
+      path: website_viewer
 
 
 dev_dependencies:

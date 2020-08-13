@@ -69,6 +69,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_inappwebview:
+    dependency: transitive
+    description:
+      name: flutter_inappwebview
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.0+4"
   flutter_local_notifications:
     dependency: "direct main"
     description:
@@ -88,6 +95,15 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  general_utils:
+    dependency: transitive
+    description:
+      path: general_utils
+      ref: HEAD
+      resolved-ref: "2e0ba3cc93236e7de79f18ba7aa1d3429c207692"
+      url: "https://github.com/shimaatech/flutter_packages"
+    source: git
+    version: "0.0.1"
   image:
     dependency: transitive
     description:
@@ -95,6 +111,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.12"
+  launch_review:
+    dependency: "direct main"
+    description:
+      name: launch_review
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   logger:
     dependency: "direct main"
     description:
@@ -116,6 +139,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.8"
+  mime:
+    dependency: transitive
+    description:
+      name: mime
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.9.7"
   path:
     dependency: transitive
     description:
@@ -212,6 +242,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.6"
+  uuid:
+    dependency: transitive
+    description:
+      name: uuid
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.2.0"
   vector_math:
     dependency: transitive
     description:
@@ -219,6 +256,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.8"
+  website_viewer:
+    dependency: "direct main"
+    description:
+      path: website_viewer
+      ref: HEAD
+      resolved-ref: "2e0ba3cc93236e7de79f18ba7aa1d3429c207692"
+      url: "https://github.com/shimaatech/flutter_packages"
+    source: git
+    version: "0.0.1"
   xml:
     dependency: transitive
     description:

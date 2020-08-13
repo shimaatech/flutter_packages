@@ -13,6 +13,7 @@ enum NavigationType {
   external,
   embedded,
   upgrade,
+  rate,
 }
 
 enum SystemMessageType {
