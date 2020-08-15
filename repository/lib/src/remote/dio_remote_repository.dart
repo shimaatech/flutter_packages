@@ -9,9 +9,7 @@ import '../../repository.dart';
 class DioRemoteRepository<E extends Entity<ID>, ID>
     extends RemoteRepository<E, ID> {
   DioRemoteRepository(this.dio, this.resourceName, Serializer<E> serializer)
-      : dioRestClient = DioRestClient(
-            serializer, dio, '${dio.options.baseUrl}/$resourceName'),
-        super(serializer);
+      : super(serializer);
 
   @protected
   final Dio dio;
@@ -20,7 +18,8 @@ class DioRemoteRepository<E extends Entity<ID>, ID>
   final String resourceName;
 
   @protected
-  final DioRestClient<E> dioRestClient;
+  DioRestClient<E> get dioRestClient =>
+      DioRestClient(serializer, dio, '${dio.options.baseUrl}/$resourceName');
 
   @override
   Future<void> delete(ID id) {
@@ -69,5 +68,4 @@ class DioRemoteRepository<E extends Entity<ID>, ID>
     // TODO: implement deleteAll
     throw UnimplementedError();
   }
-
 }
