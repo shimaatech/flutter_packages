@@ -18,8 +18,11 @@ class DioRemoteRepository<E extends Entity<ID>, ID>
   final String resourceName;
 
   @protected
+  String get baseUrl => '${dio.options.baseUrl}/$resourceName';
+
+  @protected
   DioRestClient<E> get dioRestClient =>
-      DioRestClient(serializer, dio, '${dio.options.baseUrl}/$resourceName');
+      DioRestClient(serializer, dio, baseUrl);
 
   @override
   Future<void> delete(ID id) {
