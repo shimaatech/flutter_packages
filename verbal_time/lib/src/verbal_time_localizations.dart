@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:multiple_localization/multiple_localization.dart';
 
 import 'l10n/verbaltime_messages_all.dart';
 
@@ -19,14 +20,11 @@ class VerbalTimeLocalizations {
 
   static Future<VerbalTimeLocalizations> load(
       Locale locale, bool useLocaleForDate) {
-    final String name =
-        locale.countryCode == null ? locale.languageCode : locale.toString();
-    final String localeName = Intl.canonicalizedLocale(name);
-
-    return initializeMessages(localeName).then((bool _) {
-      Intl.defaultLocale = localeName;
-      return new VerbalTimeLocalizations(locale, useLocaleForDate);
-    });
+    return MultipleLocalizations.load(
+        initializeMessages,
+        locale,
+        (strLocale) =>
+            VerbalTimeLocalizations(Locale(strLocale), useLocaleForDate));
   }
 
   static VerbalTimeLocalizations of(BuildContext context) {
