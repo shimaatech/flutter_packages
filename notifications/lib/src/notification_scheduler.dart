@@ -7,7 +7,6 @@ import 'package:rxdart/rxdart.dart';
 
 import 'messaging_services.dart';
 
-
 Logger _logger = Logger();
 
 abstract class NotificationScheduler {
@@ -35,8 +34,12 @@ class FlutterLocalNotificationsScheduler extends NotificationScheduler {
       InitializationSettings initializationSettings,
       this.androidNotificationChannel) {
     notificationsPlugin.initialize(initializationSettings,
-        onSelectNotification: (data) async {
-      notificationClickedSubject.add(NotificationMessage(jsonDecode(data)));
+        onSelectNotification: (encodedNotification) async {
+      Map<String, dynamic> notificationData = jsonDecode(encodedNotification);
+      notificationClickedSubject.add(NotificationMessage(
+          notificationData['data'],
+          title: notificationData['title'],
+          body: notificationData['body']));
     });
   }
 
@@ -52,8 +55,9 @@ class FlutterLocalNotificationsScheduler extends NotificationScheduler {
     var iOSPlatformChannelSpecifics = IOSNotificationDetails();
     var platformChannelSpecifics = NotificationDetails(
         androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
-    return notificationsPlugin.show(0, notification.title, notification.body, platformChannelSpecifics,
-        payload: jsonEncode(notification.data));
+    return notificationsPlugin.show(
+        0, notification.title, notification.body, platformChannelSpecifics,
+        payload: jsonEncode(notification));
   }
 }
 
