@@ -35,6 +35,8 @@ class FlutterLocalNotificationsScheduler extends NotificationScheduler {
       this.androidNotificationChannel) {
     notificationsPlugin.initialize(initializationSettings,
         onSelectNotification: (encodedNotification) async {
+      // TODO add fromJson toJson to the NotificationMessage instead of doing
+      //  this manually here
       Map<String, dynamic> notificationData = jsonDecode(encodedNotification);
       notificationClickedSubject.add(NotificationMessage(
           notificationData['data'],
@@ -55,9 +57,16 @@ class FlutterLocalNotificationsScheduler extends NotificationScheduler {
     var iOSPlatformChannelSpecifics = IOSNotificationDetails();
     var platformChannelSpecifics = NotificationDetails(
         androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
+
+    // TODO add fromJson toJson to the NotificationMessage instead of doing this
+    // manually here
+    Map<String, dynamic> notificationData = Map();
+    notificationData['data'] = notification.data;
+    notificationData['title'] = notification.title;
+    notificationData['body'] = notification.body;
     return notificationsPlugin.show(
         0, notification.title, notification.body, platformChannelSpecifics,
-        payload: jsonEncode(notification));
+        payload: jsonEncode(notificationData));
   }
 }
 
