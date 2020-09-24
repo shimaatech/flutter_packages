@@ -2,6 +2,7 @@ import 'package:app_update/src/app_info_service.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:in_app_update/in_app_update.dart';
 import 'package:launch_review/launch_review.dart';
 import 'package:pedantic/pedantic.dart';
 import 'package:repository/repository.dart';
@@ -25,7 +26,7 @@ class AppUpdateService {
 
   Future<bool> checkForUpdate(BuildContext context) async {
     AppInfo appInfo = await appInfoService.getAppInfo(forceFetch: false);
-    if (needsUpdate(appInfo)) {
+    if (await needsUpdate(appInfo)) {
       if (needsImmediateUpdate(appInfo.priority)) {
         await showImmediateUpdateDialog(context);
         return true;
@@ -37,8 +38,16 @@ class AppUpdateService {
     return false;
   }
 
-  bool needsUpdate(AppInfo appInfo) {
-    return appInfo.latestVersion > appBuildNumber;
+  // TODO check if this works on IOS!
+  Future<bool> needsUpdate(AppInfo appInfo) async {
+    if (appInfo.latestVersion <= appBuildNumber) {
+      return false;
+    }
+    // Here we use the InAppUpdate package in order to check that there is a
+    // real update in the play store (what about ios?)
+    AppUpdateInfo appUpdateInfo = await InAppUpdate.checkForUpdate();
+    return appUpdateInfo.updateAvailable &&
+        appUpdateInfo.availableVersionCode == appInfo.latestVersion;
   }
 
   bool needsImmediateUpdate(int priority) {
@@ -99,8 +108,16 @@ class AppUpdateService {
     return AwesomeDialog(
       dialogType: DialogType.NO_HEADER,
       context: context,
-      title: 'App Update',
-      desc: content,
+      body: Column(
+        children: [
+          Text('App Update', style: Theme.of(context).primaryTextTheme.headline6,),
+          SizedBox(height: 20,),
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text(content),
+          ),
+        ],
+      ),
       btnOk: RaisedButton(
         child: Text('Update'),
         onPressed: () {
