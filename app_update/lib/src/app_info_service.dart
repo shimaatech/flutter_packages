@@ -40,6 +40,6 @@ class AppInfoService {
             .document(getAppInfoDocument(packageName))
             .get())
         .data;
-    return AppInfo(data['latest_version'], data['priority']);
+    return AppInfo(data['latest_version'] + .0, data['priority']);
   }
 }
