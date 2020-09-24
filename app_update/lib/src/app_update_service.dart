@@ -2,7 +2,6 @@ import 'package:app_update/src/app_info_service.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:in_app_update/in_app_update.dart';
 import 'package:launch_review/launch_review.dart';
 import 'package:pedantic/pedantic.dart';
 import 'package:repository/repository.dart';
@@ -16,7 +15,7 @@ class AppUpdateService {
     this.appInfoService,
     this.localStorage,
     this.appBuildNumber, {
-    this.daysIntervalByPriority = 1,
+    this.daysIntervalByPriority = 2,
   });
 
   final LocalStorage localStorage;
@@ -26,7 +25,7 @@ class AppUpdateService {
 
   Future<bool> checkForUpdate(BuildContext context) async {
     AppInfo appInfo = await appInfoService.getAppInfo(forceFetch: false);
-    if (await needsUpdate(appInfo)) {
+    if (needsUpdate(appInfo)) {
       if (needsImmediateUpdate(appInfo.priority)) {
         await showImmediateUpdateDialog(context);
         return true;
@@ -38,16 +37,8 @@ class AppUpdateService {
     return false;
   }
 
-  // TODO check if this works on IOS!
-  Future<bool> needsUpdate(AppInfo appInfo) async {
-    if (appInfo.latestVersion <= appBuildNumber) {
-      return false;
-    }
-    // Here we use the InAppUpdate package in order to check that there is a
-    // real update in the play store (what about ios?)
-    AppUpdateInfo appUpdateInfo = await InAppUpdate.checkForUpdate();
-    return appUpdateInfo.updateAvailable &&
-        appUpdateInfo.availableVersionCode == appInfo.latestVersion;
+  bool needsUpdate(AppInfo appInfo) {
+    return appInfo.latestVersion > appBuildNumber;
   }
 
   bool needsImmediateUpdate(int priority) {
