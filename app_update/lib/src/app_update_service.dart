@@ -99,16 +99,8 @@ class AppUpdateService {
     return AwesomeDialog(
       dialogType: DialogType.NO_HEADER,
       context: context,
-      body: Column(
-        children: [
-          Text('App Update', style: Theme.of(context).primaryTextTheme.headline6,),
-          SizedBox(height: 20,),
-          Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text(content),
-          ),
-        ],
-      ),
+      title: 'App Update',
+      desc: content,
       btnOk: RaisedButton(
         child: Text('Update'),
         onPressed: () {
