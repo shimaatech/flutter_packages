@@ -62,7 +62,9 @@ class AppUpdateService {
   }
 
   void launchUpdate() {
-    LaunchReview.launch(writeReview: false);
+    // TODO pass ios package name also in the future
+    LaunchReview.launch(
+        androidAppId: appInfoService.packageName, writeReview: false);
   }
 
   Future<void> showImmediateUpdateDialog(BuildContext context) {
