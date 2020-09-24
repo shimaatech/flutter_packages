@@ -6,7 +6,7 @@ import 'package:flutter/foundation.dart';
 class AppInfo {
   AppInfo(this.latestVersion, this.priority);
 
-  final int latestVersion;
+  final double latestVersion;
   final int priority;
 }
 

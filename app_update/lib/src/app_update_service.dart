@@ -20,7 +20,7 @@ class AppUpdateService {
   final LocalStorage localStorage;
   final AppInfoService appInfoService;
   final daysIntervalByPriority;
-  final int appBuildNumber;
+  final double appBuildNumber;
 
   Future<bool> checkForUpdate(BuildContext context) async {
     AppInfo appInfo = await appInfoService.getAppInfo(forceFetch: false);
