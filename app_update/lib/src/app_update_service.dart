@@ -100,10 +100,7 @@ class AppUpdateService {
       dialogType: DialogType.NO_HEADER,
       context: context,
       title: 'App Update',
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Text(content),
-      ),
+      desc: content,
       btnOk: RaisedButton(
         child: Text('Update'),
         onPressed: () {
@@ -118,7 +115,7 @@ class AppUpdateService {
               child: Text('Later'),
               onPressed: () => Navigator.of(context).pop(),
             )
-          : Container(),
+          : null,
       dismissOnBackKeyPress: false,
       dismissOnTouchOutside: false,
     ).show();
