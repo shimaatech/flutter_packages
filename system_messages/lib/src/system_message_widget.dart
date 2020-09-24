@@ -170,12 +170,12 @@ class SystemMessageDialog {
 
     AwesomeDialog dialog = AwesomeDialog(
       context: context,
-      dialogType: DialogType.INFO,
+      dialogType: DialogType.NO_HEADER,
       onDissmissCallback: () => service.dismissMessage(message.id),
-      btnOkText: '',
-      btnOkIcon: Icons.done,
-      btnOkColor: Colors.green,
-      btnOkOnPress: () => service.dismissMessage(message.id),
+      btnOk: IconButton(
+        icon: Icon(Icons.done),
+        onPressed: () => service.dismissMessage(message.id),
+      ),
       body: DismissibleMessage(
         message: message,
         key: key,
