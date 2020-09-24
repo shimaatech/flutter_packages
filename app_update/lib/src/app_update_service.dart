@@ -1,6 +1,7 @@
 import 'package:app_update/src/app_info_service.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:launch_review/launch_review.dart';
 import 'package:pedantic/pedantic.dart';
 import 'package:repository/repository.dart';
@@ -51,15 +52,20 @@ class AppUpdateService {
     await AwesomeDialog(
       context: context,
       title: 'App Update',
-      body: Text(
-          'A new update is available. Pleas update in order to get the latest features of the app'),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(
+            'A new update is available. Pleas update in order to get the latest features of the app'),
+      ),
       btnOkText: 'Update',
-      btnCancelText: 'Not now',
+      btnCancelText: 'Later',
       btnOkOnPress: () {
         updateClicked = true;
         launchUpdate();
       },
       btnCancelOnPress: () => Navigator.of(context).pop(),
+      btnOkColor: Theme.of(context).primaryColor,
+      btnCancelColor: Colors.transparent,
     ).show();
 
     return updateClicked;
@@ -74,9 +80,14 @@ class AppUpdateService {
     return AwesomeDialog(
       context: context,
       title: 'App update',
-      body: Text('Please update the app in order to continue'),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text('Please update the app in order to continue'),
+      ),
       btnOkText: 'Update',
       btnOkOnPress: () => launchUpdate(),
+      btnOkColor: Theme.of(context).primaryColor,
+      btnCancelColor: Colors.transparent,
     ).show();
   }
 
