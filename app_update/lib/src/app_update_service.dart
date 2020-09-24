@@ -48,25 +48,15 @@ class AppUpdateService {
   Future<bool> showFlexibleUpdateDialog(BuildContext context) async {
     bool updateClicked = false;
 
-    // TODO use localizations...
-    await AwesomeDialog(
+    await showUpdateDialog(
       context: context,
-      title: 'App Update',
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Text(
-            'A new update is available. Pleas update in order to get the latest features of the app'),
-      ),
-      btnOkText: 'Update',
-      btnCancelText: 'Later',
-      btnOkOnPress: () {
+      content:
+          'A new update is available. Pleas update in order to get the latest features of the app',
+      showLaterButton: true,
+      onUpdatePressed: () {
         updateClicked = true;
-        launchUpdate();
       },
-      btnCancelOnPress: () => Navigator.of(context).pop(),
-      btnOkColor: Theme.of(context).primaryColor,
-      btnCancelColor: Colors.transparent,
-    ).show();
+    );
 
     return updateClicked;
   }
@@ -76,19 +66,10 @@ class AppUpdateService {
   }
 
   Future<void> showImmediateUpdateDialog(BuildContext context) {
-    // TODO use localizations
-    return AwesomeDialog(
-      context: context,
-      title: 'App update',
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Text('Please update the app in order to continue'),
-      ),
-      btnOkText: 'Update',
-      btnOkOnPress: () => launchUpdate(),
-      btnOkColor: Theme.of(context).primaryColor,
-      btnCancelColor: Colors.transparent,
-    ).show();
+    return showUpdateDialog(
+        context: context,
+        content: 'Please update the app in order to continue',
+        showLaterButton: false);
   }
 
   bool shouldSuggestUpdate(int priority) {
@@ -104,5 +85,40 @@ class AppUpdateService {
 
   Future<void> updateLastUpdateTrial() {
     return localStorage.save(lastUpdateTrialConfigKey, DateTime.now());
+  }
+
+  Future<void> showUpdateDialog({
+    @required BuildContext context,
+    @required String content,
+    bool showLaterButton = true,
+    VoidCallback onUpdatePressed,
+  }) {
+    // TODO use localizations
+    return AwesomeDialog(
+      dialogType: DialogType.NO_HEADER,
+      context: context,
+      title: 'App Update',
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(content),
+      ),
+      btnOk: RaisedButton(
+        child: Text('Update'),
+        onPressed: () {
+          if (onUpdatePressed != null) {
+            onUpdatePressed.call();
+          }
+          launchUpdate();
+        },
+      ),
+      btnCancel: showLaterButton
+          ? FlatButton(
+              child: Text('Later'),
+              onPressed: () => Navigator.of(context).pop(),
+            )
+          : Container(),
+      dismissOnBackKeyPress: false,
+      dismissOnTouchOutside: false,
+    ).show();
   }
 }
