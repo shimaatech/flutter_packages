@@ -21,8 +21,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
-    "flexibleUpdateMessage" : MessageLookupByLibrary.simpleMessage("لقد قمنا بتحسين التطبيق من أجلك. الرجاء تحديث التطبيق للحصول على آخر التعديلات"),
-    "immediateUpdateMessage" : MessageLookupByLibrary.simpleMessage("لقد قمنا بإضافة بعض التعديلات المهمة. الرجاء تحديث التطبيق للمتابعة"),
+    "flexibleUpdateMessage" : MessageLookupByLibrary.simpleMessage("لقد قمنا بتحسين التطبيق من أجلك. من فضلك قم بالتحديث للحصول على آخر التعديلات"),
+    "immediateUpdateMessage" : MessageLookupByLibrary.simpleMessage("تم إضافة بعض التعديلات المهمة. الرجاء تحديث التطبيق للمتابعة"),
     "later" : MessageLookupByLibrary.simpleMessage("لاحقا"),
     "title" : MessageLookupByLibrary.simpleMessage("تحديث"),
     "update" : MessageLookupByLibrary.simpleMessage("تحديث")
