@@ -5,7 +5,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "flexibleUpdateMessage": "لقد قمنا بتحسين التطبيق لأجلك. الرجاء تحديث التطبيق للحصول على آخر التعديلات",
+  "flexibleUpdateMessage": "لقد قمنا بتحسين التطبيق من أجلك. الرجاء تحديث التطبيق للحصول على آخر التعديلات",
   "@flexibleUpdateMessage": {
     "type": "text",
     "placeholders": {}
