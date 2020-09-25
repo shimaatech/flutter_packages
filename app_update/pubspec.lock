@@ -281,7 +281,7 @@ packages:
       name: logger
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.9.2"
+    version: "0.9.3"
   matcher:
     dependency: transitive
     description:
@@ -371,7 +371,7 @@ packages:
     description:
       path: repository
       ref: HEAD
-      resolved-ref: "595741ea4e5a471350b9ba7329eef401e8b593d8"
+      resolved-ref: "870f29decf8067abc1f7f8dbeb4a6db6da0c0250"
       url: "https://github.com/shimaatech/flutter_packages"
     source: git
     version: "0.0.1"
@@ -415,7 +415,7 @@ packages:
     description:
       path: serializer
       ref: HEAD
-      resolved-ref: "595741ea4e5a471350b9ba7329eef401e8b593d8"
+      resolved-ref: "870f29decf8067abc1f7f8dbeb4a6db6da0c0250"
       url: "https://github.com/shimaatech/flutter_packages"
     source: git
     version: "0.0.1"

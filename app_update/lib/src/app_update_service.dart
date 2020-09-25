@@ -1,3 +1,4 @@
+import 'package:app_update/app_update.dart';
 import 'package:app_update/src/app_info_service.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,7 +8,8 @@ import 'package:pedantic/pedantic.dart';
 import 'package:repository/repository.dart';
 
 class AppUpdateService {
-  static const String lastUpdateTrialConfigKey = 'app.update.lastTrial';
+  static const String lastUpdateTrialConfigKey =
+      'app_update_service.update.lastTrial';
   static const updateHighestPriority = 5;
   static const updateLowestPriority = 0;
 
@@ -50,8 +52,7 @@ class AppUpdateService {
 
     await showUpdateDialog(
       context: context,
-      content:
-          'A new update is available. Pleas update in order to get the latest features of the app',
+      content: UpdateDialogLocalizations.of(context).flexibleUpdateMessage,
       showLaterButton: true,
       onUpdatePressed: () {
         updateClicked = true;
@@ -70,7 +71,7 @@ class AppUpdateService {
   Future<void> showImmediateUpdateDialog(BuildContext context) {
     return showUpdateDialog(
         context: context,
-        content: 'Please update the app in order to continue',
+        content: UpdateDialogLocalizations.of(context).immediateUpdateMessage,
         showLaterButton: false);
   }
 
@@ -95,14 +96,14 @@ class AppUpdateService {
     bool showLaterButton = true,
     VoidCallback onUpdatePressed,
   }) {
-    // TODO use localizations
+    final localizations = UpdateDialogLocalizations.of(context);
     return AwesomeDialog(
       dialogType: DialogType.NO_HEADER,
       context: context,
-      title: 'App Update',
+      title: localizations.title,
       desc: content,
       btnOk: RaisedButton(
-        child: Text('Update'),
+        child: Text(localizations.update),
         onPressed: () {
           if (onUpdatePressed != null) {
             onUpdatePressed.call();
@@ -112,7 +113,7 @@ class AppUpdateService {
       ),
       btnCancel: showLaterButton
           ? FlatButton(
-              child: Text('Later'),
+              child: Text(localizations.later),
               onPressed: () => Navigator.of(context).pop(),
             )
           : null,
