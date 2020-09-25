@@ -1,0 +1,28 @@
+{
+  "@@last_modified": "2020-09-25T12:23:59.303836",
+  "title": "تحديث",
+  "@title": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "flexibleUpdateMessage": "لقد قمنا بتحسين التطبيق لأجلك. الرجاء تحديث التطبيق للحصول على آخر التعديلات",
+  "@flexibleUpdateMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "immediateUpdateMessage": "لقد قمنا بإضافة بعض التعديلات المهمة. الرجاء تحديث التطبيق للمتابعة",
+  "@immediateUpdateMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "update": "تحديث",
+  "@update": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "later": "لاحقا",
+  "@later": {
+    "type": "text",
+    "placeholders": {}
+  }
+}

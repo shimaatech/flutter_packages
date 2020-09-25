@@ -1,0 +1,28 @@
+{
+  "@@last_modified": "2020-09-25T12:23:59.303836",
+  "title": "App Update",
+  "@title": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "flexibleUpdateMessage": "A new update is available. Please update in order to get the latest features",
+  "@flexibleUpdateMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "immediateUpdateMessage": "We enhanced the app for you. Please update the app in order to continue",
+  "@immediateUpdateMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "update": "Update",
+  "@update": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "later": "Later",
+  "@later": {
+    "type": "text",
+    "placeholders": {}
+  }
+}
