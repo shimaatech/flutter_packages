@@ -9,8 +9,7 @@ import 'l10n/messages_all.dart';
 class UpdateDialogLocalizations {
   static Future<UpdateDialogLocalizations> load(Locale locale) {
     return MultipleLocalizations.load(
-        initializeMessages, locale, (locale) => UpdateDialogLocalizations(),
-        setDefaultLocale: true);
+        initializeMessages, locale, (locale) => UpdateDialogLocalizations());
   }
 
   static UpdateDialogLocalizations of(BuildContext context) {
@@ -25,7 +24,7 @@ class UpdateDialogLocalizations {
   ];
 
   // Static member to have a simple access to the delegate from the MaterialApp
-  static LocalizationsDelegate<UpdateDialogLocalizations> delegate() =>
+  static LocalizationsDelegate<UpdateDialogLocalizations> get delegate =>
       _UpdateDialogLocalizationsDelegate();
 
   String get title => Intl.message('App Update', name: 'title');
