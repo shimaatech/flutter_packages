@@ -371,7 +371,7 @@ packages:
     description:
       path: repository
       ref: HEAD
-      resolved-ref: "870f29decf8067abc1f7f8dbeb4a6db6da0c0250"
+      resolved-ref: "915591de3ae8889bdda3747b95d0d4bee2846153"
       url: "https://github.com/shimaatech/flutter_packages"
     source: git
     version: "0.0.1"
@@ -415,7 +415,7 @@ packages:
     description:
       path: serializer
       ref: HEAD
-      resolved-ref: "870f29decf8067abc1f7f8dbeb4a6db6da0c0250"
+      resolved-ref: "915591de3ae8889bdda3747b95d0d4bee2846153"
       url: "https://github.com/shimaatech/flutter_packages"
     source: git
     version: "0.0.1"
