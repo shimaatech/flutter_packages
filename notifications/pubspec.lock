@@ -56,7 +56,7 @@ packages:
       name: crypto
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.4"
+    version: "2.1.5"
   fake_async:
     dependency: transitive
     description:
@@ -70,7 +70,7 @@ packages:
       name: firebase_messaging
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.0.15"
+    version: "6.0.16"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -89,7 +89,7 @@ packages:
       name: flutter_local_notifications
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.4.3"
+    version: "1.4.4+4"
   flutter_local_notifications_platform_interface:
     dependency: transitive
     description:
@@ -107,7 +107,7 @@ packages:
     description:
       path: general_utils
       ref: HEAD
-      resolved-ref: "2e0ba3cc93236e7de79f18ba7aa1d3429c207692"
+      resolved-ref: "606b6b43d60d5b8000e9472df76d566fa1016e40"
       url: "https://github.com/shimaatech/flutter_packages"
     source: git
     version: "0.0.1"
@@ -234,7 +234,7 @@ packages:
       name: uuid
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.0"
+    version: "2.2.2"
   vector_math:
     dependency: transitive
     description:
@@ -247,7 +247,7 @@ packages:
     description:
       path: website_viewer
       ref: HEAD
-      resolved-ref: "2e0ba3cc93236e7de79f18ba7aa1d3429c207692"
+      resolved-ref: "606b6b43d60d5b8000e9472df76d566fa1016e40"
       url: "https://github.com/shimaatech/flutter_packages"
     source: git
     version: "0.0.1"
