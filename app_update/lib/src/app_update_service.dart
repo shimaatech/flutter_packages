@@ -39,14 +39,30 @@ class AppUpdateService {
     return false;
   }
 
+  /// Can be used to show flexible update dialog with a custom message whenever
+  /// you want (of course only if a newer version is available)
+  Future<void> showUpdateDialogIfNeedsUpdate(BuildContext context, String message) async {
+    AppInfo appInfo = await appInfoService.getAppInfo(forceFetch: false);
+    if (needsUpdate(appInfo)) {
+      return showUpdateDialog(
+        context: context,
+        content: message,
+        showLaterButton: true,
+      );
+    }
+  }
+
+  @protected
   bool needsUpdate(AppInfo appInfo) {
     return appInfo.latestVersion > appBuildNumber;
   }
 
+  @protected
   bool needsImmediateUpdate(int priority) {
     return priority == updateHighestPriority;
   }
 
+  @protected
   Future<bool> showFlexibleUpdateDialog(BuildContext context) async {
     bool updateClicked = false;
 
@@ -62,12 +78,14 @@ class AppUpdateService {
     return updateClicked;
   }
 
+  @protected
   void launchUpdate() {
     // TODO pass ios package name also in the future
     LaunchReview.launch(
         androidAppId: appInfoService.packageName, writeReview: false);
   }
 
+  @protected
   Future<void> showImmediateUpdateDialog(BuildContext context) {
     return showUpdateDialog(
         context: context,
@@ -75,6 +93,7 @@ class AppUpdateService {
         showLaterButton: false);
   }
 
+  @protected
   bool shouldSuggestUpdate(int priority) {
     DateTime lastUpdateTrial = localStorage.get(lastUpdateTrialConfigKey);
     if (lastUpdateTrial == null) {
@@ -86,10 +105,12 @@ class AppUpdateService {
         trialDaysInterval;
   }
 
+  @protected
   Future<void> updateLastUpdateTrial() {
     return localStorage.save(lastUpdateTrialConfigKey, DateTime.now());
   }
 
+  @protected
   Future<void> showUpdateDialog({
     @required BuildContext context,
     @required String content,
