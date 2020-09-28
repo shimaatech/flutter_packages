@@ -2,10 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:general_utils/general_utils.dart';
 
+typedef WebsiteViewerErrorCallback = Function(int code, String message);
+
 class WebsiteViewer extends StatefulWidget {
-  WebsiteViewer(this.url);
+  WebsiteViewer(this.url, {this.onLoadError, this.onLoadHttpError});
 
   final String url;
+
+  final WebsiteViewerErrorCallback onLoadError;
+  final WebsiteViewerErrorCallback onLoadHttpError;
 
   @override
   _WebsiteViewerState createState() => _WebsiteViewerState();
@@ -23,6 +28,16 @@ class _WebsiteViewerState extends State<WebsiteViewer> {
             : Container(),
         Expanded(
           child: InAppWebView(
+            onLoadError: (controller, url, code, message) {
+              if (widget.onLoadError != null) {
+                widget.onLoadError(code, message);
+              }
+            },
+            onLoadHttpError: (controller, url, code, message) {
+              if (widget.onLoadHttpError != null) {
+                widget.onLoadHttpError(code, message);
+              }
+            },
             initialUrl: widget.url,
             initialOptions: InAppWebViewGroupOptions(
               crossPlatform: InAppWebViewOptions(debuggingEnabled: false),
