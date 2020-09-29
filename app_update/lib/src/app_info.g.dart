@@ -23,19 +23,34 @@ Map<String, dynamic> _$_$_ContactInfoToJson(_$_ContactInfo instance) =>
       'hidden': instance.hidden,
     };
 
+_$_UpdateInfo _$_$_UpdateInfoFromJson(Map<String, dynamic> json) {
+  return _$_UpdateInfo(
+    active: json['active'] as bool ?? true,
+    priority: json['priority'] as int ?? 3,
+  );
+}
+
+Map<String, dynamic> _$_$_UpdateInfoToJson(_$_UpdateInfo instance) =>
+    <String, dynamic>{
+      'active': instance.active,
+      'priority': instance.priority,
+    };
+
 _$_AppInfo _$_$_AppInfoFromJson(Map<String, dynamic> json) {
   return _$_AppInfo(
     latestVersion: (json['latestVersion'] as num)?.toDouble(),
-    priority: json['priority'] as int,
     contactInfo: json['contactInfo'] == null
         ? null
         : ContactInfo.fromJson(json['contactInfo'] as Map<String, dynamic>),
+    updateInfo: json['updateInfo'] == null
+        ? null
+        : UpdateInfo.fromJson(json['updateInfo'] as Map<String, dynamic>),
   );
 }
 
 Map<String, dynamic> _$_$_AppInfoToJson(_$_AppInfo instance) =>
     <String, dynamic>{
       'latestVersion': instance.latestVersion,
-      'priority': instance.priority,
       'contactInfo': instance.contactInfo,
+      'updateInfo': instance.updateInfo,
     };
