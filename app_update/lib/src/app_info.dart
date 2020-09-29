@@ -9,6 +9,7 @@ part 'app_info.g.dart';
 @freezed
 abstract class ContactInfo with _$ContactInfo {
   factory ContactInfo({
+    String title,
     String subtitle,
     String url,
     @Default(false) bool hidden,
