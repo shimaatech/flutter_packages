@@ -29,7 +29,7 @@ class AppUpdateService {
 
   Future<bool> checkForUpdate(BuildContext context) async {
     AppInfo appInfo = await appInfoService.getAppInfo(forceFetch: false);
-    if (needsUpdate(appInfo)) {
+    if (needsUpdate(appInfo) && updateIsActive(appInfo)) {
       if (needsImmediateUpdate(appInfo.updateInfo.priority)) {
         await showImmediateUpdateDialog(context);
         return true;
@@ -57,9 +57,14 @@ class AppUpdateService {
 
   @protected
   bool needsUpdate(AppInfo appInfo) {
-    return appInfo.latestVersion > appBuildNumber &&
-        appInfo.updateInfo != null &&
+    return appInfo.latestVersion > appBuildNumber;
+  }
+
+  @protected
+  bool updateIsActive(AppInfo appInfo) {
+    return appInfo.updateInfo != null &&
         appInfo.updateInfo.active;
+
   }
 
   @protected
