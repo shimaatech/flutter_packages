@@ -3,12 +3,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 
-class AppInfo {
-  AppInfo(this.latestVersion, this.priority);
-
-  final double latestVersion;
-  final int priority;
-}
+import 'app_info.dart';
 
 class AppInfoService {
   static const String collectionName = 'app_info';
@@ -40,6 +35,6 @@ class AppInfoService {
             .document(getAppInfoDocument(packageName))
             .get())
         .data;
-    return AppInfo(data['latest_version'] + .0, data['priority']);
+    return AppInfo.serializer.deserialize(data);
   }
 }

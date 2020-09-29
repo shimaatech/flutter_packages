@@ -7,6 +7,8 @@ import 'package:launch_review/launch_review.dart';
 import 'package:pedantic/pedantic.dart';
 import 'package:repository/repository.dart';
 
+import 'app_info.dart';
+
 class AppUpdateService {
   static const String lastUpdateTrialConfigKey =
       'app_update_service.update.lastTrial';
