@@ -24,11 +24,26 @@ abstract class ContactInfo with _$ContactInfo {
 }
 
 @freezed
+abstract class UpdateInfo with _$UpdateInfo {
+  factory UpdateInfo({
+    @Default(true) bool active,
+    @Default(3) int priority,
+  }) = _UpdateInfo;
+
+  factory UpdateInfo.fromJson(Map<String, dynamic> json) => _$UpdateInfoFromJson(json);
+
+    static final Serializer<UpdateInfo> serializer = Serializer(
+    (obj) => obj.toJson(),
+    (json) => UpdateInfo.fromJson(json),
+  );
+}
+
+@freezed
 abstract class AppInfo with _$AppInfo {
   factory AppInfo({
     double latestVersion,
-    int priority,
-    ContactInfo contactInfo
+    ContactInfo contactInfo,
+    UpdateInfo updateInfo,
   }) = _AppInfo;
 
   factory AppInfo.fromJson(Map<String, dynamic> json) => _$AppInfoFromJson(json);

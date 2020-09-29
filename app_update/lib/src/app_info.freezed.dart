@@ -182,6 +182,150 @@ abstract class _ContactInfo implements ContactInfo {
   _$ContactInfoCopyWith<_ContactInfo> get copyWith;
 }
 
+UpdateInfo _$UpdateInfoFromJson(Map<String, dynamic> json) {
+  return _UpdateInfo.fromJson(json);
+}
+
+class _$UpdateInfoTearOff {
+  const _$UpdateInfoTearOff();
+
+// ignore: unused_element
+  _UpdateInfo call({bool active = true, int priority = 3}) {
+    return _UpdateInfo(
+      active: active,
+      priority: priority,
+    );
+  }
+}
+
+// ignore: unused_element
+const $UpdateInfo = _$UpdateInfoTearOff();
+
+mixin _$UpdateInfo {
+  bool get active;
+  int get priority;
+
+  Map<String, dynamic> toJson();
+  $UpdateInfoCopyWith<UpdateInfo> get copyWith;
+}
+
+abstract class $UpdateInfoCopyWith<$Res> {
+  factory $UpdateInfoCopyWith(
+          UpdateInfo value, $Res Function(UpdateInfo) then) =
+      _$UpdateInfoCopyWithImpl<$Res>;
+  $Res call({bool active, int priority});
+}
+
+class _$UpdateInfoCopyWithImpl<$Res> implements $UpdateInfoCopyWith<$Res> {
+  _$UpdateInfoCopyWithImpl(this._value, this._then);
+
+  final UpdateInfo _value;
+  // ignore: unused_field
+  final $Res Function(UpdateInfo) _then;
+
+  @override
+  $Res call({
+    Object active = freezed,
+    Object priority = freezed,
+  }) {
+    return _then(_value.copyWith(
+      active: active == freezed ? _value.active : active as bool,
+      priority: priority == freezed ? _value.priority : priority as int,
+    ));
+  }
+}
+
+abstract class _$UpdateInfoCopyWith<$Res> implements $UpdateInfoCopyWith<$Res> {
+  factory _$UpdateInfoCopyWith(
+          _UpdateInfo value, $Res Function(_UpdateInfo) then) =
+      __$UpdateInfoCopyWithImpl<$Res>;
+  @override
+  $Res call({bool active, int priority});
+}
+
+class __$UpdateInfoCopyWithImpl<$Res> extends _$UpdateInfoCopyWithImpl<$Res>
+    implements _$UpdateInfoCopyWith<$Res> {
+  __$UpdateInfoCopyWithImpl(
+      _UpdateInfo _value, $Res Function(_UpdateInfo) _then)
+      : super(_value, (v) => _then(v as _UpdateInfo));
+
+  @override
+  _UpdateInfo get _value => super._value as _UpdateInfo;
+
+  @override
+  $Res call({
+    Object active = freezed,
+    Object priority = freezed,
+  }) {
+    return _then(_UpdateInfo(
+      active: active == freezed ? _value.active : active as bool,
+      priority: priority == freezed ? _value.priority : priority as int,
+    ));
+  }
+}
+
+@JsonSerializable()
+class _$_UpdateInfo implements _UpdateInfo {
+  _$_UpdateInfo({this.active = true, this.priority = 3})
+      : assert(active != null),
+        assert(priority != null);
+
+  factory _$_UpdateInfo.fromJson(Map<String, dynamic> json) =>
+      _$_$_UpdateInfoFromJson(json);
+
+  @JsonKey(defaultValue: true)
+  @override
+  final bool active;
+  @JsonKey(defaultValue: 3)
+  @override
+  final int priority;
+
+  @override
+  String toString() {
+    return 'UpdateInfo(active: $active, priority: $priority)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _UpdateInfo &&
+            (identical(other.active, active) ||
+                const DeepCollectionEquality().equals(other.active, active)) &&
+            (identical(other.priority, priority) ||
+                const DeepCollectionEquality()
+                    .equals(other.priority, priority)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(active) ^
+      const DeepCollectionEquality().hash(priority);
+
+  @override
+  _$UpdateInfoCopyWith<_UpdateInfo> get copyWith =>
+      __$UpdateInfoCopyWithImpl<_UpdateInfo>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_UpdateInfoToJson(this);
+  }
+}
+
+abstract class _UpdateInfo implements UpdateInfo {
+  factory _UpdateInfo({bool active, int priority}) = _$_UpdateInfo;
+
+  factory _UpdateInfo.fromJson(Map<String, dynamic> json) =
+      _$_UpdateInfo.fromJson;
+
+  @override
+  bool get active;
+  @override
+  int get priority;
+  @override
+  _$UpdateInfoCopyWith<_UpdateInfo> get copyWith;
+}
+
 AppInfo _$AppInfoFromJson(Map<String, dynamic> json) {
   return _AppInfo.fromJson(json);
 }
@@ -190,11 +334,12 @@ class _$AppInfoTearOff {
   const _$AppInfoTearOff();
 
 // ignore: unused_element
-  _AppInfo call({double latestVersion, int priority, ContactInfo contactInfo}) {
+  _AppInfo call(
+      {double latestVersion, ContactInfo contactInfo, UpdateInfo updateInfo}) {
     return _AppInfo(
       latestVersion: latestVersion,
-      priority: priority,
       contactInfo: contactInfo,
+      updateInfo: updateInfo,
     );
   }
 }
@@ -204,8 +349,8 @@ const $AppInfo = _$AppInfoTearOff();
 
 mixin _$AppInfo {
   double get latestVersion;
-  int get priority;
   ContactInfo get contactInfo;
+  UpdateInfo get updateInfo;
 
   Map<String, dynamic> toJson();
   $AppInfoCopyWith<AppInfo> get copyWith;
@@ -214,9 +359,11 @@ mixin _$AppInfo {
 abstract class $AppInfoCopyWith<$Res> {
   factory $AppInfoCopyWith(AppInfo value, $Res Function(AppInfo) then) =
       _$AppInfoCopyWithImpl<$Res>;
-  $Res call({double latestVersion, int priority, ContactInfo contactInfo});
+  $Res call(
+      {double latestVersion, ContactInfo contactInfo, UpdateInfo updateInfo});
 
   $ContactInfoCopyWith<$Res> get contactInfo;
+  $UpdateInfoCopyWith<$Res> get updateInfo;
 }
 
 class _$AppInfoCopyWithImpl<$Res> implements $AppInfoCopyWith<$Res> {
@@ -229,17 +376,18 @@ class _$AppInfoCopyWithImpl<$Res> implements $AppInfoCopyWith<$Res> {
   @override
   $Res call({
     Object latestVersion = freezed,
-    Object priority = freezed,
     Object contactInfo = freezed,
+    Object updateInfo = freezed,
   }) {
     return _then(_value.copyWith(
       latestVersion: latestVersion == freezed
           ? _value.latestVersion
           : latestVersion as double,
-      priority: priority == freezed ? _value.priority : priority as int,
       contactInfo: contactInfo == freezed
           ? _value.contactInfo
           : contactInfo as ContactInfo,
+      updateInfo:
+          updateInfo == freezed ? _value.updateInfo : updateInfo as UpdateInfo,
     ));
   }
 
@@ -252,16 +400,29 @@ class _$AppInfoCopyWithImpl<$Res> implements $AppInfoCopyWith<$Res> {
       return _then(_value.copyWith(contactInfo: value));
     });
   }
+
+  @override
+  $UpdateInfoCopyWith<$Res> get updateInfo {
+    if (_value.updateInfo == null) {
+      return null;
+    }
+    return $UpdateInfoCopyWith<$Res>(_value.updateInfo, (value) {
+      return _then(_value.copyWith(updateInfo: value));
+    });
+  }
 }
 
 abstract class _$AppInfoCopyWith<$Res> implements $AppInfoCopyWith<$Res> {
   factory _$AppInfoCopyWith(_AppInfo value, $Res Function(_AppInfo) then) =
       __$AppInfoCopyWithImpl<$Res>;
   @override
-  $Res call({double latestVersion, int priority, ContactInfo contactInfo});
+  $Res call(
+      {double latestVersion, ContactInfo contactInfo, UpdateInfo updateInfo});
 
   @override
   $ContactInfoCopyWith<$Res> get contactInfo;
+  @override
+  $UpdateInfoCopyWith<$Res> get updateInfo;
 }
 
 class __$AppInfoCopyWithImpl<$Res> extends _$AppInfoCopyWithImpl<$Res>
@@ -275,24 +436,25 @@ class __$AppInfoCopyWithImpl<$Res> extends _$AppInfoCopyWithImpl<$Res>
   @override
   $Res call({
     Object latestVersion = freezed,
-    Object priority = freezed,
     Object contactInfo = freezed,
+    Object updateInfo = freezed,
   }) {
     return _then(_AppInfo(
       latestVersion: latestVersion == freezed
           ? _value.latestVersion
           : latestVersion as double,
-      priority: priority == freezed ? _value.priority : priority as int,
       contactInfo: contactInfo == freezed
           ? _value.contactInfo
           : contactInfo as ContactInfo,
+      updateInfo:
+          updateInfo == freezed ? _value.updateInfo : updateInfo as UpdateInfo,
     ));
   }
 }
 
 @JsonSerializable()
 class _$_AppInfo implements _AppInfo {
-  _$_AppInfo({this.latestVersion, this.priority, this.contactInfo});
+  _$_AppInfo({this.latestVersion, this.contactInfo, this.updateInfo});
 
   factory _$_AppInfo.fromJson(Map<String, dynamic> json) =>
       _$_$_AppInfoFromJson(json);
@@ -300,13 +462,13 @@ class _$_AppInfo implements _AppInfo {
   @override
   final double latestVersion;
   @override
-  final int priority;
-  @override
   final ContactInfo contactInfo;
+  @override
+  final UpdateInfo updateInfo;
 
   @override
   String toString() {
-    return 'AppInfo(latestVersion: $latestVersion, priority: $priority, contactInfo: $contactInfo)';
+    return 'AppInfo(latestVersion: $latestVersion, contactInfo: $contactInfo, updateInfo: $updateInfo)';
   }
 
   @override
@@ -316,20 +478,20 @@ class _$_AppInfo implements _AppInfo {
             (identical(other.latestVersion, latestVersion) ||
                 const DeepCollectionEquality()
                     .equals(other.latestVersion, latestVersion)) &&
-            (identical(other.priority, priority) ||
-                const DeepCollectionEquality()
-                    .equals(other.priority, priority)) &&
             (identical(other.contactInfo, contactInfo) ||
                 const DeepCollectionEquality()
-                    .equals(other.contactInfo, contactInfo)));
+                    .equals(other.contactInfo, contactInfo)) &&
+            (identical(other.updateInfo, updateInfo) ||
+                const DeepCollectionEquality()
+                    .equals(other.updateInfo, updateInfo)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(latestVersion) ^
-      const DeepCollectionEquality().hash(priority) ^
-      const DeepCollectionEquality().hash(contactInfo);
+      const DeepCollectionEquality().hash(contactInfo) ^
+      const DeepCollectionEquality().hash(updateInfo);
 
   @override
   _$AppInfoCopyWith<_AppInfo> get copyWith =>
@@ -344,17 +506,17 @@ class _$_AppInfo implements _AppInfo {
 abstract class _AppInfo implements AppInfo {
   factory _AppInfo(
       {double latestVersion,
-      int priority,
-      ContactInfo contactInfo}) = _$_AppInfo;
+      ContactInfo contactInfo,
+      UpdateInfo updateInfo}) = _$_AppInfo;
 
   factory _AppInfo.fromJson(Map<String, dynamic> json) = _$_AppInfo.fromJson;
 
   @override
   double get latestVersion;
   @override
-  int get priority;
-  @override
   ContactInfo get contactInfo;
+  @override
+  UpdateInfo get updateInfo;
   @override
   _$AppInfoCopyWith<_AppInfo> get copyWith;
 }

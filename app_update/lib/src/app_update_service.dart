@@ -30,10 +30,10 @@ class AppUpdateService {
   Future<bool> checkForUpdate(BuildContext context) async {
     AppInfo appInfo = await appInfoService.getAppInfo(forceFetch: false);
     if (needsUpdate(appInfo)) {
-      if (needsImmediateUpdate(appInfo.priority)) {
+      if (needsImmediateUpdate(appInfo.updateInfo.priority)) {
         await showImmediateUpdateDialog(context);
         return true;
-      } else if (shouldSuggestUpdate(appInfo.priority)) {
+      } else if (shouldSuggestUpdate(appInfo.updateInfo.priority)) {
         unawaited(updateLastUpdateTrial());
         return showFlexibleUpdateDialog(context);
       }
@@ -43,7 +43,8 @@ class AppUpdateService {
 
   /// Can be used to show flexible update dialog with a custom message whenever
   /// you want (of course only if a newer version is available)
-  Future<void> showUpdateDialogIfNeedsUpdate(BuildContext context, String message) async {
+  Future<void> showUpdateDialogIfNeedsUpdate(
+      BuildContext context, String message) async {
     AppInfo appInfo = await appInfoService.getAppInfo(forceFetch: false);
     if (needsUpdate(appInfo)) {
       return showUpdateDialog(
@@ -56,7 +57,9 @@ class AppUpdateService {
 
   @protected
   bool needsUpdate(AppInfo appInfo) {
-    return appInfo.latestVersion > appBuildNumber;
+    return appInfo.latestVersion > appBuildNumber &&
+        appInfo.updateInfo != null &&
+        appInfo.updateInfo.active;
   }
 
   @protected
