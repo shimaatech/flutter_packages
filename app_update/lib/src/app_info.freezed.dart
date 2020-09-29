@@ -16,8 +16,10 @@ class _$ContactInfoTearOff {
   const _$ContactInfoTearOff();
 
 // ignore: unused_element
-  _ContactInfo call({String subtitle, String url, bool hidden = false}) {
+  _ContactInfo call(
+      {String title, String subtitle, String url, bool hidden = false}) {
     return _ContactInfo(
+      title: title,
       subtitle: subtitle,
       url: url,
       hidden: hidden,
@@ -29,6 +31,7 @@ class _$ContactInfoTearOff {
 const $ContactInfo = _$ContactInfoTearOff();
 
 mixin _$ContactInfo {
+  String get title;
   String get subtitle;
   String get url;
   bool get hidden;
@@ -41,7 +44,7 @@ abstract class $ContactInfoCopyWith<$Res> {
   factory $ContactInfoCopyWith(
           ContactInfo value, $Res Function(ContactInfo) then) =
       _$ContactInfoCopyWithImpl<$Res>;
-  $Res call({String subtitle, String url, bool hidden});
+  $Res call({String title, String subtitle, String url, bool hidden});
 }
 
 class _$ContactInfoCopyWithImpl<$Res> implements $ContactInfoCopyWith<$Res> {
@@ -53,11 +56,13 @@ class _$ContactInfoCopyWithImpl<$Res> implements $ContactInfoCopyWith<$Res> {
 
   @override
   $Res call({
+    Object title = freezed,
     Object subtitle = freezed,
     Object url = freezed,
     Object hidden = freezed,
   }) {
     return _then(_value.copyWith(
+      title: title == freezed ? _value.title : title as String,
       subtitle: subtitle == freezed ? _value.subtitle : subtitle as String,
       url: url == freezed ? _value.url : url as String,
       hidden: hidden == freezed ? _value.hidden : hidden as bool,
@@ -71,7 +76,7 @@ abstract class _$ContactInfoCopyWith<$Res>
           _ContactInfo value, $Res Function(_ContactInfo) then) =
       __$ContactInfoCopyWithImpl<$Res>;
   @override
-  $Res call({String subtitle, String url, bool hidden});
+  $Res call({String title, String subtitle, String url, bool hidden});
 }
 
 class __$ContactInfoCopyWithImpl<$Res> extends _$ContactInfoCopyWithImpl<$Res>
@@ -85,11 +90,13 @@ class __$ContactInfoCopyWithImpl<$Res> extends _$ContactInfoCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object title = freezed,
     Object subtitle = freezed,
     Object url = freezed,
     Object hidden = freezed,
   }) {
     return _then(_ContactInfo(
+      title: title == freezed ? _value.title : title as String,
       subtitle: subtitle == freezed ? _value.subtitle : subtitle as String,
       url: url == freezed ? _value.url : url as String,
       hidden: hidden == freezed ? _value.hidden : hidden as bool,
@@ -99,12 +106,14 @@ class __$ContactInfoCopyWithImpl<$Res> extends _$ContactInfoCopyWithImpl<$Res>
 
 @JsonSerializable()
 class _$_ContactInfo implements _ContactInfo {
-  _$_ContactInfo({this.subtitle, this.url, this.hidden = false})
+  _$_ContactInfo({this.title, this.subtitle, this.url, this.hidden = false})
       : assert(hidden != null);
 
   factory _$_ContactInfo.fromJson(Map<String, dynamic> json) =>
       _$_$_ContactInfoFromJson(json);
 
+  @override
+  final String title;
   @override
   final String subtitle;
   @override
@@ -115,13 +124,15 @@ class _$_ContactInfo implements _ContactInfo {
 
   @override
   String toString() {
-    return 'ContactInfo(subtitle: $subtitle, url: $url, hidden: $hidden)';
+    return 'ContactInfo(title: $title, subtitle: $subtitle, url: $url, hidden: $hidden)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _ContactInfo &&
+            (identical(other.title, title) ||
+                const DeepCollectionEquality().equals(other.title, title)) &&
             (identical(other.subtitle, subtitle) ||
                 const DeepCollectionEquality()
                     .equals(other.subtitle, subtitle)) &&
@@ -134,6 +145,7 @@ class _$_ContactInfo implements _ContactInfo {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(title) ^
       const DeepCollectionEquality().hash(subtitle) ^
       const DeepCollectionEquality().hash(url) ^
       const DeepCollectionEquality().hash(hidden);
@@ -149,12 +161,17 @@ class _$_ContactInfo implements _ContactInfo {
 }
 
 abstract class _ContactInfo implements ContactInfo {
-  factory _ContactInfo({String subtitle, String url, bool hidden}) =
-      _$_ContactInfo;
+  factory _ContactInfo(
+      {String title,
+      String subtitle,
+      String url,
+      bool hidden}) = _$_ContactInfo;
 
   factory _ContactInfo.fromJson(Map<String, dynamic> json) =
       _$_ContactInfo.fromJson;
 
+  @override
+  String get title;
   @override
   String get subtitle;
   @override

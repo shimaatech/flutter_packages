@@ -8,6 +8,7 @@ part of 'app_info.dart';
 
 _$_ContactInfo _$_$_ContactInfoFromJson(Map<String, dynamic> json) {
   return _$_ContactInfo(
+    title: json['title'] as String,
     subtitle: json['subtitle'] as String,
     url: json['url'] as String,
     hidden: json['hidden'] as bool ?? false,
@@ -16,6 +17,7 @@ _$_ContactInfo _$_$_ContactInfoFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$_$_ContactInfoToJson(_$_ContactInfo instance) =>
     <String, dynamic>{
+      'title': instance.title,
       'subtitle': instance.subtitle,
       'url': instance.url,
       'hidden': instance.hidden,
