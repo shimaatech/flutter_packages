@@ -38,7 +38,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  intl_translation: ^0.17.10+1
+  #intl_translation: ^0.17.10+1
   build_runner: ^1.10.3
   json_serializable: ^3.5.0
   freezed: ^0.12.2

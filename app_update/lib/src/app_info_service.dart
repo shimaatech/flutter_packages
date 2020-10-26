@@ -10,7 +10,7 @@ class AppInfoService {
 
   AppInfoService(this.firestore, this.packageName);
 
-  final Firestore firestore;
+  final FirebaseFirestore firestore;
   final String packageName;
 
   @protected
@@ -30,11 +30,11 @@ class AppInfoService {
 
   @protected
   Future<AppInfo> fetchAppInfo() async {
-    Map<String, dynamic> data = (await Firestore.instance
+    Map<String, dynamic> data = (await firestore
             .collection(collectionName)
-            .document(getAppInfoDocument(packageName))
+            .doc(getAppInfoDocument(packageName))
             .get())
-        .data;
+        .data();
     // TODO check if data is not null
     return AppInfo.serializer.deserialize(data);
   }
