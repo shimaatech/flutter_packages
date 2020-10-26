@@ -31,7 +31,7 @@ class SystemMessagesService {
       {this.fetchDaysInterval = defaultFetchDaysInterval,
       this.testMode = false});
 
-  final Firestore firestore;
+  final FirebaseFirestore firestore;
   final LocalStorage storage;
   final String langCode;
   final String appPackage;
@@ -57,13 +57,13 @@ class SystemMessagesService {
             .where('package', isEqualTo: appPackage)
             .where('testMode', isEqualTo: testMode)
             .limit(20)
-            .getDocuments())
-        .documents;
+            .get())
+        .docs;
 
     markFetched();
 
     for (DocumentSnapshot snapshot in snapshots) {
-      Map<String, dynamic> data = snapshot.data;
+      Map<String, dynamic> data = snapshot.data();
       // convert Firestore timestamp to Date...
       // Not sure if this is the correct way... But we cannot change the to/from
       // Json of system message just because of Firestore...
@@ -73,7 +73,7 @@ class SystemMessagesService {
       }
       SystemMessage message = SystemMessage.serializer
           .deserialize(data)
-          .copyWith(id: snapshot.documentID);
+          .copyWith(id: snapshot.id);
       // we check the app version here and not in the query because firestore
       // queries do not allow having multiple whereEqualTo queries on different
       // fields
