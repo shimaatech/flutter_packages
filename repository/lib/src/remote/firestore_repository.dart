@@ -9,7 +9,7 @@ class FirestoreRepository<E extends Entity<String>>
       : collection = firestore.collection(collectionName);
 
   final CollectionReference collection;
-  final Firestore firestore;
+  final FirebaseFirestore firestore;
   final Serializer<E> serializer;
 
   @override
@@ -41,7 +41,7 @@ class FirestoreRepository<E extends Entity<String>>
 
   @protected
   Future<DocumentSnapshot> getSnapshotById(String id) async {
-    DocumentSnapshot snapshot = await collection.document(id).get();
+    DocumentSnapshot snapshot = await collection.doc(id).get();
     return snapshot;
   }
 
@@ -54,7 +54,7 @@ class FirestoreRepository<E extends Entity<String>>
   @override
   Future<E> findById(String id) async {
     DocumentSnapshot snapshot = await getSnapshotById(id);
-    return snapshot.exists ? serializer.deserialize(snapshot.data) : null;
+    return snapshot.exists ? serializer.deserialize(snapshot.data()) : null;
   }
 
   // TODO maybe list should take a query instead of filter...
@@ -64,7 +64,7 @@ class FirestoreRepository<E extends Entity<String>>
     // TODO maybe limit shouldn't be part of the filter
     Future<QuerySnapshot> snapshotsFuture;
     if (filter == null || filter.isEmpty) {
-      snapshotsFuture = collection.getDocuments();
+      snapshotsFuture = collection.get();
     } else {
       Query query;
       if (filter.containsKey('limit')) {
@@ -81,17 +81,17 @@ class FirestoreRepository<E extends Entity<String>>
         }
         query = query.where(key, isEqualTo: filter[key]);
       }
-      snapshotsFuture = query.getDocuments();
+      snapshotsFuture = query.get();
     }
     return (await snapshotsFuture)
-        .documents
-        .map((doc) => serializer.deserialize(doc.data))
+        .docs
+        .map((doc) => serializer.deserialize(doc.data()))
         .toList();
   }
 
   @override
   Future<void> save(E entity) {
-    return collection.document(entity.id).setData(serializer.serialize(entity));
+    return collection.doc(entity.id).set(serializer.serialize(entity));
   }
 
   @override
