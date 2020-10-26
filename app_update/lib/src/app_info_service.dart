@@ -35,6 +35,7 @@ class AppInfoService {
             .document(getAppInfoDocument(packageName))
             .get())
         .data;
+    // TODO check if data is not null
     return AppInfo.serializer.deserialize(data);
   }
 }
