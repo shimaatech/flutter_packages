@@ -52,11 +52,11 @@ class FlutterLocalNotificationsScheduler extends NotificationScheduler {
         androidNotificationChannel.id,
         androidNotificationChannel.name,
         androidNotificationChannel.description,
-        importance: Importance.Max,
-        priority: Priority.High);
+        importance: Importance.max,
+        priority: Priority.high);
     var iOSPlatformChannelSpecifics = IOSNotificationDetails();
     var platformChannelSpecifics = NotificationDetails(
-        androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
+        android: androidPlatformChannelSpecifics, iOS: iOSPlatformChannelSpecifics);
 
     // TODO add fromJson toJson to the NotificationMessage instead of doing this
     // manually here
