@@ -12,6 +12,7 @@ StringList _$StringListFromJson(Map<String, dynamic> json) {
   return _StringList.fromJson(json);
 }
 
+/// @nodoc
 class _$StringListTearOff {
   const _$StringListTearOff();
 
@@ -21,11 +22,18 @@ class _$StringListTearOff {
       data,
     );
   }
+
+// ignore: unused_element
+  StringList fromJson(Map<String, Object> json) {
+    return StringList.fromJson(json);
+  }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $StringList = _$StringListTearOff();
 
+/// @nodoc
 mixin _$StringList {
   List<String> get data;
 
@@ -33,6 +41,7 @@ mixin _$StringList {
   $StringListCopyWith<StringList> get copyWith;
 }
 
+/// @nodoc
 abstract class $StringListCopyWith<$Res> {
   factory $StringListCopyWith(
           StringList value, $Res Function(StringList) then) =
@@ -40,6 +49,7 @@ abstract class $StringListCopyWith<$Res> {
   $Res call({List<String> data});
 }
 
+/// @nodoc
 class _$StringListCopyWithImpl<$Res> implements $StringListCopyWith<$Res> {
   _$StringListCopyWithImpl(this._value, this._then);
 
@@ -57,6 +67,7 @@ class _$StringListCopyWithImpl<$Res> implements $StringListCopyWith<$Res> {
   }
 }
 
+/// @nodoc
 abstract class _$StringListCopyWith<$Res> implements $StringListCopyWith<$Res> {
   factory _$StringListCopyWith(
           _StringList value, $Res Function(_StringList) then) =
@@ -65,6 +76,7 @@ abstract class _$StringListCopyWith<$Res> implements $StringListCopyWith<$Res> {
   $Res call({List<String> data});
 }
 
+/// @nodoc
 class __$StringListCopyWithImpl<$Res> extends _$StringListCopyWithImpl<$Res>
     implements _$StringListCopyWith<$Res> {
   __$StringListCopyWithImpl(
@@ -85,6 +97,8 @@ class __$StringListCopyWithImpl<$Res> extends _$StringListCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
+
+/// @nodoc
 class _$_StringList implements _StringList {
   _$_StringList(this.data) : assert(data != null);
 
@@ -137,6 +151,7 @@ IntList _$IntListFromJson(Map<String, dynamic> json) {
   return _IntList.fromJson(json);
 }
 
+/// @nodoc
 class _$IntListTearOff {
   const _$IntListTearOff();
 
@@ -146,11 +161,18 @@ class _$IntListTearOff {
       data,
     );
   }
+
+// ignore: unused_element
+  IntList fromJson(Map<String, Object> json) {
+    return IntList.fromJson(json);
+  }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $IntList = _$IntListTearOff();
 
+/// @nodoc
 mixin _$IntList {
   List<int> get data;
 
@@ -158,12 +180,14 @@ mixin _$IntList {
   $IntListCopyWith<IntList> get copyWith;
 }
 
+/// @nodoc
 abstract class $IntListCopyWith<$Res> {
   factory $IntListCopyWith(IntList value, $Res Function(IntList) then) =
       _$IntListCopyWithImpl<$Res>;
   $Res call({List<int> data});
 }
 
+/// @nodoc
 class _$IntListCopyWithImpl<$Res> implements $IntListCopyWith<$Res> {
   _$IntListCopyWithImpl(this._value, this._then);
 
@@ -181,6 +205,7 @@ class _$IntListCopyWithImpl<$Res> implements $IntListCopyWith<$Res> {
   }
 }
 
+/// @nodoc
 abstract class _$IntListCopyWith<$Res> implements $IntListCopyWith<$Res> {
   factory _$IntListCopyWith(_IntList value, $Res Function(_IntList) then) =
       __$IntListCopyWithImpl<$Res>;
@@ -188,6 +213,7 @@ abstract class _$IntListCopyWith<$Res> implements $IntListCopyWith<$Res> {
   $Res call({List<int> data});
 }
 
+/// @nodoc
 class __$IntListCopyWithImpl<$Res> extends _$IntListCopyWithImpl<$Res>
     implements _$IntListCopyWith<$Res> {
   __$IntListCopyWithImpl(_IntList _value, $Res Function(_IntList) _then)
@@ -207,6 +233,8 @@ class __$IntListCopyWithImpl<$Res> extends _$IntListCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
+
+/// @nodoc
 class _$_IntList implements _IntList {
   _$_IntList(this.data) : assert(data != null);
 
@@ -258,6 +286,7 @@ DoubleList _$DoubleListFromJson(Map<String, dynamic> json) {
   return _DoubleList.fromJson(json);
 }
 
+/// @nodoc
 class _$DoubleListTearOff {
   const _$DoubleListTearOff();
 
@@ -267,11 +296,18 @@ class _$DoubleListTearOff {
       data,
     );
   }
+
+// ignore: unused_element
+  DoubleList fromJson(Map<String, Object> json) {
+    return DoubleList.fromJson(json);
+  }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $DoubleList = _$DoubleListTearOff();
 
+/// @nodoc
 mixin _$DoubleList {
   List<double> get data;
 
@@ -279,6 +315,7 @@ mixin _$DoubleList {
   $DoubleListCopyWith<DoubleList> get copyWith;
 }
 
+/// @nodoc
 abstract class $DoubleListCopyWith<$Res> {
   factory $DoubleListCopyWith(
           DoubleList value, $Res Function(DoubleList) then) =
@@ -286,6 +323,7 @@ abstract class $DoubleListCopyWith<$Res> {
   $Res call({List<double> data});
 }
 
+/// @nodoc
 class _$DoubleListCopyWithImpl<$Res> implements $DoubleListCopyWith<$Res> {
   _$DoubleListCopyWithImpl(this._value, this._then);
 
@@ -303,6 +341,7 @@ class _$DoubleListCopyWithImpl<$Res> implements $DoubleListCopyWith<$Res> {
   }
 }
 
+/// @nodoc
 abstract class _$DoubleListCopyWith<$Res> implements $DoubleListCopyWith<$Res> {
   factory _$DoubleListCopyWith(
           _DoubleList value, $Res Function(_DoubleList) then) =
@@ -311,6 +350,7 @@ abstract class _$DoubleListCopyWith<$Res> implements $DoubleListCopyWith<$Res> {
   $Res call({List<double> data});
 }
 
+/// @nodoc
 class __$DoubleListCopyWithImpl<$Res> extends _$DoubleListCopyWithImpl<$Res>
     implements _$DoubleListCopyWith<$Res> {
   __$DoubleListCopyWithImpl(
@@ -331,6 +371,8 @@ class __$DoubleListCopyWithImpl<$Res> extends _$DoubleListCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
+
+/// @nodoc
 class _$_DoubleList implements _DoubleList {
   _$_DoubleList(this.data) : assert(data != null);
 

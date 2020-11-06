@@ -21,8 +21,7 @@ class DioRemoteRepository<E extends Entity<ID>, ID>
   String get baseUrl => '${dio.options.baseUrl}/$resourceName';
 
   @protected
-  DioRestClient<E> get dioRestClient =>
-      DioRestClient(serializer, dio, baseUrl);
+  DioRestClient<E> get dioRestClient => DioRestClient(serializer, dio, baseUrl);
 
   @override
   Future<void> delete(ID id) {
@@ -57,8 +56,7 @@ class DioRemoteRepository<E extends Entity<ID>, ID>
 
   @override
   Future<List<E>> findAll(List<ID> ids) {
-    // TODO: implement findAll
-    throw UnimplementedError();
+    return dioRestClient.getMultiple(ids.map((e) => e.toString()).toList());
   }
 
   @override

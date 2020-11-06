@@ -24,6 +24,10 @@ abstract class _DioRestClient {
   Future<MapWrapper> doGet(@Path('id') String id);
 
   @protected
+  @GET('/byId')
+  Future<List<MapWrapper>> doGetMultiple(@Query('ids') List<String> ids);
+
+  @protected
   @GET('/')
   Future<List<MapWrapper>> doList(@Queries() Map<String, dynamic> queries);
 
@@ -49,17 +53,26 @@ class DioRestClient<E> extends __DioRestClient {
     return serializer.deserialize(mapWrapper.toJson());
   }
 
+  Future<List<E>> getMultiple(List<String> ids) async {
+    if (ids == null || ids.isEmpty) {
+      return const [];
+    }
+    return unwrapMultiple(await doGetMultiple(ids));
+  }
+
   Future<List<E>> list(Map<String, dynamic> queries) async {
     if (queries == null) {
       queries = const {};
     }
-    List<MapWrapper> mapWrapperList = await doList(queries);
-    return mapWrapperList
-        .map((e) => serializer.deserialize(e.toJson()))
-        .toList();
+    return unwrapMultiple(await doList(queries));
   }
 
   Future<void> post(E entity) {
     return doPost(MapWrapper(serializer.serialize(entity)));
+  }
+
+  @protected
+  List<E> unwrapMultiple(List<MapWrapper> wrappers) {
+    return wrappers.map((e) => serializer.deserialize(e.toJson())).toList();
   }
 }
