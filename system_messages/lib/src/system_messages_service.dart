@@ -27,17 +27,18 @@ class SystemMessagesService {
   // TODO I think that langCode should not be passed to constructor... It should
   // be passed to the method that fetches the messages
   SystemMessagesService(this.firestore, this.storage, this.langCode,
-      this.appPackage, this.appVersion,
+      this.appsIds, this.appVersion, this.startTime,
       {this.fetchDaysInterval = defaultFetchDaysInterval,
       this.testMode = false});
 
   final FirebaseFirestore firestore;
   final LocalStorage storage;
   final String langCode;
-  final String appPackage;
+  final List<String> appsIds;
   final double appVersion;
   final bool testMode;
   final int fetchDaysInterval;
+  final DateTime startTime;
   final JsonConverter<DateTime, String> dateConverter = UtcIsoDateConverter();
 
   Future<SystemMessage> getLatestUnexpiredMessage(
@@ -51,10 +52,11 @@ class SystemMessagesService {
     // get one non-expired message only
     List<DocumentSnapshot> snapshots = (await firestore
             .collection(collectionName)
-            .where('expirationDate', isGreaterThanOrEqualTo: DateTime.now())
+            .where('startTime', isLessThanOrEqualTo: startTime)
+            .where('expirationTime', isGreaterThanOrEqualTo: DateTime.now())
             .where('langCode', isEqualTo: langCode)
             .where('type', isEqualTo: describeEnum(type))
-            .where('package', isEqualTo: appPackage)
+            .where('package', whereIn: appsIds)
             .where('testMode', isEqualTo: testMode)
             .limit(20)
             .get())
@@ -67,10 +69,15 @@ class SystemMessagesService {
       // convert Firestore timestamp to Date...
       // Not sure if this is the correct way... But we cannot change the to/from
       // Json of system message just because of Firestore...
-      if (data.containsKey('expirationDate')) {
-        data['expirationDate'] = dateConverter
-            .toJson((data['expirationDate'] as Timestamp).toDate());
+      if (data.containsKey('expirationTime')) {
+        data['expirationTime'] = dateConverter
+            .toJson((data['expirationTime'] as Timestamp).toDate());
       }
+      if (data.containsKey('startTime')) {
+        data['startTime'] = dateConverter
+            .toJson((data['startTime'] as Timestamp).toDate());
+      }
+
       SystemMessage message = SystemMessage.serializer
           .deserialize(data)
           .copyWith(id: snapshot.id);
@@ -149,7 +156,7 @@ class SystemMessagesService {
   }
 
   bool isExpired(SystemMessage message) {
-    return message.expirationDate.isBefore(DateTime.now());
+    return message.expirationTime.isBefore(DateTime.now());
   }
 
   String getMessageStorageKey(SystemMessageType type) {

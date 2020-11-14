@@ -62,6 +62,7 @@ const _$NavigationTypeEnumMap = {
   NavigationType.external: 'external',
   NavigationType.embedded: 'embedded',
   NavigationType.upgrade: 'upgrade',
+  NavigationType.rate: 'rate',
 };
 
 _$_SystemMessageImage _$_$_SystemMessageImageFromJson(Map json) {
@@ -87,7 +88,7 @@ _$_SystemMessage _$_$_SystemMessageFromJson(Map json) {
     content: json['content'] as String,
     langCode: json['langCode'] as String,
     type: _$enumDecodeNullable(_$SystemMessageTypeEnumMap, json['type']),
-    package: json['package'] as String,
+    appsIds: (json['appsIds'] as List)?.map((e) => e as String)?.toList(),
     minAppVersion: (json['minAppVersion'] as num)?.toDouble(),
     maxAppVersion: (json['maxAppVersion'] as num)?.toDouble(),
     testMode: json['testMode'] as bool,
@@ -115,8 +116,10 @@ _$_SystemMessage _$_$_SystemMessageFromJson(Map json) {
         : SystemMessageClickSpec.fromJson((json['cardClickSpec'] as Map)?.map(
             (k, e) => MapEntry(k as String, e),
           )),
-    expirationDate:
-        const UtcIsoDateConverter().fromJson(json['expirationDate'] as String),
+    expirationTime:
+        const UtcIsoDateConverter().fromJson(json['expirationTime'] as String),
+    startTime:
+        const UtcIsoDateConverter().fromJson(json['startTime'] as String),
   );
 }
 
@@ -127,7 +130,7 @@ Map<String, dynamic> _$_$_SystemMessageToJson(_$_SystemMessage instance) =>
       'content': instance.content,
       'langCode': instance.langCode,
       'type': _$SystemMessageTypeEnumMap[instance.type],
-      'package': instance.package,
+      'appsIds': instance.appsIds,
       'minAppVersion': instance.minAppVersion,
       'maxAppVersion': instance.maxAppVersion,
       'testMode': instance.testMode,
@@ -138,8 +141,9 @@ Map<String, dynamic> _$_$_SystemMessageToJson(_$_SystemMessage instance) =>
       'titleIconClickSpec': instance.titleIconClickSpec?.toJson(),
       'linkClickSpec': instance.linkClickSpec?.toJson(),
       'cardClickSpec': instance.cardClickSpec?.toJson(),
-      'expirationDate':
-          const UtcIsoDateConverter().toJson(instance.expirationDate),
+      'expirationTime':
+          const UtcIsoDateConverter().toJson(instance.expirationTime),
+      'startTime': const UtcIsoDateConverter().toJson(instance.startTime),
     };
 
 const _$SystemMessageTypeEnumMap = {

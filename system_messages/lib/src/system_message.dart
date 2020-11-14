@@ -62,7 +62,7 @@ abstract class SystemMessage extends Entity<String>  with _$SystemMessage {
     String content,
     String langCode,
     SystemMessageType type,
-    String package,
+    List<String> appsIds,
     double minAppVersion,
     double maxAppVersion,
     bool testMode,
@@ -73,7 +73,8 @@ abstract class SystemMessage extends Entity<String>  with _$SystemMessage {
     SystemMessageClickSpec titleIconClickSpec,
     SystemMessageClickSpec linkClickSpec,
     SystemMessageClickSpec cardClickSpec,
-    @UtcIsoDateConverter() DateTime expirationDate,
+    @UtcIsoDateConverter() DateTime expirationTime,
+    @UtcIsoDateConverter() DateTime startTime,
   }) = _SystemMessage;
 
   factory SystemMessage.fromJson(Map<String, dynamic> json) => _$SystemMessageFromJson(json);

@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  mobx: ^1.2.1+1
+  mobx: ^1.2.1+3
   flutter_mobx_helpers: ^1.0.1
 
   notifications:

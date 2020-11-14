@@ -13,6 +13,7 @@ SystemMessageClickSpec _$SystemMessageClickSpecFromJson(
   return _SystemMessageClickSpec.fromJson(json);
 }
 
+/// @nodoc
 class _$SystemMessageClickSpecTearOff {
   const _$SystemMessageClickSpecTearOff();
 
@@ -25,11 +26,18 @@ class _$SystemMessageClickSpecTearOff {
       args: args,
     );
   }
+
+// ignore: unused_element
+  SystemMessageClickSpec fromJson(Map<String, Object> json) {
+    return SystemMessageClickSpec.fromJson(json);
+  }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $SystemMessageClickSpec = _$SystemMessageClickSpecTearOff();
 
+/// @nodoc
 mixin _$SystemMessageClickSpec {
   NavigationType get navigationType;
   String get url;
@@ -39,6 +47,7 @@ mixin _$SystemMessageClickSpec {
   $SystemMessageClickSpecCopyWith<SystemMessageClickSpec> get copyWith;
 }
 
+/// @nodoc
 abstract class $SystemMessageClickSpecCopyWith<$Res> {
   factory $SystemMessageClickSpecCopyWith(SystemMessageClickSpec value,
           $Res Function(SystemMessageClickSpec) then) =
@@ -47,6 +56,7 @@ abstract class $SystemMessageClickSpecCopyWith<$Res> {
       {NavigationType navigationType, String url, Map<String, dynamic> args});
 }
 
+/// @nodoc
 class _$SystemMessageClickSpecCopyWithImpl<$Res>
     implements $SystemMessageClickSpecCopyWith<$Res> {
   _$SystemMessageClickSpecCopyWithImpl(this._value, this._then);
@@ -71,6 +81,7 @@ class _$SystemMessageClickSpecCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 abstract class _$SystemMessageClickSpecCopyWith<$Res>
     implements $SystemMessageClickSpecCopyWith<$Res> {
   factory _$SystemMessageClickSpecCopyWith(_SystemMessageClickSpec value,
@@ -81,6 +92,7 @@ abstract class _$SystemMessageClickSpecCopyWith<$Res>
       {NavigationType navigationType, String url, Map<String, dynamic> args});
 }
 
+/// @nodoc
 class __$SystemMessageClickSpecCopyWithImpl<$Res>
     extends _$SystemMessageClickSpecCopyWithImpl<$Res>
     implements _$SystemMessageClickSpecCopyWith<$Res> {
@@ -108,6 +120,8 @@ class __$SystemMessageClickSpecCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
+
+/// @nodoc
 class _$_SystemMessageClickSpec implements _SystemMessageClickSpec {
   _$_SystemMessageClickSpec({this.navigationType, this.url, this.args});
 
@@ -180,6 +194,7 @@ SystemMessageImage _$SystemMessageImageFromJson(Map<String, dynamic> json) {
   return _SystemMessageImage.fromJson(json);
 }
 
+/// @nodoc
 class _$SystemMessageImageTearOff {
   const _$SystemMessageImageTearOff();
 
@@ -191,11 +206,18 @@ class _$SystemMessageImageTearOff {
       height: height,
     );
   }
+
+// ignore: unused_element
+  SystemMessageImage fromJson(Map<String, Object> json) {
+    return SystemMessageImage.fromJson(json);
+  }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $SystemMessageImage = _$SystemMessageImageTearOff();
 
+/// @nodoc
 mixin _$SystemMessageImage {
   String get url;
   double get width;
@@ -205,6 +227,7 @@ mixin _$SystemMessageImage {
   $SystemMessageImageCopyWith<SystemMessageImage> get copyWith;
 }
 
+/// @nodoc
 abstract class $SystemMessageImageCopyWith<$Res> {
   factory $SystemMessageImageCopyWith(
           SystemMessageImage value, $Res Function(SystemMessageImage) then) =
@@ -212,6 +235,7 @@ abstract class $SystemMessageImageCopyWith<$Res> {
   $Res call({String url, double width, double height});
 }
 
+/// @nodoc
 class _$SystemMessageImageCopyWithImpl<$Res>
     implements $SystemMessageImageCopyWith<$Res> {
   _$SystemMessageImageCopyWithImpl(this._value, this._then);
@@ -234,6 +258,7 @@ class _$SystemMessageImageCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 abstract class _$SystemMessageImageCopyWith<$Res>
     implements $SystemMessageImageCopyWith<$Res> {
   factory _$SystemMessageImageCopyWith(
@@ -243,6 +268,7 @@ abstract class _$SystemMessageImageCopyWith<$Res>
   $Res call({String url, double width, double height});
 }
 
+/// @nodoc
 class __$SystemMessageImageCopyWithImpl<$Res>
     extends _$SystemMessageImageCopyWithImpl<$Res>
     implements _$SystemMessageImageCopyWith<$Res> {
@@ -268,6 +294,8 @@ class __$SystemMessageImageCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
+
+/// @nodoc
 class _$_SystemMessageImage implements _SystemMessageImage {
   _$_SystemMessageImage({this.url, this.width, this.height});
 
@@ -336,6 +364,7 @@ SystemMessage _$SystemMessageFromJson(Map<String, dynamic> json) {
   return _SystemMessage.fromJson(json);
 }
 
+/// @nodoc
 class _$SystemMessageTearOff {
   const _$SystemMessageTearOff();
 
@@ -346,7 +375,7 @@ class _$SystemMessageTearOff {
       String content,
       String langCode,
       SystemMessageType type,
-      String package,
+      List<String> appsIds,
       double minAppVersion,
       double maxAppVersion,
       bool testMode,
@@ -357,14 +386,15 @@ class _$SystemMessageTearOff {
       SystemMessageClickSpec titleIconClickSpec,
       SystemMessageClickSpec linkClickSpec,
       SystemMessageClickSpec cardClickSpec,
-      @UtcIsoDateConverter() DateTime expirationDate}) {
+      @UtcIsoDateConverter() DateTime expirationTime,
+      @UtcIsoDateConverter() DateTime startTime}) {
     return _SystemMessage(
       id: id,
       title: title,
       content: content,
       langCode: langCode,
       type: type,
-      package: package,
+      appsIds: appsIds,
       minAppVersion: minAppVersion,
       maxAppVersion: maxAppVersion,
       testMode: testMode,
@@ -375,21 +405,29 @@ class _$SystemMessageTearOff {
       titleIconClickSpec: titleIconClickSpec,
       linkClickSpec: linkClickSpec,
       cardClickSpec: cardClickSpec,
-      expirationDate: expirationDate,
+      expirationTime: expirationTime,
+      startTime: startTime,
     );
+  }
+
+// ignore: unused_element
+  SystemMessage fromJson(Map<String, Object> json) {
+    return SystemMessage.fromJson(json);
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $SystemMessage = _$SystemMessageTearOff();
 
+/// @nodoc
 mixin _$SystemMessage {
   String get id;
   String get title;
   String get content;
   String get langCode;
   SystemMessageType get type;
-  String get package;
+  List<String> get appsIds;
   double get minAppVersion;
   double get maxAppVersion;
   bool get testMode;
@@ -401,12 +439,15 @@ mixin _$SystemMessage {
   SystemMessageClickSpec get linkClickSpec;
   SystemMessageClickSpec get cardClickSpec;
   @UtcIsoDateConverter()
-  DateTime get expirationDate;
+  DateTime get expirationTime;
+  @UtcIsoDateConverter()
+  DateTime get startTime;
 
   Map<String, dynamic> toJson();
   $SystemMessageCopyWith<SystemMessage> get copyWith;
 }
 
+/// @nodoc
 abstract class $SystemMessageCopyWith<$Res> {
   factory $SystemMessageCopyWith(
           SystemMessage value, $Res Function(SystemMessage) then) =
@@ -417,7 +458,7 @@ abstract class $SystemMessageCopyWith<$Res> {
       String content,
       String langCode,
       SystemMessageType type,
-      String package,
+      List<String> appsIds,
       double minAppVersion,
       double maxAppVersion,
       bool testMode,
@@ -428,7 +469,8 @@ abstract class $SystemMessageCopyWith<$Res> {
       SystemMessageClickSpec titleIconClickSpec,
       SystemMessageClickSpec linkClickSpec,
       SystemMessageClickSpec cardClickSpec,
-      @UtcIsoDateConverter() DateTime expirationDate});
+      @UtcIsoDateConverter() DateTime expirationTime,
+      @UtcIsoDateConverter() DateTime startTime});
 
   $SystemMessageImageCopyWith<$Res> get image;
   $SystemMessageClickSpecCopyWith<$Res> get titleIconClickSpec;
@@ -436,6 +478,7 @@ abstract class $SystemMessageCopyWith<$Res> {
   $SystemMessageClickSpecCopyWith<$Res> get cardClickSpec;
 }
 
+/// @nodoc
 class _$SystemMessageCopyWithImpl<$Res>
     implements $SystemMessageCopyWith<$Res> {
   _$SystemMessageCopyWithImpl(this._value, this._then);
@@ -451,7 +494,7 @@ class _$SystemMessageCopyWithImpl<$Res>
     Object content = freezed,
     Object langCode = freezed,
     Object type = freezed,
-    Object package = freezed,
+    Object appsIds = freezed,
     Object minAppVersion = freezed,
     Object maxAppVersion = freezed,
     Object testMode = freezed,
@@ -462,7 +505,8 @@ class _$SystemMessageCopyWithImpl<$Res>
     Object titleIconClickSpec = freezed,
     Object linkClickSpec = freezed,
     Object cardClickSpec = freezed,
-    Object expirationDate = freezed,
+    Object expirationTime = freezed,
+    Object startTime = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as String,
@@ -470,7 +514,7 @@ class _$SystemMessageCopyWithImpl<$Res>
       content: content == freezed ? _value.content : content as String,
       langCode: langCode == freezed ? _value.langCode : langCode as String,
       type: type == freezed ? _value.type : type as SystemMessageType,
-      package: package == freezed ? _value.package : package as String,
+      appsIds: appsIds == freezed ? _value.appsIds : appsIds as List<String>,
       minAppVersion: minAppVersion == freezed
           ? _value.minAppVersion
           : minAppVersion as double,
@@ -493,9 +537,11 @@ class _$SystemMessageCopyWithImpl<$Res>
       cardClickSpec: cardClickSpec == freezed
           ? _value.cardClickSpec
           : cardClickSpec as SystemMessageClickSpec,
-      expirationDate: expirationDate == freezed
-          ? _value.expirationDate
-          : expirationDate as DateTime,
+      expirationTime: expirationTime == freezed
+          ? _value.expirationTime
+          : expirationTime as DateTime,
+      startTime:
+          startTime == freezed ? _value.startTime : startTime as DateTime,
     ));
   }
 
@@ -541,6 +587,7 @@ class _$SystemMessageCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 abstract class _$SystemMessageCopyWith<$Res>
     implements $SystemMessageCopyWith<$Res> {
   factory _$SystemMessageCopyWith(
@@ -553,7 +600,7 @@ abstract class _$SystemMessageCopyWith<$Res>
       String content,
       String langCode,
       SystemMessageType type,
-      String package,
+      List<String> appsIds,
       double minAppVersion,
       double maxAppVersion,
       bool testMode,
@@ -564,7 +611,8 @@ abstract class _$SystemMessageCopyWith<$Res>
       SystemMessageClickSpec titleIconClickSpec,
       SystemMessageClickSpec linkClickSpec,
       SystemMessageClickSpec cardClickSpec,
-      @UtcIsoDateConverter() DateTime expirationDate});
+      @UtcIsoDateConverter() DateTime expirationTime,
+      @UtcIsoDateConverter() DateTime startTime});
 
   @override
   $SystemMessageImageCopyWith<$Res> get image;
@@ -576,6 +624,7 @@ abstract class _$SystemMessageCopyWith<$Res>
   $SystemMessageClickSpecCopyWith<$Res> get cardClickSpec;
 }
 
+/// @nodoc
 class __$SystemMessageCopyWithImpl<$Res>
     extends _$SystemMessageCopyWithImpl<$Res>
     implements _$SystemMessageCopyWith<$Res> {
@@ -593,7 +642,7 @@ class __$SystemMessageCopyWithImpl<$Res>
     Object content = freezed,
     Object langCode = freezed,
     Object type = freezed,
-    Object package = freezed,
+    Object appsIds = freezed,
     Object minAppVersion = freezed,
     Object maxAppVersion = freezed,
     Object testMode = freezed,
@@ -604,7 +653,8 @@ class __$SystemMessageCopyWithImpl<$Res>
     Object titleIconClickSpec = freezed,
     Object linkClickSpec = freezed,
     Object cardClickSpec = freezed,
-    Object expirationDate = freezed,
+    Object expirationTime = freezed,
+    Object startTime = freezed,
   }) {
     return _then(_SystemMessage(
       id: id == freezed ? _value.id : id as String,
@@ -612,7 +662,7 @@ class __$SystemMessageCopyWithImpl<$Res>
       content: content == freezed ? _value.content : content as String,
       langCode: langCode == freezed ? _value.langCode : langCode as String,
       type: type == freezed ? _value.type : type as SystemMessageType,
-      package: package == freezed ? _value.package : package as String,
+      appsIds: appsIds == freezed ? _value.appsIds : appsIds as List<String>,
       minAppVersion: minAppVersion == freezed
           ? _value.minAppVersion
           : minAppVersion as double,
@@ -635,14 +685,18 @@ class __$SystemMessageCopyWithImpl<$Res>
       cardClickSpec: cardClickSpec == freezed
           ? _value.cardClickSpec
           : cardClickSpec as SystemMessageClickSpec,
-      expirationDate: expirationDate == freezed
-          ? _value.expirationDate
-          : expirationDate as DateTime,
+      expirationTime: expirationTime == freezed
+          ? _value.expirationTime
+          : expirationTime as DateTime,
+      startTime:
+          startTime == freezed ? _value.startTime : startTime as DateTime,
     ));
   }
 }
 
 @JsonSerializable()
+
+/// @nodoc
 class _$_SystemMessage implements _SystemMessage {
   _$_SystemMessage(
       {this.id,
@@ -650,7 +704,7 @@ class _$_SystemMessage implements _SystemMessage {
       this.content,
       this.langCode,
       this.type,
-      this.package,
+      this.appsIds,
       this.minAppVersion,
       this.maxAppVersion,
       this.testMode,
@@ -661,7 +715,8 @@ class _$_SystemMessage implements _SystemMessage {
       this.titleIconClickSpec,
       this.linkClickSpec,
       this.cardClickSpec,
-      @UtcIsoDateConverter() this.expirationDate});
+      @UtcIsoDateConverter() this.expirationTime,
+      @UtcIsoDateConverter() this.startTime});
 
   factory _$_SystemMessage.fromJson(Map<String, dynamic> json) =>
       _$_$_SystemMessageFromJson(json);
@@ -677,7 +732,7 @@ class _$_SystemMessage implements _SystemMessage {
   @override
   final SystemMessageType type;
   @override
-  final String package;
+  final List<String> appsIds;
   @override
   final double minAppVersion;
   @override
@@ -700,11 +755,14 @@ class _$_SystemMessage implements _SystemMessage {
   final SystemMessageClickSpec cardClickSpec;
   @override
   @UtcIsoDateConverter()
-  final DateTime expirationDate;
+  final DateTime expirationTime;
+  @override
+  @UtcIsoDateConverter()
+  final DateTime startTime;
 
   @override
   String toString() {
-    return 'SystemMessage(id: $id, title: $title, content: $content, langCode: $langCode, type: $type, package: $package, minAppVersion: $minAppVersion, maxAppVersion: $maxAppVersion, testMode: $testMode, linkText: $linkText, titleIcon: $titleIcon, backgroundColor: $backgroundColor, image: $image, titleIconClickSpec: $titleIconClickSpec, linkClickSpec: $linkClickSpec, cardClickSpec: $cardClickSpec, expirationDate: $expirationDate)';
+    return 'SystemMessage(id: $id, title: $title, content: $content, langCode: $langCode, type: $type, appsIds: $appsIds, minAppVersion: $minAppVersion, maxAppVersion: $maxAppVersion, testMode: $testMode, linkText: $linkText, titleIcon: $titleIcon, backgroundColor: $backgroundColor, image: $image, titleIconClickSpec: $titleIconClickSpec, linkClickSpec: $linkClickSpec, cardClickSpec: $cardClickSpec, expirationTime: $expirationTime, startTime: $startTime)';
   }
 
   @override
@@ -723,9 +781,9 @@ class _$_SystemMessage implements _SystemMessage {
                     .equals(other.langCode, langCode)) &&
             (identical(other.type, type) ||
                 const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.package, package) ||
+            (identical(other.appsIds, appsIds) ||
                 const DeepCollectionEquality()
-                    .equals(other.package, package)) &&
+                    .equals(other.appsIds, appsIds)) &&
             (identical(other.minAppVersion, minAppVersion) ||
                 const DeepCollectionEquality()
                     .equals(other.minAppVersion, minAppVersion)) &&
@@ -755,9 +813,12 @@ class _$_SystemMessage implements _SystemMessage {
             (identical(other.cardClickSpec, cardClickSpec) ||
                 const DeepCollectionEquality()
                     .equals(other.cardClickSpec, cardClickSpec)) &&
-            (identical(other.expirationDate, expirationDate) ||
+            (identical(other.expirationTime, expirationTime) ||
                 const DeepCollectionEquality()
-                    .equals(other.expirationDate, expirationDate)));
+                    .equals(other.expirationTime, expirationTime)) &&
+            (identical(other.startTime, startTime) ||
+                const DeepCollectionEquality()
+                    .equals(other.startTime, startTime)));
   }
 
   @override
@@ -768,7 +829,7 @@ class _$_SystemMessage implements _SystemMessage {
       const DeepCollectionEquality().hash(content) ^
       const DeepCollectionEquality().hash(langCode) ^
       const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(package) ^
+      const DeepCollectionEquality().hash(appsIds) ^
       const DeepCollectionEquality().hash(minAppVersion) ^
       const DeepCollectionEquality().hash(maxAppVersion) ^
       const DeepCollectionEquality().hash(testMode) ^
@@ -779,7 +840,8 @@ class _$_SystemMessage implements _SystemMessage {
       const DeepCollectionEquality().hash(titleIconClickSpec) ^
       const DeepCollectionEquality().hash(linkClickSpec) ^
       const DeepCollectionEquality().hash(cardClickSpec) ^
-      const DeepCollectionEquality().hash(expirationDate);
+      const DeepCollectionEquality().hash(expirationTime) ^
+      const DeepCollectionEquality().hash(startTime);
 
   @override
   _$SystemMessageCopyWith<_SystemMessage> get copyWith =>
@@ -798,7 +860,7 @@ abstract class _SystemMessage implements SystemMessage {
       String content,
       String langCode,
       SystemMessageType type,
-      String package,
+      List<String> appsIds,
       double minAppVersion,
       double maxAppVersion,
       bool testMode,
@@ -809,7 +871,8 @@ abstract class _SystemMessage implements SystemMessage {
       SystemMessageClickSpec titleIconClickSpec,
       SystemMessageClickSpec linkClickSpec,
       SystemMessageClickSpec cardClickSpec,
-      @UtcIsoDateConverter() DateTime expirationDate}) = _$_SystemMessage;
+      @UtcIsoDateConverter() DateTime expirationTime,
+      @UtcIsoDateConverter() DateTime startTime}) = _$_SystemMessage;
 
   factory _SystemMessage.fromJson(Map<String, dynamic> json) =
       _$_SystemMessage.fromJson;
@@ -825,7 +888,7 @@ abstract class _SystemMessage implements SystemMessage {
   @override
   SystemMessageType get type;
   @override
-  String get package;
+  List<String> get appsIds;
   @override
   double get minAppVersion;
   @override
@@ -848,7 +911,10 @@ abstract class _SystemMessage implements SystemMessage {
   SystemMessageClickSpec get cardClickSpec;
   @override
   @UtcIsoDateConverter()
-  DateTime get expirationDate;
+  DateTime get expirationTime;
+  @override
+  @UtcIsoDateConverter()
+  DateTime get startTime;
   @override
   _$SystemMessageCopyWith<_SystemMessage> get copyWith;
 }
