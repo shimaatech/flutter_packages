@@ -52,7 +52,7 @@ class SystemMessagesService {
     // get one non-expired message only
     List<DocumentSnapshot> snapshots = (await firestore
             .collection(collectionName)
-            .where('startTime', isLessThanOrEqualTo: startTime)
+            .where('startTime', isGreaterThanOrEqualTo: startTime)
             .where('expirationTime', isGreaterThanOrEqualTo: DateTime.now())
             .where('langCode', isEqualTo: langCode)
             .where('type', isEqualTo: describeEnum(type))
