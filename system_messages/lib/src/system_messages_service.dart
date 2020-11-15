@@ -53,7 +53,6 @@ class SystemMessagesService {
     List<DocumentSnapshot> snapshots = (await firestore
             .collection(collectionName)
             .where('startTime', isGreaterThanOrEqualTo: startTime)
-            .where('expirationTime', isGreaterThanOrEqualTo: DateTime.now())
             .where('langCode', isEqualTo: langCode)
             .where('type', isEqualTo: describeEnum(type))
             .where('package', whereIn: appsIds)
