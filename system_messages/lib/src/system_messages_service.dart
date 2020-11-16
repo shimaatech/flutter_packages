@@ -108,6 +108,9 @@ class SystemMessagesService {
   }
 
   bool isInstalledBeforeValid(SystemMessage message) {
+    if (message.installedBefore == null) {
+      return true;
+    }
     return message.installedBefore.isAfter(installedBefore);
   }
 
