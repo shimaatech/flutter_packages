@@ -387,7 +387,8 @@ class _$SystemMessageTearOff {
       SystemMessageClickSpec linkClickSpec,
       SystemMessageClickSpec cardClickSpec,
       @UtcIsoDateConverter() DateTime expirationTime,
-      @UtcIsoDateConverter() DateTime startTime}) {
+      @UtcIsoDateConverter() DateTime startTime,
+      @UtcIsoDateConverter() DateTime installedBefore}) {
     return _SystemMessage(
       id: id,
       title: title,
@@ -407,6 +408,7 @@ class _$SystemMessageTearOff {
       cardClickSpec: cardClickSpec,
       expirationTime: expirationTime,
       startTime: startTime,
+      installedBefore: installedBefore,
     );
   }
 
@@ -442,6 +444,8 @@ mixin _$SystemMessage {
   DateTime get expirationTime;
   @UtcIsoDateConverter()
   DateTime get startTime;
+  @UtcIsoDateConverter()
+  DateTime get installedBefore;
 
   Map<String, dynamic> toJson();
   $SystemMessageCopyWith<SystemMessage> get copyWith;
@@ -470,7 +474,8 @@ abstract class $SystemMessageCopyWith<$Res> {
       SystemMessageClickSpec linkClickSpec,
       SystemMessageClickSpec cardClickSpec,
       @UtcIsoDateConverter() DateTime expirationTime,
-      @UtcIsoDateConverter() DateTime startTime});
+      @UtcIsoDateConverter() DateTime startTime,
+      @UtcIsoDateConverter() DateTime installedBefore});
 
   $SystemMessageImageCopyWith<$Res> get image;
   $SystemMessageClickSpecCopyWith<$Res> get titleIconClickSpec;
@@ -507,6 +512,7 @@ class _$SystemMessageCopyWithImpl<$Res>
     Object cardClickSpec = freezed,
     Object expirationTime = freezed,
     Object startTime = freezed,
+    Object installedBefore = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as String,
@@ -542,6 +548,9 @@ class _$SystemMessageCopyWithImpl<$Res>
           : expirationTime as DateTime,
       startTime:
           startTime == freezed ? _value.startTime : startTime as DateTime,
+      installedBefore: installedBefore == freezed
+          ? _value.installedBefore
+          : installedBefore as DateTime,
     ));
   }
 
@@ -612,7 +621,8 @@ abstract class _$SystemMessageCopyWith<$Res>
       SystemMessageClickSpec linkClickSpec,
       SystemMessageClickSpec cardClickSpec,
       @UtcIsoDateConverter() DateTime expirationTime,
-      @UtcIsoDateConverter() DateTime startTime});
+      @UtcIsoDateConverter() DateTime startTime,
+      @UtcIsoDateConverter() DateTime installedBefore});
 
   @override
   $SystemMessageImageCopyWith<$Res> get image;
@@ -655,6 +665,7 @@ class __$SystemMessageCopyWithImpl<$Res>
     Object cardClickSpec = freezed,
     Object expirationTime = freezed,
     Object startTime = freezed,
+    Object installedBefore = freezed,
   }) {
     return _then(_SystemMessage(
       id: id == freezed ? _value.id : id as String,
@@ -690,6 +701,9 @@ class __$SystemMessageCopyWithImpl<$Res>
           : expirationTime as DateTime,
       startTime:
           startTime == freezed ? _value.startTime : startTime as DateTime,
+      installedBefore: installedBefore == freezed
+          ? _value.installedBefore
+          : installedBefore as DateTime,
     ));
   }
 }
@@ -716,7 +730,8 @@ class _$_SystemMessage implements _SystemMessage {
       this.linkClickSpec,
       this.cardClickSpec,
       @UtcIsoDateConverter() this.expirationTime,
-      @UtcIsoDateConverter() this.startTime});
+      @UtcIsoDateConverter() this.startTime,
+      @UtcIsoDateConverter() this.installedBefore});
 
   factory _$_SystemMessage.fromJson(Map<String, dynamic> json) =>
       _$_$_SystemMessageFromJson(json);
@@ -759,10 +774,13 @@ class _$_SystemMessage implements _SystemMessage {
   @override
   @UtcIsoDateConverter()
   final DateTime startTime;
+  @override
+  @UtcIsoDateConverter()
+  final DateTime installedBefore;
 
   @override
   String toString() {
-    return 'SystemMessage(id: $id, title: $title, content: $content, langCode: $langCode, type: $type, appsIds: $appsIds, minAppVersion: $minAppVersion, maxAppVersion: $maxAppVersion, testMode: $testMode, linkText: $linkText, titleIcon: $titleIcon, backgroundColor: $backgroundColor, image: $image, titleIconClickSpec: $titleIconClickSpec, linkClickSpec: $linkClickSpec, cardClickSpec: $cardClickSpec, expirationTime: $expirationTime, startTime: $startTime)';
+    return 'SystemMessage(id: $id, title: $title, content: $content, langCode: $langCode, type: $type, appsIds: $appsIds, minAppVersion: $minAppVersion, maxAppVersion: $maxAppVersion, testMode: $testMode, linkText: $linkText, titleIcon: $titleIcon, backgroundColor: $backgroundColor, image: $image, titleIconClickSpec: $titleIconClickSpec, linkClickSpec: $linkClickSpec, cardClickSpec: $cardClickSpec, expirationTime: $expirationTime, startTime: $startTime, installedBefore: $installedBefore)';
   }
 
   @override
@@ -818,7 +836,10 @@ class _$_SystemMessage implements _SystemMessage {
                     .equals(other.expirationTime, expirationTime)) &&
             (identical(other.startTime, startTime) ||
                 const DeepCollectionEquality()
-                    .equals(other.startTime, startTime)));
+                    .equals(other.startTime, startTime)) &&
+            (identical(other.installedBefore, installedBefore) ||
+                const DeepCollectionEquality()
+                    .equals(other.installedBefore, installedBefore)));
   }
 
   @override
@@ -841,7 +862,8 @@ class _$_SystemMessage implements _SystemMessage {
       const DeepCollectionEquality().hash(linkClickSpec) ^
       const DeepCollectionEquality().hash(cardClickSpec) ^
       const DeepCollectionEquality().hash(expirationTime) ^
-      const DeepCollectionEquality().hash(startTime);
+      const DeepCollectionEquality().hash(startTime) ^
+      const DeepCollectionEquality().hash(installedBefore);
 
   @override
   _$SystemMessageCopyWith<_SystemMessage> get copyWith =>
@@ -872,7 +894,8 @@ abstract class _SystemMessage implements SystemMessage {
       SystemMessageClickSpec linkClickSpec,
       SystemMessageClickSpec cardClickSpec,
       @UtcIsoDateConverter() DateTime expirationTime,
-      @UtcIsoDateConverter() DateTime startTime}) = _$_SystemMessage;
+      @UtcIsoDateConverter() DateTime startTime,
+      @UtcIsoDateConverter() DateTime installedBefore}) = _$_SystemMessage;
 
   factory _SystemMessage.fromJson(Map<String, dynamic> json) =
       _$_SystemMessage.fromJson;
@@ -915,6 +938,9 @@ abstract class _SystemMessage implements SystemMessage {
   @override
   @UtcIsoDateConverter()
   DateTime get startTime;
+  @override
+  @UtcIsoDateConverter()
+  DateTime get installedBefore;
   @override
   _$SystemMessageCopyWith<_SystemMessage> get copyWith;
 }

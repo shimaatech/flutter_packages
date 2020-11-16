@@ -120,6 +120,8 @@ _$_SystemMessage _$_$_SystemMessageFromJson(Map json) {
         const UtcIsoDateConverter().fromJson(json['expirationTime'] as String),
     startTime:
         const UtcIsoDateConverter().fromJson(json['startTime'] as String),
+    installedBefore:
+        const UtcIsoDateConverter().fromJson(json['installedBefore'] as String),
   );
 }
 
@@ -144,6 +146,8 @@ Map<String, dynamic> _$_$_SystemMessageToJson(_$_SystemMessage instance) =>
       'expirationTime':
           const UtcIsoDateConverter().toJson(instance.expirationTime),
       'startTime': const UtcIsoDateConverter().toJson(instance.startTime),
+      'installedBefore':
+          const UtcIsoDateConverter().toJson(instance.installedBefore),
     };
 
 const _$SystemMessageTypeEnumMap = {

@@ -75,6 +75,7 @@ abstract class SystemMessage extends Entity<String>  with _$SystemMessage {
     SystemMessageClickSpec cardClickSpec,
     @UtcIsoDateConverter() DateTime expirationTime,
     @UtcIsoDateConverter() DateTime startTime,
+    @UtcIsoDateConverter() DateTime installedBefore,
   }) = _SystemMessage;
 
   factory SystemMessage.fromJson(Map<String, dynamic> json) => _$SystemMessageFromJson(json);

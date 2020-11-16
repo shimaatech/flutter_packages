@@ -19,15 +19,13 @@ class SystemMessagesService {
   static const String lastCheckKey = 'systemMessageService.lastCheck';
   static const String lastMessageKey = 'systemMessageService.lastMessage';
 
-
   /// interval in days for fetching from firestore
   static const int defaultFetchDaysInterval = 1;
-
 
   // TODO I think that langCode should not be passed to constructor... It should
   // be passed to the method that fetches the messages
   SystemMessagesService(this.firestore, this.storage, this.langCode,
-      this.appsIds, this.appVersion, this.startTime,
+      this.appsIds, this.appVersion, this.installedBefore,
       {this.fetchDaysInterval = defaultFetchDaysInterval,
       this.testMode = false});
 
@@ -38,7 +36,7 @@ class SystemMessagesService {
   final double appVersion;
   final bool testMode;
   final int fetchDaysInterval;
-  final DateTime startTime;
+  final DateTime installedBefore;
   final JsonConverter<DateTime, String> dateConverter = UtcIsoDateConverter();
 
   Future<SystemMessage> getLatestUnexpiredMessage(
@@ -52,7 +50,7 @@ class SystemMessagesService {
     // get one non-expired message only
     List<DocumentSnapshot> snapshots = (await firestore
             .collection(collectionName)
-            .where('startTime', isGreaterThanOrEqualTo: startTime)
+            .where('expirationTime', isGreaterThanOrEqualTo: DateTime.now())
             .where('langCode', isEqualTo: langCode)
             .where('type', isEqualTo: describeEnum(type))
             .where('package', whereIn: appsIds)
@@ -73,13 +71,16 @@ class SystemMessagesService {
             .toJson((data['expirationTime'] as Timestamp).toDate());
       }
       if (data.containsKey('startTime')) {
-        data['startTime'] = dateConverter
-            .toJson((data['startTime'] as Timestamp).toDate());
+        data['startTime'] =
+            dateConverter.toJson((data['startTime'] as Timestamp).toDate());
+      }
+      if (data.containsKey('installedBefore')) {
+        data['installedBefore'] = dateConverter
+            .toJson((data['installedBefore'] as Timestamp).toDate());
       }
 
-      SystemMessage message = SystemMessage.serializer
-          .deserialize(data)
-          .copyWith(id: snapshot.id);
+      SystemMessage message =
+          SystemMessage.serializer.deserialize(data).copyWith(id: snapshot.id);
       // we check the app version here and not in the query because firestore
       // queries do not allow having multiple whereEqualTo queries on different
       // fields
@@ -95,7 +96,20 @@ class SystemMessagesService {
       message != null &&
       !isMessageDismissed(message) &&
       isApplicableForAppVersion(message) &&
-      !isExpired(message);
+      !isExpired(message) &&
+      isStartTimeValid(message) &&
+      isInstalledBeforeValid(message);
+
+  bool isStartTimeValid(SystemMessage message) {
+    if (message.startTime == null) {
+      return true;
+    }
+    return message.startTime.isBefore(DateTime.now());
+  }
+
+  bool isInstalledBeforeValid(SystemMessage message) {
+    return message.installedBefore.isAfter(installedBefore);
+  }
 
   Future<void> dismissMessage(String id) {
     return storage.save<StringList>(dismissedMessagesKey,
@@ -136,7 +150,8 @@ class SystemMessagesService {
   /// save last message so that it will be shown to the user if not dismissed
   /// because we don't always fetch messages from firestore
   Future<SystemMessage> saveLastMessage(SystemMessage message) async {
-    await storage.save<SystemMessage>(getMessageStorageKey(message.type), message);
+    await storage.save<SystemMessage>(
+        getMessageStorageKey(message.type), message);
     return message;
   }
 
