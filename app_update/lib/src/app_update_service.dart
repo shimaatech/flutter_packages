@@ -41,6 +41,11 @@ class AppUpdateService {
     return false;
   }
 
+  Future<bool> canShowUpdateDialog() async {
+    AppInfo appInfo = await appInfoService.getAppInfo(forceFetch: false);
+    return needsUpdate(appInfo) && updateIsActive(appInfo);
+  }
+
   /// Can be used to show flexible update dialog with a custom message whenever
   /// you want (of course only if a newer version is available)
   Future<void> showUpdateDialogIfNeedsUpdate(
