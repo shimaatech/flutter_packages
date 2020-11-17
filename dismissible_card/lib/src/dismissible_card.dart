@@ -45,7 +45,6 @@ class DismissibleCard extends StatefulWidget {
   _DismissibleCardState createState() => _DismissibleCardState();
 }
 
-
 class _DismissibleCardState extends State<DismissibleCard> {
   bool isDismissed;
 
@@ -80,7 +79,6 @@ class _DismissibleCardState extends State<DismissibleCard> {
             children: <Widget>[
               buildHeader(context),
               buildBody(context),
-              buildFooter(context),
             ],
           ),
         ),
@@ -106,7 +104,9 @@ class _DismissibleCardState extends State<DismissibleCard> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           buildImage(context),
-          SizedBox(width: 10,),
+          SizedBox(
+            width: 10,
+          ),
           Expanded(
             child: buildContent(context),
           ),
@@ -120,7 +120,13 @@ class _DismissibleCardState extends State<DismissibleCard> {
       return Container();
     }
     return FlatButton(
-      child: Text(widget.linkText, style: Theme.of(context).textTheme.bodyText1.copyWith(color: widget.linkColor),),
+      child: Text(
+        widget.linkText,
+        style: Theme.of(context)
+            .textTheme
+            .bodyText1
+            .copyWith(color: widget.linkColor),
+      ),
       onPressed: widget.onLinkClick,
     );
   }
@@ -141,11 +147,11 @@ class _DismissibleCardState extends State<DismissibleCard> {
         Expanded(
           child: widget.title != null
               ? Html(
-            data: widget.title,
-            style: {
-              'html': Style(color: widget.titleColor),
-            },
-          )
+                  data: widget.title,
+                  style: {
+                    'html': Style(color: widget.titleColor),
+                  },
+                )
               : Container(),
         ),
         buildTitleIcon(context),
@@ -175,13 +181,25 @@ class _DismissibleCardState extends State<DismissibleCard> {
   }
 
   Widget buildContent(BuildContext context) {
-    return Html(
-      data: widget.content,
-      style: {
-        'html': Style(
-          color: widget.contentColor,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Html(
+          data: widget.content,
+          style: {
+            'html': Style(
+              color: widget.contentColor,
+            ),
+          },
         ),
-      },
+        Row(
+          mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            buildFooter(context),
+          ],
+        ),
+      ],
     );
   }
 }
