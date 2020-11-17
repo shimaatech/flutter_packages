@@ -41,6 +41,7 @@ class AppUpdateService {
     return false;
   }
 
+
   Future<bool> canShowUpdateDialog() async {
     AppInfo appInfo = await appInfoService.getAppInfo(forceFetch: false);
     return needsUpdate(appInfo) && updateIsActive(appInfo);
@@ -67,7 +68,9 @@ class AppUpdateService {
 
   @protected
   bool updateIsActive(AppInfo appInfo) {
-    return appInfo.updateInfo != null && appInfo.updateInfo.active;
+    return appInfo.updateInfo != null &&
+        appInfo.updateInfo.active;
+
   }
 
   @protected
@@ -146,7 +149,7 @@ class AppUpdateService {
         },
       ),
       btnCancel: showLaterButton
-          ? RaisedButton(
+          ? FlatButton(
               child: Text(localizations.later),
               onPressed: () => Navigator.of(context).pop(),
             )
