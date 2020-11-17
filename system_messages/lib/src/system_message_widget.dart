@@ -155,7 +155,7 @@ class SystemMessageCard extends StatelessWidget {
 class SystemMessageDialog {
   static const Key key = const Key('__system_message_dialog');
 
-  void dismissMessage(
+  static void dismissMessage(
       BuildContext context, SystemMessagesService service, String messageId) {
     service.dismissMessage(messageId);
     Navigator.of(context).pop();
