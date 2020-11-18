@@ -177,7 +177,7 @@ class SystemMessageDialog {
       onDissmissCallback: () => service.dismissMessage(message.id),
       btnOk: RaisedButton(
         child: Text(okButtonText),
-        onPressed: () => Navigator.of(context).pop(),
+        onPressed: () {},
       ),
       body: DismissibleMessage(
         message: message,
@@ -186,7 +186,7 @@ class SystemMessageDialog {
         backgroundColor: backgroundColor,
         dismissible: false,
         dismissOnNavigation: true,
-        onDismiss: () => Navigator.of(context).pop(),
+        onDismiss: () {},
       ),
     );
 
