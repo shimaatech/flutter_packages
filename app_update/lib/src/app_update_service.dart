@@ -41,10 +41,12 @@ class AppUpdateService {
     return false;
   }
 
-
   Future<bool> canShowUpdateDialog() async {
     AppInfo appInfo = await appInfoService.getAppInfo(forceFetch: false);
-    return needsUpdate(appInfo) && updateIsActive(appInfo);
+    return needsUpdate(appInfo) &&
+        updateIsActive(appInfo) &&
+        (needsImmediateUpdate(appInfo.updateInfo.priority) ||
+            shouldSuggestUpdate(appInfo.updateInfo.priority));
   }
 
   /// Can be used to show flexible update dialog with a custom message whenever
@@ -68,9 +70,7 @@ class AppUpdateService {
 
   @protected
   bool updateIsActive(AppInfo appInfo) {
-    return appInfo.updateInfo != null &&
-        appInfo.updateInfo.active;
-
+    return appInfo.updateInfo != null && appInfo.updateInfo.active;
   }
 
   @protected
