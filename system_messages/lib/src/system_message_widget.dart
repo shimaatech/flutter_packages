@@ -82,10 +82,6 @@ class _DismissibleMessageState extends State<DismissibleMessage> {
     if (widget.navigatorHelper == null || clickSpec == null) {
       return;
     }
-    if (widget.message.type == SystemMessageType.dialog) {
-      // hide the dialog before navigating...
-      Navigator.pop(context);
-    }
     if (clickSpec.navigationType == NavigationType.internal) {
       widget.navigatorHelper.navigate(context, clickSpec.url, clickSpec.args);
     } else if (clickSpec.navigationType == NavigationType.embedded) {
