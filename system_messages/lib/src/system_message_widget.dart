@@ -79,6 +79,14 @@ class _DismissibleMessageState extends State<DismissibleMessage> {
 
   void handleClickEvent(
       BuildContext context, SystemMessageClickSpec clickSpec) {
+    // First dismiss (so that we don't pop the windows that are opened by the
+    // click event in case onDismiss() pops something)
+    if (widget.dismissOnNavigation) {
+      widget.onDismiss();
+      setState(() {
+        isDismissed = true;
+      });
+    }
     if (widget.navigatorHelper == null || clickSpec == null) {
       return;
     }
@@ -91,12 +99,6 @@ class _DismissibleMessageState extends State<DismissibleMessage> {
       LaunchReview.launch();
     } else {
       launch(clickSpec.url);
-    }
-    if (widget.dismissOnNavigation) {
-      widget.onDismiss();
-      setState(() {
-        isDismissed = true;
-      });
     }
   }
 }
