@@ -151,11 +151,11 @@ class SystemMessageCard extends StatelessWidget {
 class SystemMessageDialog {
   static const Key key = const Key('__system_message_dialog');
 
-  // static void dismissMessage(
-  //     BuildContext context, SystemMessagesService service, String messageId) {
-  //   service.dismissMessage(messageId);
-  //   Navigator.of(context).pop();
-  // }
+  static void dismissMessage(
+      BuildContext context, SystemMessagesService service, String messageId) {
+    service.dismissMessage(messageId);
+    Navigator.of(context, rootNavigator: true).pop();
+  }
 
   static Future<void> showNewMessage({
     @required BuildContext context,
@@ -174,10 +174,9 @@ class SystemMessageDialog {
     AwesomeDialog dialog = AwesomeDialog(
       context: context,
       dialogType: DialogType.NO_HEADER,
-      onDissmissCallback: () => service.dismissMessage(message.id),
       btnOk: RaisedButton(
         child: Text(okButtonText),
-        onPressed: () {},
+        onPressed: () => dismissMessage(context, service, message.id),
       ),
       body: DismissibleMessage(
         message: message,
@@ -186,7 +185,7 @@ class SystemMessageDialog {
         backgroundColor: backgroundColor,
         dismissible: false,
         dismissOnNavigation: true,
-        onDismiss: () {},
+        onDismiss: () => dismissMessage(context, service, message.id),
       ),
     );
 
