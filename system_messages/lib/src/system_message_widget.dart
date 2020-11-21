@@ -17,8 +17,8 @@ typedef ClickEventHandler = Function(
     BuildContext context, SystemMessageClickSpec spec);
 
 abstract class NavigatorHelper {
-  Future<void> navigate(
-      BuildContext context, String routeName, Map<String, dynamic> args);
+  Future<void> navigate(BuildContext context, String routeName,
+      String systemMessageId, Map<String, dynamic> args);
 }
 
 class DismissibleMessage extends StatefulWidget {
@@ -91,7 +91,8 @@ class _DismissibleMessageState extends State<DismissibleMessage> {
       return;
     }
     if (clickSpec.navigationType == NavigationType.internal) {
-      widget.navigatorHelper.navigate(context, clickSpec.url, clickSpec.args);
+      widget.navigatorHelper
+          .navigate(context, clickSpec.url, widget.message.id, clickSpec.args);
     } else if (clickSpec.navigationType == NavigationType.embedded) {
       WebsiteViewerDialog.show(context, clickSpec.url);
     } else if (clickSpec.navigationType == NavigationType.upgrade ||
