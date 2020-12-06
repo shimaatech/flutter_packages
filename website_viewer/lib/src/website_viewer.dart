@@ -28,23 +28,25 @@ class _WebsiteViewerState extends State<WebsiteViewer> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return Column(
       children: [
-        WebView(
-          initialUrl: widget.url,
-          javascriptMode: JavascriptMode.unrestricted,
-          onPageFinished: (finish) {
-            setState(() {
-              _isLoading = false;
-            });
-          },
-          onWebResourceError: (error) {
-            if (widget.onError != null) {
-              widget.onError(error.errorCode, error.description);
-            }
-          },
+        if (_isLoading) LinearProgressIndicator(),
+        Expanded(
+          child: WebView(
+            initialUrl: widget.url,
+            javascriptMode: JavascriptMode.unrestricted,
+            onPageFinished: (finish) {
+              setState(() {
+                _isLoading = false;
+              });
+            },
+            onWebResourceError: (error) {
+              if (widget.onError != null) {
+                widget.onError(error.errorCode, error.description);
+              }
+            },
+          ),
         ),
-        if (_isLoading) CircularProgressIndicator(),
       ],
     );
   }
