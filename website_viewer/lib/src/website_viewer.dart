@@ -34,7 +34,7 @@ class _WebsiteViewerState extends State<WebsiteViewer> {
         Expanded(
           child: WebView(
             initialUrl: widget.url,
-            javascriptMode: JavascriptMode.unrestricted,
+            javascriptMode: JavascriptMode.disabled,
             onPageFinished: (finish) {
               setState(() {
                 _isLoading = false;
