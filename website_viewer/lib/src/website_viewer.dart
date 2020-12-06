@@ -1,58 +1,39 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:general_utils/general_utils.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 typedef WebsiteViewerErrorCallback = Function(int code, String message);
 
 class WebsiteViewer extends StatefulWidget {
-  WebsiteViewer(this.url, {this.onLoadError, this.onLoadHttpError});
+  WebsiteViewer(this.url, {this.onError});
 
   final String url;
 
-  final WebsiteViewerErrorCallback onLoadError;
-  final WebsiteViewerErrorCallback onLoadHttpError;
+  final WebsiteViewerErrorCallback onError;
 
   @override
   _WebsiteViewerState createState() => _WebsiteViewerState();
 }
 
 class _WebsiteViewerState extends State<WebsiteViewer> {
-  double _progress = 0;
+  @override
+  void initState() {
+    super.initState();
+    if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        (_progress != 1.0)
-            ? LinearProgressIndicator(value: _progress)
-            : Container(),
-        Expanded(
-          child: InAppWebView(
-            onLoadError: (controller, url, code, message) {
-              if (widget.onLoadError != null) {
-                widget.onLoadError(code, message);
-              }
-            },
-            onLoadHttpError: (controller, url, code, message) {
-              if (widget.onLoadHttpError != null) {
-                widget.onLoadHttpError(code, message);
-              }
-            },
-            initialUrl: widget.url,
-            initialOptions: InAppWebViewGroupOptions(
-              crossPlatform: InAppWebViewOptions(debuggingEnabled: false),
-            ),
-            onProgressChanged: (controller, progress) => _setProgress(progress),
-          ),
-        ),
-      ],
+    return WebView(
+      initialUrl: widget.url,
+      onWebResourceError: (error) {
+        if (widget.onError != null) {
+          widget.onError(error.errorCode, error.description);
+        }
+      },
     );
-  }
-
-  void _setProgress(int progress) {
-    setState(() {
-      _progress = progress / 100;
-    });
   }
 }
 

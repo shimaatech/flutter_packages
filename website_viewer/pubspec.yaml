@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  flutter_inappwebview: ^4.0.0+4
+  webview_flutter: ^1.0.7
 
   general_utils:
     git:
