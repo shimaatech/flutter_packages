@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:general_utils/general_utils.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-typedef WebsiteViewerErrorCallback = Function(int code, String message);
+typedef WebsiteViewerErrorCallback = Function(
+    String url, int code, String message);
 
 class WebsiteViewer extends StatefulWidget {
   WebsiteViewer(this.url, {this.onError});
@@ -34,7 +35,7 @@ class _WebsiteViewerState extends State<WebsiteViewer> {
         Expanded(
           child: WebView(
             initialUrl: widget.url,
-            javascriptMode: JavascriptMode.disabled,
+            javascriptMode: JavascriptMode.unrestricted,
             onPageFinished: (finish) {
               setState(() {
                 _isLoading = false;
@@ -42,7 +43,8 @@ class _WebsiteViewerState extends State<WebsiteViewer> {
             },
             onWebResourceError: (error) {
               if (widget.onError != null) {
-                widget.onError(error.errorCode, error.description);
+                widget.onError(
+                    error.failingUrl, error.errorCode, error.description);
               }
             },
           ),
