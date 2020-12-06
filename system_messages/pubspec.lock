@@ -244,7 +244,7 @@ packages:
     description:
       path: dismissible_card
       ref: HEAD
-      resolved-ref: "1ccd135380013720d5e166870f50ce5923e19e20"
+      resolved-ref: "27c108554a3388f7418e45a8c062782aac7ad1f0"
       url: "https://github.com/shimaatech/flutter_packages"
     source: git
     version: "0.0.1"
@@ -373,7 +373,7 @@ packages:
     description:
       path: general_utils
       ref: HEAD
-      resolved-ref: "1ccd135380013720d5e166870f50ce5923e19e20"
+      resolved-ref: "27c108554a3388f7418e45a8c062782aac7ad1f0"
       url: "https://github.com/shimaatech/flutter_packages"
     source: git
     version: "0.0.1"
@@ -676,7 +676,7 @@ packages:
     description:
       path: repository
       ref: HEAD
-      resolved-ref: "1ccd135380013720d5e166870f50ce5923e19e20"
+      resolved-ref: "27c108554a3388f7418e45a8c062782aac7ad1f0"
       url: "https://github.com/shimaatech/flutter_packages"
     source: git
     version: "0.0.1"
@@ -706,7 +706,7 @@ packages:
     description:
       path: serializer
       ref: HEAD
-      resolved-ref: "1ccd135380013720d5e166870f50ce5923e19e20"
+      resolved-ref: "27c108554a3388f7418e45a8c062782aac7ad1f0"
       url: "https://github.com/shimaatech/flutter_packages"
     source: git
     version: "0.0.1"
@@ -958,7 +958,7 @@ packages:
     description:
       path: website_viewer
       ref: HEAD
-      resolved-ref: "1ccd135380013720d5e166870f50ce5923e19e20"
+      resolved-ref: "27c108554a3388f7418e45a8c062782aac7ad1f0"
       url: "https://github.com/shimaatech/flutter_packages"
     source: git
     version: "0.0.1"
