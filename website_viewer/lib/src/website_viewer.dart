@@ -5,7 +5,7 @@ import 'package:general_utils/general_utils.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 typedef WebsiteViewerErrorCallback = Function(
-    String url, int code, String message);
+    String mainUrl, String failingUrl, int code, String message);
 
 class WebsiteViewer extends StatefulWidget {
   WebsiteViewer(this.url, {this.onError});
@@ -44,7 +44,11 @@ class _WebsiteViewerState extends State<WebsiteViewer> {
             onWebResourceError: (error) {
               if (widget.onError != null) {
                 widget.onError(
-                    error.failingUrl, error.errorCode, error.description);
+                  widget.url,
+                  error.failingUrl,
+                  error.errorCode,
+                  error.description,
+                );
               }
             },
           ),
