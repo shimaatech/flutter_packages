@@ -112,7 +112,7 @@ packages:
     description:
       path: general_utils
       ref: HEAD
-      resolved-ref: f17ffabe55defd83a0022e74cafc5ceea11da049
+      resolved-ref: "13b43f9f23675202bd1ed7563aa70203b11aa42a"
       url: "https://github.com/shimaatech/flutter_packages"
     source: git
     version: "0.0.1"
@@ -259,7 +259,7 @@ packages:
     description:
       path: website_viewer
       ref: HEAD
-      resolved-ref: f17ffabe55defd83a0022e74cafc5ceea11da049
+      resolved-ref: "13b43f9f23675202bd1ed7563aa70203b11aa42a"
       url: "https://github.com/shimaatech/flutter_packages"
     source: git
     version: "0.0.1"
