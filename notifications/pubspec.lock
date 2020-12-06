@@ -43,20 +43,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.15.0-nullsafety.3"
-  convert:
-    dependency: transitive
-    description:
-      name: convert
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.1.1"
-  crypto:
-    dependency: transitive
-    description:
-      name: crypto
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.1.5"
   fake_async:
     dependency: transitive
     description:
@@ -97,13 +83,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_inappwebview:
-    dependency: transitive
-    description:
-      name: flutter_inappwebview
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "4.0.0+4"
   flutter_local_notifications:
     dependency: "direct main"
     description:
@@ -133,7 +112,7 @@ packages:
     description:
       path: general_utils
       ref: HEAD
-      resolved-ref: e6f1a2b0d53e111117e3d41601a96ac58284edf8
+      resolved-ref: f17ffabe55defd83a0022e74cafc5ceea11da049
       url: "https://github.com/shimaatech/flutter_packages"
     source: git
     version: "0.0.1"
@@ -172,13 +151,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.3.0-nullsafety.3"
-  mime:
-    dependency: transitive
-    description:
-      name: mime
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.9.7"
   path:
     dependency: transitive
     description:
@@ -275,13 +247,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.3.0-nullsafety.3"
-  uuid:
-    dependency: transitive
-    description:
-      name: uuid
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.2.2"
   vector_math:
     dependency: transitive
     description:
@@ -294,10 +259,17 @@ packages:
     description:
       path: website_viewer
       ref: HEAD
-      resolved-ref: e6f1a2b0d53e111117e3d41601a96ac58284edf8
+      resolved-ref: f17ffabe55defd83a0022e74cafc5ceea11da049
       url: "https://github.com/shimaatech/flutter_packages"
     source: git
     version: "0.0.1"
+  webview_flutter:
+    dependency: transitive
+    description:
+      name: webview_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.7"
 sdks:
   dart: ">=2.10.0-110 <2.11.0"
-  flutter: ">=1.12.13+hotfix.5 <2.0.0"
+  flutter: ">=1.22.0 <2.0.0"
