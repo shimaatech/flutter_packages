@@ -18,6 +18,8 @@ class WebsiteViewer extends StatefulWidget {
 }
 
 class _WebsiteViewerState extends State<WebsiteViewer> {
+  bool _isLoading = true;
+
   @override
   void initState() {
     super.initState();
@@ -26,13 +28,24 @@ class _WebsiteViewerState extends State<WebsiteViewer> {
 
   @override
   Widget build(BuildContext context) {
-    return WebView(
-      initialUrl: widget.url,
-      onWebResourceError: (error) {
-        if (widget.onError != null) {
-          widget.onError(error.errorCode, error.description);
-        }
-      },
+    return Stack(
+      children: [
+        WebView(
+          initialUrl: widget.url,
+          javascriptMode: JavascriptMode.unrestricted,
+          onPageFinished: (finish) {
+            setState(() {
+              _isLoading = false;
+            });
+          },
+          onWebResourceError: (error) {
+            if (widget.onError != null) {
+              widget.onError(error.errorCode, error.description);
+            }
+          },
+        ),
+        if (_isLoading) CircularProgressIndicator(),
+      ],
     );
   }
 }
