@@ -96,9 +96,10 @@ class AppUpdateService {
 
   @protected
   void launchUpdate() {
-    // TODO pass ios package name also in the future
     LaunchReview.launch(
-        androidAppId: appInfoService.packageName, writeReview: false);
+        iOSAppId: appInfoService.packageName,
+        androidAppId: appInfoService.packageName,
+        writeReview: false);
   }
 
   @protected

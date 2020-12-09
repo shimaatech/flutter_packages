@@ -56,7 +56,7 @@ packages:
       name: build_config
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.4"
+    version: "0.4.5"
   build_daemon:
     dependency: transitive
     description:
@@ -77,14 +77,14 @@ packages:
       name: build_runner
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.10.7"
+    version: "1.10.9"
   build_runner_core:
     dependency: transitive
     description:
       name: build_runner_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.1.2"
+    version: "6.1.4"
   built_collection:
     dependency: transitive
     description:
@@ -126,7 +126,7 @@ packages:
       name: checked_yaml
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.2"
+    version: "1.0.4"
   chewie:
     dependency: transitive
     description:
@@ -244,7 +244,7 @@ packages:
     description:
       path: dismissible_card
       ref: HEAD
-      resolved-ref: "27c108554a3388f7418e45a8c062782aac7ad1f0"
+      resolved-ref: c7cf58c02d2882a58b44cca258fce30f5a2a7df3
       url: "https://github.com/shimaatech/flutter_packages"
     source: git
     version: "0.0.1"
@@ -337,6 +337,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.1"
+  flutter_inappwebview:
+    dependency: transitive
+    description:
+      name: flutter_inappwebview
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.0+4"
   flutter_svg:
     dependency: transitive
     description:
@@ -373,7 +380,7 @@ packages:
     description:
       path: general_utils
       ref: HEAD
-      resolved-ref: "27c108554a3388f7418e45a8c062782aac7ad1f0"
+      resolved-ref: c7cf58c02d2882a58b44cca258fce30f5a2a7df3
       url: "https://github.com/shimaatech/flutter_packages"
     source: git
     version: "0.0.1"
@@ -649,7 +656,7 @@ packages:
       name: provider
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.3.2+2"
+    version: "4.3.2+3"
   pub_semver:
     dependency: transitive
     description:
@@ -663,7 +670,7 @@ packages:
       name: pubspec_parse
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.5"
+    version: "0.1.7"
   quiver:
     dependency: transitive
     description:
@@ -676,7 +683,7 @@ packages:
     description:
       path: repository
       ref: HEAD
-      resolved-ref: "27c108554a3388f7418e45a8c062782aac7ad1f0"
+      resolved-ref: c7cf58c02d2882a58b44cca258fce30f5a2a7df3
       url: "https://github.com/shimaatech/flutter_packages"
     source: git
     version: "0.0.1"
@@ -706,7 +713,7 @@ packages:
     description:
       path: serializer
       ref: HEAD
-      resolved-ref: "27c108554a3388f7418e45a8c062782aac7ad1f0"
+      resolved-ref: c7cf58c02d2882a58b44cca258fce30f5a2a7df3
       url: "https://github.com/shimaatech/flutter_packages"
     source: git
     version: "0.0.1"
@@ -730,7 +737,7 @@ packages:
       name: simple_animations
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.4.0"
+    version: "2.4.2"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -742,7 +749,7 @@ packages:
       name: source_gen
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.9.9"
+    version: "0.9.10"
   source_span:
     dependency: transitive
     description:
@@ -833,7 +840,7 @@ packages:
       name: timing
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.1+2"
+    version: "0.1.1+3"
   typed_data:
     dependency: transitive
     description:
@@ -958,7 +965,7 @@ packages:
     description:
       path: website_viewer
       ref: HEAD
-      resolved-ref: "27c108554a3388f7418e45a8c062782aac7ad1f0"
+      resolved-ref: c7cf58c02d2882a58b44cca258fce30f5a2a7df3
       url: "https://github.com/shimaatech/flutter_packages"
     source: git
     version: "0.0.1"
