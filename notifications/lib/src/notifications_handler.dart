@@ -36,6 +36,7 @@ class _NotificationsHandlerState extends State<NotificationsHandler> {
   @override
   void initState() {
     super.initState();
+    
     _notificationReceivedSubscription = widget
         .notificationsServices.onNotificationReceived
         .listen(_onNotificationReceived);

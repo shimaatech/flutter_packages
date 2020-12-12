@@ -62,6 +62,8 @@ abstract class MessagingServices {
     notificationClickedSubject.close();
     messageReceivedSubject.close();
   }
+
+  Future<NotificationMessage> getInitialNotification();
 }
 
 class FirebaseMessagingServices extends MessagingServices {
@@ -93,6 +95,7 @@ class FirebaseMessagingServices extends MessagingServices {
         body: remoteMessage.notification.body);
   }
 
+  @override
   Future<NotificationMessage> getInitialNotification() async {
     return _remoteMessageToNotificationMessage(
         await firebaseInstance.getInitialMessage());
