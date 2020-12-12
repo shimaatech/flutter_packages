@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
@@ -64,16 +65,26 @@ abstract class MessagingServices {
   }
 
   Future<NotificationMessage> getInitialNotification();
+
+  Future<void> initialize();
 }
 
 class FirebaseMessagingServices extends MessagingServices {
   FirebaseMessaging firebaseInstance;
 
-  FirebaseMessagingServices(this.firebaseInstance) {
-    _configure();
-  }
+  @override
+  Future<void> initialize() async {
+    if (Platform.isIOS) {
+      /// Update the iOS foreground notification presentation options to allow
+      /// heads up notifications.
+      await FirebaseMessaging.instance
+          .setForegroundNotificationPresentationOptions(
+        alert: true,
+        badge: true,
+        sound: true,
+      );
+    }
 
-  void _configure() {
     FirebaseMessaging.onMessage.listen((event) {
       _logger.d("Message received: $event");
       messageReceivedSubject.add(_remoteMessageToNotificationMessage(event));
