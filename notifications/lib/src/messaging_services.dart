@@ -74,24 +74,27 @@ class FirebaseMessagingServices extends MessagingServices {
   }
 
   void _configure() {
-    firebaseInstance.configure(
-        onMessage: _onMessage,
-        onLaunch: _onLaunchNotification,
-        onResume: _onNotification);
+    FirebaseMessaging.onMessage.listen(_onMessage);
+    FirebaseMessaging.onMessageOpenedApp.listen(_onNotificationOpened);
+
+    // firebaseInstance.configure(
+    //     onMessage: _onMessage,
+    //     onLaunch: _onLaunchNotification,
+    //     onResume: _onNotification);
   }
 
-  Future<void> _onMessage(Map<String, dynamic> message) async {
-    _logger.d("Message received: $message");
-    Map notificationInfo = message['notification'] ?? const {};
-    messageReceivedSubject.add(NotificationMessage(message['data'],
-        title: notificationInfo['title'], body: notificationInfo['body']));
-  }
+  // Future<void> _onMessage(Map<String, dynamic> message) async {
+  //   _logger.d("Message received: $message");
+  //   Map notificationInfo = message['notification'] ?? const {};
+  //   messageReceivedSubject.add(NotificationMessage(message['data'],
+  //       title: notificationInfo['title'], body: notificationInfo['body']));
+  // }
 
-  Future<void> _onNotification(Map<String, dynamic> message) =>
-      _onNotificationClicked(message);
+  // Future<void> _onNotification(Map<String, dynamic> message) =>
+  //     _onNotificationClicked(message);
 
-  Future _onLaunchNotification(Map<String, dynamic> message) =>
-      _onNotificationClicked(message, true);
+  // Future _onLaunchNotification(Map<String, dynamic> message) =>
+  //     _onNotificationClicked(message, true);
 
   @override
   Future<void> subscribeTo(List<String> topics) async {
@@ -109,10 +112,18 @@ class FirebaseMessagingServices extends MessagingServices {
     await Future.wait(futures);
   }
 
-  Future<void> _onNotificationClicked(Map<String, dynamic> message,
-      [isLaunch = false]) async {
-    _logger.d("Notification clicked: $message");
-    notificationClickedSubject.add(
-        NotificationMessage(message['data'], isLaunchNotification: isLaunch));
+  // Future<void> _onNotificationClicked(Map<String, dynamic> message,
+  //     [isLaunch = false]) async {
+  //   _logger.d("Notification clicked: $message");
+  //   notificationClickedSubject.add(
+  //       NotificationMessage(message['data'], isLaunchNotification: isLaunch));
+  // }
+
+  void _onMessage(RemoteMessage event) {
+    _logger.d("Message received: $event");
+  }
+
+  void _onNotificationOpened(RemoteMessage event) {
+    _logger.d("Notification opened: $event");
   }
 }
