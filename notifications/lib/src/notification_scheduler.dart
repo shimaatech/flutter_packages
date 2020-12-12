@@ -27,17 +27,28 @@ abstract class NotificationScheduler {
   Future<void> dispose() async {
     notificationClickedSubject.close();
   }
+
+  Future<void> initialize();
 }
 
 class FlutterLocalNotificationsScheduler extends NotificationScheduler {
   final FlutterLocalNotificationsPlugin notificationsPlugin =
       FlutterLocalNotificationsPlugin();
 
-  final AndroidNotificationChannelDetails androidNotificationChannel;
+  final AndroidNotificationChannel androidNotificationChannel;
+
+  @override
+  Future<void> initialize() async {
+    await notificationsPlugin
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()
+        ?.createNotificationChannel(androidNotificationChannel);
+  }
 
   FlutterLocalNotificationsScheduler(
       InitializationSettings initializationSettings,
       this.androidNotificationChannel) {
+        
     notificationsPlugin.initialize(initializationSettings,
         onSelectNotification: (encodedNotification) async {
       // TODO add fromJson toJson to the NotificationMessage instead of doing
@@ -53,16 +64,6 @@ class FlutterLocalNotificationsScheduler extends NotificationScheduler {
   @override
   Future<void> showNotification(NotificationMessage notification) {
     _logger.d('Showing notification: $notification');
-    var androidPlatformChannelSpecifics = AndroidNotificationDetails(
-        androidNotificationChannel.id,
-        androidNotificationChannel.name,
-        androidNotificationChannel.description,
-        importance: Importance.max,
-        priority: Priority.high);
-    var iOSPlatformChannelSpecifics = IOSNotificationDetails();
-    var platformChannelSpecifics = NotificationDetails(
-        android: androidPlatformChannelSpecifics, iOS: iOSPlatformChannelSpecifics);
-
     // TODO add fromJson toJson to the NotificationMessage instead of doing this
     // manually here
     Map<String, dynamic> notificationData = Map();
@@ -70,7 +71,15 @@ class FlutterLocalNotificationsScheduler extends NotificationScheduler {
     notificationData['title'] = notification.title;
     notificationData['body'] = notification.body;
     return notificationsPlugin.show(
-        0, notification.title, notification.body, platformChannelSpecifics,
+        0, notification.title, notification.body, NotificationDetails(
+          android: AndroidNotificationDetails(
+            androidNotificationChannel.id,
+            androidNotificationChannel.name,
+            androidNotificationChannel.description,
+            importance: Importance.max,
+            priority: Priority.max,
+          ),
+        ),
         payload: jsonEncode(notificationData));
   }
 }
