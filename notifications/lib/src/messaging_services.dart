@@ -14,11 +14,10 @@ class NotificationMessage {
   final Map data;
   final String title;
   final String body;
-  final bool isLaunchNotification;
   final NotificationType type;
 
   NotificationMessage(this.data,
-      {this.title, this.body, this.isLaunchNotification = false})
+      {this.title, this.body})
       : type = getNotificationType(data);
 
   @override
@@ -76,25 +75,8 @@ class FirebaseMessagingServices extends MessagingServices {
   void _configure() {
     FirebaseMessaging.onMessage.listen(_onMessage);
     FirebaseMessaging.onMessageOpenedApp.listen(_onNotificationOpened);
-
-    // firebaseInstance.configure(
-    //     onMessage: _onMessage,
-    //     onLaunch: _onLaunchNotification,
-    //     onResume: _onNotification);
   }
 
-  // Future<void> _onMessage(Map<String, dynamic> message) async {
-  //   _logger.d("Message received: $message");
-  //   Map notificationInfo = message['notification'] ?? const {};
-  //   messageReceivedSubject.add(NotificationMessage(message['data'],
-  //       title: notificationInfo['title'], body: notificationInfo['body']));
-  // }
-
-  // Future<void> _onNotification(Map<String, dynamic> message) =>
-  //     _onNotificationClicked(message);
-
-  // Future _onLaunchNotification(Map<String, dynamic> message) =>
-  //     _onNotificationClicked(message, true);
 
   @override
   Future<void> subscribeTo(List<String> topics) async {
@@ -112,18 +94,15 @@ class FirebaseMessagingServices extends MessagingServices {
     await Future.wait(futures);
   }
 
-  // Future<void> _onNotificationClicked(Map<String, dynamic> message,
-  //     [isLaunch = false]) async {
-  //   _logger.d("Notification clicked: $message");
-  //   notificationClickedSubject.add(
-  //       NotificationMessage(message['data'], isLaunchNotification: isLaunch));
-  // }
-
   void _onMessage(RemoteMessage event) {
     _logger.d("Message received: $event");
+    messageReceivedSubject.add(NotificationMessage(event.data,
+        title: event.notification.title, body: event.notification.body));
   }
 
   void _onNotificationOpened(RemoteMessage event) {
     _logger.d("Notification opened: $event");
+    notificationClickedSubject.add(NotificationMessage(event.data,
+        title: event.notification.title, body: event.notification.body));
   }
 }
