@@ -70,7 +70,9 @@ abstract class MessagingServices {
 }
 
 class FirebaseMessagingServices extends MessagingServices {
-  FirebaseMessaging firebaseInstance;
+  final FirebaseMessaging firebaseInstance;
+
+  FirebaseMessagingServices() : firebaseInstance = FirebaseMessaging.instance;
 
   @override
   Future<void> initialize() async {
