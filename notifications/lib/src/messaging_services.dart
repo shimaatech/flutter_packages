@@ -16,8 +16,7 @@ class NotificationMessage {
   final String body;
   final NotificationType type;
 
-  NotificationMessage(this.data,
-      {this.title, this.body})
+  NotificationMessage(this.data, {this.title, this.body})
       : type = getNotificationType(data);
 
   @override
@@ -73,10 +72,31 @@ class FirebaseMessagingServices extends MessagingServices {
   }
 
   void _configure() {
-    FirebaseMessaging.onMessage.listen(_onMessage);
-    FirebaseMessaging.onMessageOpenedApp.listen(_onNotificationOpened);
+    FirebaseMessaging.onMessage.listen((event) {
+      _logger.d("Message received: $event");
+      messageReceivedSubject.add(_remoteMessageToNotificationMessage(event));
+    });
+    FirebaseMessaging.onMessageOpenedApp.listen((event) {
+      _logger.d("Notification opened: $event");
+      notificationClickedSubject
+          .add(_remoteMessageToNotificationMessage(event));
+    });
   }
 
+  NotificationMessage _remoteMessageToNotificationMessage(
+      RemoteMessage remoteMessage) {
+    if (remoteMessage == null) {
+      return null;
+    }
+    return NotificationMessage(remoteMessage.data,
+        title: remoteMessage.notification.title,
+        body: remoteMessage.notification.body);
+  }
+
+  Future<NotificationMessage> getInitialNotification() async {
+    return _remoteMessageToNotificationMessage(
+        await firebaseInstance.getInitialMessage());
+  }
 
   @override
   Future<void> subscribeTo(List<String> topics) async {
@@ -92,17 +112,5 @@ class FirebaseMessagingServices extends MessagingServices {
     topics.forEach(
         (topic) => futures.add(firebaseInstance.unsubscribeFromTopic(topic)));
     await Future.wait(futures);
-  }
-
-  void _onMessage(RemoteMessage event) {
-    _logger.d("Message received: $event");
-    messageReceivedSubject.add(NotificationMessage(event.data,
-        title: event.notification.title, body: event.notification.body));
-  }
-
-  void _onNotificationOpened(RemoteMessage event) {
-    _logger.d("Notification opened: $event");
-    notificationClickedSubject.add(NotificationMessage(event.data,
-        title: event.notification.title, body: event.notification.body));
   }
 }

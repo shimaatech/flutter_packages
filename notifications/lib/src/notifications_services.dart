@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:logger/logger.dart';
 import 'package:rxdart/rxdart.dart';
@@ -60,7 +61,9 @@ class NotificationsServices {
     }
 
     _notificationReceivedSubject.add(notification);
-    if (_notificationScheduler != null) {
+    // show foreground notification on Android. On IOS this is done using
+    // firebase settings
+    if (Platform.isAndroid && _notificationScheduler != null) {
       // mark that the notification was scheduled using this service
       notification.data[scheduledNotificationKey] = true;
       await _notificationScheduler.showNotification(notification);
