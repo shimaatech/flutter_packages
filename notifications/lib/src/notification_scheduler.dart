@@ -7,6 +7,11 @@ import 'package:rxdart/rxdart.dart';
 
 import 'messaging_services.dart';
 
+// TODO all this is not needed by the new firebase... refactor
+// check https://pub.dev/packages/firebase_messaging/versions/8.0.0-dev.10/example
+// you can use flutter local notifications to show the notification directly
+// in onMessage
+
 Logger _logger = Logger();
 
 abstract class NotificationScheduler {

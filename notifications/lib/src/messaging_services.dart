@@ -67,6 +67,8 @@ abstract class MessagingServices {
   Future<NotificationMessage> getInitialNotification();
 
   Future<void> initialize();
+
+  Future<bool> requestPermissions();
 }
 
 class FirebaseMessagingServices extends MessagingServices {
@@ -96,6 +98,25 @@ class FirebaseMessagingServices extends MessagingServices {
       notificationClickedSubject
           .add(_remoteMessageToNotificationMessage(event));
     });
+  }
+
+  @override
+  Future<bool> requestPermissions() async {
+    // request permissions on iOS (on android no need)
+    if (Platform.isIOS) {
+      final settings = await firebaseInstance.requestPermission(
+        alert: true,
+        announcement: false,
+        badge: true,
+        carPlay: false,
+        criticalAlert: false,
+        provisional: false,
+        sound: true,
+      );
+      return settings.authorizationStatus != AuthorizationStatus.denied;
+    }
+
+    return true;
   }
 
   NotificationMessage _remoteMessageToNotificationMessage(
