@@ -85,9 +85,17 @@ class FirebaseMessagingServices extends MessagingServices {
 
   Future<void> _onMessage(Map<String, dynamic> message) async {
     _logger.d("Message received: $message");
-    Map notificationInfo = message['notification'] ?? const {};
-    messageReceivedSubject.add(NotificationMessage(message['data'],
-        title: notificationInfo['title'], body: notificationInfo['body']));
+
+    // currently on message does nothing.
+    // on android the notification is sent to the channel using the flutter
+    // local notifications
+    // on ios, when the app is on foreground, the notification doesn't show!
+    // waiting for the new release of firebase messaging which allows the
+    // foreground notification to be shown to the user
+
+    // Map notificationInfo = message['notification'] ?? const {};
+    // messageReceivedSubject.add(NotificationMessage(message['data'],
+    //     title: notificationInfo['title'], body: notificationInfo['body']));
   }
 
   Future<void> _onNotification(Map<String, dynamic> message) =>
@@ -115,8 +123,9 @@ class FirebaseMessagingServices extends MessagingServices {
   Future<void> _onNotificationClicked(Map<String, dynamic> message,
       [isLaunch = false]) async {
     _logger.d("Notification clicked: $message");
-    notificationClickedSubject.add(
-        NotificationMessage(message['data'], isLaunchNotification: isLaunch));
+    notificationClickedSubject.add(NotificationMessage(
+        Platform.isAndroid ? message['data'] : message,
+        isLaunchNotification: isLaunch));
   }
 
   Future<bool> requestPermissions() async {
