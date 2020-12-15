@@ -91,21 +91,7 @@ packages:
       name: firebase_messaging
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "8.0.0-dev.11"
-  firebase_messaging_platform_interface:
-    dependency: transitive
-    description:
-      name: firebase_messaging_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.0-dev.7"
-  firebase_messaging_web:
-    dependency: transitive
-    description:
-      name: firebase_messaging_web
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.0-dev.2"
+    version: "7.0.3"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -147,7 +133,7 @@ packages:
     description:
       path: general_utils
       ref: HEAD
-      resolved-ref: c7cf58c02d2882a58b44cca258fce30f5a2a7df3
+      resolved-ref: "09c1479e0f17defcb1dad76c0863ee5fba743a14"
       url: "https://github.com/shimaatech/flutter_packages"
     source: git
     version: "0.0.1"
@@ -228,13 +214,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.24.1"
-  service_worker:
-    dependency: transitive
-    description:
-      name: service_worker
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.2.4"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -315,7 +294,7 @@ packages:
     description:
       path: website_viewer
       ref: HEAD
-      resolved-ref: c7cf58c02d2882a58b44cca258fce30f5a2a7df3
+      resolved-ref: "09c1479e0f17defcb1dad76c0863ee5fba743a14"
       url: "https://github.com/shimaatech/flutter_packages"
     source: git
     version: "0.0.1"
