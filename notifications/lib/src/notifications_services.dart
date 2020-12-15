@@ -19,7 +19,6 @@ class NotificationsServices {
 
   NotificationsServices(this._messagingServices,
       [this._notificationScheduler]) {
-
     _messagingServices.onMessageReceived.listen(_onNotificationReceived);
 
     _messagingServices.onNotificationClicked.listen(_onNotificationClicked);
@@ -30,6 +29,8 @@ class NotificationsServices {
           .listen(_handleScheduledNotification);
     }
 
+    // handle initial notification
+    _messagingServices.getInitialNotification().then(_onNotificationClicked);
   }
 
   final BehaviorSubject<NotificationMessage> _notificationReceivedSubject =
@@ -44,7 +45,6 @@ class NotificationsServices {
   Stream<NotificationMessage> get onNotificationClicked =>
       _notificationClickedSubject.stream;
 
-
   void _handleScheduledNotification(NotificationMessage notification) {
     // handle only notifications that were scheduled using this service
     if (notification.data.containsKey(scheduledNotificationKey)) {
@@ -54,7 +54,6 @@ class NotificationsServices {
   }
 
   Future<void> _onNotificationReceived(NotificationMessage notification) async {
-
     _logger.d('Notification received...');
     if (notification.data == null) {
       return;
