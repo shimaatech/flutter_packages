@@ -74,14 +74,14 @@ abstract class MessagingServices {
 class FirebaseMessagingServices extends MessagingServices {
   final FirebaseMessaging firebaseInstance;
 
-  FirebaseMessagingServices() : firebaseInstance = FirebaseMessaging.instance;
+  FirebaseMessagingServices(this.firebaseInstance);
 
   @override
   Future<void> initialize() async {
     if (Platform.isIOS) {
       /// Update the iOS foreground notification presentation options to allow
       /// heads up notifications.
-      await FirebaseMessaging.instance
+      await firebaseInstance
           .setForegroundNotificationPresentationOptions(
         alert: true,
         badge: true,
