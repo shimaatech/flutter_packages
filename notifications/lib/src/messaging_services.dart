@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
@@ -60,6 +61,8 @@ abstract class MessagingServices {
 
   Future<void> unsubscribeFrom(List<String> topics);
 
+  Future<bool> requestPermissions();
+
   Future<void> dispose() async {
     notificationClickedSubject.close();
     messageReceivedSubject.close();
@@ -114,5 +117,16 @@ class FirebaseMessagingServices extends MessagingServices {
     _logger.d("Notification clicked: $message");
     notificationClickedSubject.add(
         NotificationMessage(message['data'], isLaunchNotification: isLaunch));
+  }
+
+  Future<bool> requestPermissions() async {
+    // request permissions on iOS (on android no need)
+    if (Platform.isIOS) {
+      return (await firebaseInstance
+              .requestNotificationPermissions(IosNotificationSettings())) ??
+          false;
+    }
+
+    return true;
   }
 }
