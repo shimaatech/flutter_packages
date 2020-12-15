@@ -15,11 +15,9 @@ class NotificationMessage {
   final Map data;
   final String title;
   final String body;
-  final bool isLaunchNotification;
   final NotificationType type;
 
-  NotificationMessage(this.data,
-      {this.title, this.body, this.isLaunchNotification = false})
+  NotificationMessage(this.data, {this.title, this.body})
       : type = getNotificationType(data);
 
   @override
@@ -61,48 +59,81 @@ abstract class MessagingServices {
 
   Future<void> unsubscribeFrom(List<String> topics);
 
-  Future<bool> requestPermissions();
-
   Future<void> dispose() async {
     notificationClickedSubject.close();
     messageReceivedSubject.close();
   }
+
+  Future<NotificationMessage> getInitialNotification();
+
+  Future<void> initialize();
+
+  Future<bool> requestPermissions();
 }
 
 class FirebaseMessagingServices extends MessagingServices {
-  FirebaseMessaging firebaseInstance;
+  final FirebaseMessaging firebaseInstance;
 
-  FirebaseMessagingServices(this.firebaseInstance) {
-    _configure();
+  FirebaseMessagingServices() : firebaseInstance = FirebaseMessaging.instance;
+
+  @override
+  Future<void> initialize() async {
+    if (Platform.isIOS) {
+      /// Update the iOS foreground notification presentation options to allow
+      /// heads up notifications.
+      await FirebaseMessaging.instance
+          .setForegroundNotificationPresentationOptions(
+        alert: true,
+        badge: true,
+        sound: true,
+      );
+    }
+
+    FirebaseMessaging.onMessage.listen((event) {
+      _logger.d("Message received: $event");
+      messageReceivedSubject.add(_remoteMessageToNotificationMessage(event));
+    });
+    FirebaseMessaging.onMessageOpenedApp.listen((event) {
+      _logger.d("Notification opened: $event");
+      notificationClickedSubject
+          .add(_remoteMessageToNotificationMessage(event));
+    });
   }
 
-  void _configure() {
-    firebaseInstance.configure(
-        onMessage: _onMessage,
-        onLaunch: _onLaunchNotification,
-        onResume: _onNotification);
+  @override
+  Future<bool> requestPermissions() async {
+    // request permissions on iOS (on android no need)
+    if (Platform.isIOS) {
+      final settings = await firebaseInstance.requestPermission(
+        alert: true,
+        announcement: false,
+        badge: true,
+        carPlay: false,
+        criticalAlert: false,
+        provisional: false,
+        sound: true,
+      );
+      return settings.authorizationStatus != AuthorizationStatus.denied;
+    }
+
+    return true;
   }
 
-  Future<void> _onMessage(Map<String, dynamic> message) async {
-    _logger.d("Message received: $message");
-
-    // currently on message does nothing.
-    // on android the notification is sent to the channel using the flutter
-    // local notifications
-    // on ios, when the app is on foreground, the notification doesn't show!
-    // waiting for the new release of firebase messaging which allows the
-    // foreground notification to be shown to the user
-
-    // Map notificationInfo = message['notification'] ?? const {};
-    // messageReceivedSubject.add(NotificationMessage(message['data'],
-    //     title: notificationInfo['title'], body: notificationInfo['body']));
+  NotificationMessage _remoteMessageToNotificationMessage(
+      RemoteMessage remoteMessage) {
+    if (remoteMessage == null) {
+      return null;
+    }
+    return NotificationMessage(remoteMessage.data,
+        title: remoteMessage.notification.title,
+        body: remoteMessage.notification.body);
   }
 
-  Future<void> _onNotification(Map<String, dynamic> message) =>
-      _onNotificationClicked(message);
-
-  Future _onLaunchNotification(Map<String, dynamic> message) =>
-      _onNotificationClicked(message, true);
+  @override
+  Future<NotificationMessage> getInitialNotification() async {
+    return _remoteMessageToNotificationMessage(
+        await firebaseInstance.getInitialMessage());
+  }
 
   @override
   Future<void> subscribeTo(List<String> topics) async {
@@ -118,24 +149,5 @@ class FirebaseMessagingServices extends MessagingServices {
     topics.forEach(
         (topic) => futures.add(firebaseInstance.unsubscribeFromTopic(topic)));
     await Future.wait(futures);
-  }
-
-  Future<void> _onNotificationClicked(Map<String, dynamic> message,
-      [isLaunch = false]) async {
-    _logger.d("Notification clicked: $message");
-    notificationClickedSubject.add(NotificationMessage(
-        Platform.isAndroid ? message['data'] : message,
-        isLaunchNotification: isLaunch));
-  }
-
-  Future<bool> requestPermissions() async {
-    // request permissions on iOS (on android no need)
-    if (Platform.isIOS) {
-      return (await firebaseInstance
-              .requestNotificationPermissions(IosNotificationSettings())) ??
-          false;
-    }
-
-    return true;
   }
 }
