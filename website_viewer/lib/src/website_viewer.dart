@@ -43,6 +43,7 @@ class _WebsiteViewerState extends State<WebsiteViewer> {
               crossPlatform: InAppWebViewOptions(debuggingEnabled: false),
             ),
             onProgressChanged: (controller, progress) => _setProgress(progress),
+            
           ),
         ),
       ],
