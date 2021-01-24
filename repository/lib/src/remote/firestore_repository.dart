@@ -24,7 +24,7 @@ class FirestoreRepository<E extends Entity<String>>
 
   @override
   Future<void> delete(String id) {
-    return collection.document(id).delete();
+    return collection.doc(id).delete();
   }
 
   @override
