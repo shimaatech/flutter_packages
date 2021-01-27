@@ -112,6 +112,8 @@ class SystemMessageCard extends StatelessWidget {
     this.onMessageLoading,
     this.navigatorHelper,
     this.dismissOnNavigation = true,
+    this.fetchInterval = const Duration(hours: 24),
+    this.langCode,
     Key key = const Key('__system_message'),
   }) : super(key: key);
 
@@ -122,12 +124,14 @@ class SystemMessageCard extends StatelessWidget {
   final NavigatorHelper navigatorHelper;
   final bool dismissOnNavigation;
   final Logger logger = Logger();
+  final Duration fetchInterval;
+  final String langCode;
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<SystemMessage>(
-      future: systemMessagesService
-          .getLatestUnexpiredMessage(SystemMessageType.normal),
+      future: systemMessagesService.getLatestUnexpiredMessage(
+          SystemMessageType.normal, langCode, fetchInterval),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           logger.e('Error while loading system messages: ${snapshot.error}');
@@ -167,9 +171,11 @@ class SystemMessageDialog {
     NavigatorHelper navigatorHelper,
     bool dismissOnNavigation = true,
     String okButtonText = 'OK',
+    Duration fetchInterval = const Duration(hours: 24),
+    String langCode,
   }) async {
-    SystemMessage message =
-        await service.getLatestUnexpiredMessage(SystemMessageType.dialog);
+    SystemMessage message = await service.getLatestUnexpiredMessage(
+        SystemMessageType.dialog, langCode, fetchInterval);
     if (message == null) {
       return;
     }

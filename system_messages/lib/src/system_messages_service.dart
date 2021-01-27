@@ -19,31 +19,30 @@ class SystemMessagesService {
   static const String lastCheckKey = 'systemMessageService.lastCheck';
   static const String lastMessageKey = 'systemMessageService.lastMessage';
 
-  /// interval in days for fetching from firestore
-  static const int defaultFetchDaysInterval = 1;
-
   // TODO I think that langCode should not be passed to constructor... It should
   // be passed to the method that fetches the messages
-  SystemMessagesService(this.firestore, this.storage, this.langCode,
-      this.appsIds, this.appVersion, this.installedBefore,
-      {this.fetchDaysInterval = defaultFetchDaysInterval,
-      this.testMode = false});
+  SystemMessagesService(
+    this.firestore,
+    this.storage,
+    this.appsIds,
+    this.appVersion,
+    this.installedBefore, {
+    this.testMode = false,
+  });
 
   final FirebaseFirestore firestore;
   final LocalStorage storage;
-  final String langCode;
   final List<String> appsIds;
   final double appVersion;
   final bool testMode;
-  final int fetchDaysInterval;
   final DateTime installedBefore;
   final JsonConverter<DateTime, String> dateConverter = UtcIsoDateConverter();
 
   Future<SystemMessage> getLatestUnexpiredMessage(
-      SystemMessageType type) async {
+      SystemMessageType type, String langCode, Duration fetchInterval) async {
     // fetch once a day only because we may retrieve many documents due to
     // firestore queries limitation
-    if (!needToFetch()) {
+    if (!needToFetch(fetchInterval)) {
       return getLastMessage(type);
     }
 
@@ -130,14 +129,14 @@ class SystemMessagesService {
         .data;
   }
 
-  bool needToFetch() {
+  bool needToFetch(Duration fetchInterval) {
     if (testMode) {
       // always fetch in test mode
       return true;
     }
     DateTime lastCheckTime = storage.get<DateTime>(lastCheckKey);
     return lastCheckTime == null ||
-        DateTime.now().difference(lastCheckTime).inDays >= fetchDaysInterval;
+        DateTime.now().difference(lastCheckTime) >= fetchInterval;
   }
 
   Future<void> markFetched() {
