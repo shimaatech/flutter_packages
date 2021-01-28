@@ -189,6 +189,7 @@ class SystemMessageDialog {
 
     AwesomeDialog dialog = AwesomeDialog(
       context: context,
+      dialogBackgroundColor: backgroundColor,
       dialogType: DialogType.NO_HEADER,
       btnOk: RaisedButton(
         child: Text(okButtonText),
