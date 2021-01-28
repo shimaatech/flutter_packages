@@ -28,6 +28,7 @@ class DismissibleMessage extends StatefulWidget {
     this.dismissible = true,
     this.onDismiss,
     this.backgroundColor,
+    this.linkColor,
     this.navigatorHelper,
     this.dismissOnNavigation = true,
   }) : super(key: key);
@@ -36,6 +37,7 @@ class DismissibleMessage extends StatefulWidget {
   final bool dismissible;
   final VoidCallback onDismiss;
   final Color backgroundColor;
+  final Color linkColor;
   final NavigatorHelper navigatorHelper;
   final bool dismissOnNavigation;
 
@@ -72,6 +74,7 @@ class _DismissibleMessageState extends State<DismissibleMessage> {
       backgroundColor: widget.message.backgroundColor != null
           ? Color(widget.message.backgroundColor)
           : widget.backgroundColor,
+      linkColor: widget.linkColor,
       onCardClick: () =>
           handleClickEvent(context, widget.message.cardClickSpec),
     );
@@ -109,6 +112,7 @@ class SystemMessageCard extends StatelessWidget {
     this.systemMessagesService,
     this.dismissible = true,
     this.backgroundColor,
+    this.linkColor,
     this.onMessageLoading,
     this.navigatorHelper,
     this.dismissOnNavigation = true,
@@ -120,6 +124,7 @@ class SystemMessageCard extends StatelessWidget {
   final SystemMessagesService systemMessagesService;
   final bool dismissible;
   final Color backgroundColor;
+  final Color linkColor;
   final Widget onMessageLoading;
   final NavigatorHelper navigatorHelper;
   final bool dismissOnNavigation;
@@ -145,6 +150,7 @@ class SystemMessageCard extends StatelessWidget {
             onDismiss: () => systemMessagesService.dismissMessage(message.id),
             navigatorHelper: navigatorHelper,
             backgroundColor: backgroundColor,
+            linkColor: linkColor,
             dismissOnNavigation: dismissOnNavigation,
           );
         } else {
@@ -168,6 +174,7 @@ class SystemMessageDialog {
     @required BuildContext context,
     @required SystemMessagesService service,
     Color backgroundColor,
+    Color linkColor,
     NavigatorHelper navigatorHelper,
     bool dismissOnNavigation = true,
     String okButtonText = 'OK',
@@ -192,6 +199,7 @@ class SystemMessageDialog {
         key: key,
         navigatorHelper: navigatorHelper,
         backgroundColor: backgroundColor,
+        linkColor: linkColor,
         dismissible: false,
         dismissOnNavigation: true,
         onDismiss: () => dismissMessage(context, service, message.id),
