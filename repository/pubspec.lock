@@ -448,7 +448,7 @@ packages:
     description:
       path: serializer
       ref: HEAD
-      resolved-ref: "66a42d3467b248f1cb714068a69cc9ed397cb275"
+      resolved-ref: "8b88cc4e158a963375724a24157815b4c96e3625"
       url: "https://github.com/shimaatech/flutter_packages"
     source: git
     version: "0.0.1"
