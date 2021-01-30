@@ -38,6 +38,7 @@ mixin _$StringList {
   List<String> get data;
 
   Map<String, dynamic> toJson();
+  @JsonKey(ignore: true)
   $StringListCopyWith<StringList> get copyWith;
 }
 
@@ -125,6 +126,7 @@ class _$_StringList implements _StringList {
   int get hashCode =>
       runtimeType.hashCode ^ const DeepCollectionEquality().hash(data);
 
+  @JsonKey(ignore: true)
   @override
   _$StringListCopyWith<_StringList> get copyWith =>
       __$StringListCopyWithImpl<_StringList>(this, _$identity);
@@ -144,6 +146,7 @@ abstract class _StringList implements StringList {
   @override
   List<String> get data;
   @override
+  @JsonKey(ignore: true)
   _$StringListCopyWith<_StringList> get copyWith;
 }
 
@@ -177,6 +180,7 @@ mixin _$IntList {
   List<int> get data;
 
   Map<String, dynamic> toJson();
+  @JsonKey(ignore: true)
   $IntListCopyWith<IntList> get copyWith;
 }
 
@@ -261,6 +265,7 @@ class _$_IntList implements _IntList {
   int get hashCode =>
       runtimeType.hashCode ^ const DeepCollectionEquality().hash(data);
 
+  @JsonKey(ignore: true)
   @override
   _$IntListCopyWith<_IntList> get copyWith =>
       __$IntListCopyWithImpl<_IntList>(this, _$identity);
@@ -279,6 +284,7 @@ abstract class _IntList implements IntList {
   @override
   List<int> get data;
   @override
+  @JsonKey(ignore: true)
   _$IntListCopyWith<_IntList> get copyWith;
 }
 
@@ -312,6 +318,7 @@ mixin _$DoubleList {
   List<double> get data;
 
   Map<String, dynamic> toJson();
+  @JsonKey(ignore: true)
   $DoubleListCopyWith<DoubleList> get copyWith;
 }
 
@@ -399,6 +406,7 @@ class _$_DoubleList implements _DoubleList {
   int get hashCode =>
       runtimeType.hashCode ^ const DeepCollectionEquality().hash(data);
 
+  @JsonKey(ignore: true)
   @override
   _$DoubleListCopyWith<_DoubleList> get copyWith =>
       __$DoubleListCopyWithImpl<_DoubleList>(this, _$identity);
@@ -418,5 +426,6 @@ abstract class _DoubleList implements DoubleList {
   @override
   List<double> get data;
   @override
+  @JsonKey(ignore: true)
   _$DoubleListCopyWith<_DoubleList> get copyWith;
 }

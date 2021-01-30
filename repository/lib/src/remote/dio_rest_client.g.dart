@@ -98,7 +98,6 @@ class __DioRestClient implements _DioRestClient {
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(entity?.toJson() ?? <String, dynamic>{});
-    _data.removeWhere((k, v) => v == null);
     await _dio.request<void>('/',
         queryParameters: queryParameters,
         options: RequestOptions(
