@@ -24,7 +24,7 @@ class SystemMessagesService {
   SystemMessagesService(
     this.firestore,
     this.storage,
-    this.appsIds,
+    this.package,
     this.appVersion,
     this.installedBefore, {
     this.testMode = false,
@@ -32,18 +32,29 @@ class SystemMessagesService {
 
   final FirebaseFirestore firestore;
   final LocalStorage storage;
-  final List<String> appsIds;
+  final String package;
   final double appVersion;
   final bool testMode;
   final DateTime installedBefore;
   final JsonConverter<DateTime, String> dateConverter = UtcIsoDateConverter();
 
+  List<String> getPackages(List<String> additionalPackages) {
+    if (additionalPackages == null) {
+      return [package];
+    }
+    return additionalPackages + [package];
+  }
+
   Future<SystemMessage> getLatestUnexpiredMessage(
-      SystemMessageType type, String langCode, Duration fetchInterval) async {
-    // fetch once a day only because we may retrieve many documents due to
-    // firestore queries limitation
+    SystemMessageType type,
+    String langCode,
+    Duration fetchInterval, {
+    List<String> additionalPackages = const [],
+  }) async {
+    final packages = getPackages(additionalPackages);
+
     if (!needToFetch(fetchInterval)) {
-      return getLastMessage(type);
+      return getLastMessage(type, packages);
     }
 
     // get one non-expired message only
@@ -52,7 +63,7 @@ class SystemMessagesService {
             .where('expirationTime', isGreaterThanOrEqualTo: DateTime.now())
             .where('langCode', isEqualTo: langCode)
             .where('type', isEqualTo: describeEnum(type))
-            .where('package', whereIn: appsIds)
+            .where('package', whereIn: packages)
             .where('testMode', isEqualTo: testMode)
             .limit(20)
             .get())
@@ -83,18 +94,19 @@ class SystemMessagesService {
       // we check the app version here and not in the query because firestore
       // queries do not allow having multiple whereEqualTo queries on different
       // fields
-      if (isValidMessage(message)) {
+      if (isValidMessage(message, packages)) {
         // save last message (because we don't always fetch from firebase)
         return saveLastMessage(message);
       }
     }
-    return getLastMessage(type);
+    return getLastMessage(type, additionalPackages);
   }
 
-  bool isValidMessage(SystemMessage message) =>
+  bool isValidMessage(SystemMessage message, List<String> packages) =>
       message != null &&
       !isMessageDismissed(message) &&
       isApplicableForAppVersion(message) &&
+      isApplicableForPackages(message, packages) &&
       !isExpired(message) &&
       isStartTimeValid(message) &&
       isInstalledBeforeValid(message);
@@ -149,6 +161,10 @@ class SystemMessagesService {
         appVersion <= message.maxAppVersion;
   }
 
+  bool isApplicableForPackages(SystemMessage message, List<String> packages) {
+    return message.appsIds.any((appId) => packages.contains(appId));
+  }
+
   /// save last message so that it will be shown to the user if not dismissed
   /// because we don't always fetch messages from firestore
   Future<SystemMessage> saveLastMessage(SystemMessage message) async {
@@ -158,10 +174,11 @@ class SystemMessagesService {
   }
 
   /// return last message if is applicable and not expired or dismissed yet
-  Future<SystemMessage> getLastMessage(SystemMessageType type) async {
+  Future<SystemMessage> getLastMessage(
+      SystemMessageType type, List<String> packages) async {
     String key = getMessageStorageKey(type);
     SystemMessage message = storage.get<SystemMessage>(key);
-    if (isValidMessage(message)) {
+    if (isValidMessage(message, packages)) {
       return message;
     } else {
       if (message != null) {
