@@ -119,7 +119,8 @@ class SystemMessageCard extends StatelessWidget {
     this.fetchInterval = const Duration(hours: 24),
     this.langCode,
     this.additionalPackages,
-  });
+    Key key = const Key('__system_message'),
+  }): super(key: key);
 
   final SystemMessagesService systemMessagesService;
   final bool dismissible;
