@@ -16,10 +16,7 @@ enum NavigationType {
   rate,
 }
 
-enum SystemMessageType {
-  normal,
-  dialog
-}
+enum SystemMessageType { normal, dialog }
 
 @freezed
 abstract class SystemMessageClickSpec with _$SystemMessageClickSpec {
@@ -29,14 +26,14 @@ abstract class SystemMessageClickSpec with _$SystemMessageClickSpec {
     Map<String, dynamic> args,
   }) = _SystemMessageClickSpec;
 
-  factory SystemMessageClickSpec.fromJson(Map<String, dynamic> json) => _$SystemMessageClickSpecFromJson(json);
+  factory SystemMessageClickSpec.fromJson(Map<String, dynamic> json) =>
+      _$SystemMessageClickSpecFromJson(json);
 
-    static final Serializer<SystemMessageClickSpec> serializer = Serializer(
+  static final Serializer<SystemMessageClickSpec> serializer = Serializer(
     (obj) => obj.toJson(),
     (json) => SystemMessageClickSpec.fromJson(json),
   );
 }
-
 
 @freezed
 abstract class SystemMessageImage with _$SystemMessageImage {
@@ -46,23 +43,24 @@ abstract class SystemMessageImage with _$SystemMessageImage {
     double height,
   }) = _SystemMessageImage;
 
-  factory SystemMessageImage.fromJson(Map<String, dynamic> json) => _$SystemMessageImageFromJson(json);
+  factory SystemMessageImage.fromJson(Map<String, dynamic> json) =>
+      _$SystemMessageImageFromJson(json);
 
-    static final Serializer<SystemMessageImage> serializer = Serializer(
+  static final Serializer<SystemMessageImage> serializer = Serializer(
     (obj) => obj.toJson(),
     (json) => SystemMessageImage.fromJson(json),
   );
 }
 
 @freezed
-abstract class SystemMessage extends Entity<String>  with _$SystemMessage {
+abstract class SystemMessage extends Entity<String> with _$SystemMessage {
   factory SystemMessage({
     String id,
     String title,
     String content,
     String langCode,
     SystemMessageType type,
-    List<String> appsIds,
+    String package,
     double minAppVersion,
     double maxAppVersion,
     bool testMode,
@@ -78,9 +76,10 @@ abstract class SystemMessage extends Entity<String>  with _$SystemMessage {
     @UtcIsoDateConverter() DateTime installedBefore,
   }) = _SystemMessage;
 
-  factory SystemMessage.fromJson(Map<String, dynamic> json) => _$SystemMessageFromJson(json);
+  factory SystemMessage.fromJson(Map<String, dynamic> json) =>
+      _$SystemMessageFromJson(json);
 
-    static final Serializer<SystemMessage> serializer = Serializer(
+  static final Serializer<SystemMessage> serializer = Serializer(
     (obj) => obj.toJson(),
     (json) => SystemMessage.fromJson(json),
   );

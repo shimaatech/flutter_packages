@@ -44,6 +44,7 @@ mixin _$SystemMessageClickSpec {
   Map<String, dynamic> get args;
 
   Map<String, dynamic> toJson();
+  @JsonKey(ignore: true)
   $SystemMessageClickSpecCopyWith<SystemMessageClickSpec> get copyWith;
 }
 
@@ -160,6 +161,7 @@ class _$_SystemMessageClickSpec implements _SystemMessageClickSpec {
       const DeepCollectionEquality().hash(url) ^
       const DeepCollectionEquality().hash(args);
 
+  @JsonKey(ignore: true)
   @override
   _$SystemMessageClickSpecCopyWith<_SystemMessageClickSpec> get copyWith =>
       __$SystemMessageClickSpecCopyWithImpl<_SystemMessageClickSpec>(
@@ -187,6 +189,7 @@ abstract class _SystemMessageClickSpec implements SystemMessageClickSpec {
   @override
   Map<String, dynamic> get args;
   @override
+  @JsonKey(ignore: true)
   _$SystemMessageClickSpecCopyWith<_SystemMessageClickSpec> get copyWith;
 }
 
@@ -224,6 +227,7 @@ mixin _$SystemMessageImage {
   double get height;
 
   Map<String, dynamic> toJson();
+  @JsonKey(ignore: true)
   $SystemMessageImageCopyWith<SystemMessageImage> get copyWith;
 }
 
@@ -333,6 +337,7 @@ class _$_SystemMessageImage implements _SystemMessageImage {
       const DeepCollectionEquality().hash(width) ^
       const DeepCollectionEquality().hash(height);
 
+  @JsonKey(ignore: true)
   @override
   _$SystemMessageImageCopyWith<_SystemMessageImage> get copyWith =>
       __$SystemMessageImageCopyWithImpl<_SystemMessageImage>(this, _$identity);
@@ -357,6 +362,7 @@ abstract class _SystemMessageImage implements SystemMessageImage {
   @override
   double get height;
   @override
+  @JsonKey(ignore: true)
   _$SystemMessageImageCopyWith<_SystemMessageImage> get copyWith;
 }
 
@@ -375,7 +381,7 @@ class _$SystemMessageTearOff {
       String content,
       String langCode,
       SystemMessageType type,
-      List<String> appsIds,
+      String package,
       double minAppVersion,
       double maxAppVersion,
       bool testMode,
@@ -395,7 +401,7 @@ class _$SystemMessageTearOff {
       content: content,
       langCode: langCode,
       type: type,
-      appsIds: appsIds,
+      package: package,
       minAppVersion: minAppVersion,
       maxAppVersion: maxAppVersion,
       testMode: testMode,
@@ -429,7 +435,7 @@ mixin _$SystemMessage {
   String get content;
   String get langCode;
   SystemMessageType get type;
-  List<String> get appsIds;
+  String get package;
   double get minAppVersion;
   double get maxAppVersion;
   bool get testMode;
@@ -448,6 +454,7 @@ mixin _$SystemMessage {
   DateTime get installedBefore;
 
   Map<String, dynamic> toJson();
+  @JsonKey(ignore: true)
   $SystemMessageCopyWith<SystemMessage> get copyWith;
 }
 
@@ -462,7 +469,7 @@ abstract class $SystemMessageCopyWith<$Res> {
       String content,
       String langCode,
       SystemMessageType type,
-      List<String> appsIds,
+      String package,
       double minAppVersion,
       double maxAppVersion,
       bool testMode,
@@ -499,7 +506,7 @@ class _$SystemMessageCopyWithImpl<$Res>
     Object content = freezed,
     Object langCode = freezed,
     Object type = freezed,
-    Object appsIds = freezed,
+    Object package = freezed,
     Object minAppVersion = freezed,
     Object maxAppVersion = freezed,
     Object testMode = freezed,
@@ -520,7 +527,7 @@ class _$SystemMessageCopyWithImpl<$Res>
       content: content == freezed ? _value.content : content as String,
       langCode: langCode == freezed ? _value.langCode : langCode as String,
       type: type == freezed ? _value.type : type as SystemMessageType,
-      appsIds: appsIds == freezed ? _value.appsIds : appsIds as List<String>,
+      package: package == freezed ? _value.package : package as String,
       minAppVersion: minAppVersion == freezed
           ? _value.minAppVersion
           : minAppVersion as double,
@@ -609,7 +616,7 @@ abstract class _$SystemMessageCopyWith<$Res>
       String content,
       String langCode,
       SystemMessageType type,
-      List<String> appsIds,
+      String package,
       double minAppVersion,
       double maxAppVersion,
       bool testMode,
@@ -652,7 +659,7 @@ class __$SystemMessageCopyWithImpl<$Res>
     Object content = freezed,
     Object langCode = freezed,
     Object type = freezed,
-    Object appsIds = freezed,
+    Object package = freezed,
     Object minAppVersion = freezed,
     Object maxAppVersion = freezed,
     Object testMode = freezed,
@@ -673,7 +680,7 @@ class __$SystemMessageCopyWithImpl<$Res>
       content: content == freezed ? _value.content : content as String,
       langCode: langCode == freezed ? _value.langCode : langCode as String,
       type: type == freezed ? _value.type : type as SystemMessageType,
-      appsIds: appsIds == freezed ? _value.appsIds : appsIds as List<String>,
+      package: package == freezed ? _value.package : package as String,
       minAppVersion: minAppVersion == freezed
           ? _value.minAppVersion
           : minAppVersion as double,
@@ -718,7 +725,7 @@ class _$_SystemMessage implements _SystemMessage {
       this.content,
       this.langCode,
       this.type,
-      this.appsIds,
+      this.package,
       this.minAppVersion,
       this.maxAppVersion,
       this.testMode,
@@ -747,7 +754,7 @@ class _$_SystemMessage implements _SystemMessage {
   @override
   final SystemMessageType type;
   @override
-  final List<String> appsIds;
+  final String package;
   @override
   final double minAppVersion;
   @override
@@ -780,7 +787,7 @@ class _$_SystemMessage implements _SystemMessage {
 
   @override
   String toString() {
-    return 'SystemMessage(id: $id, title: $title, content: $content, langCode: $langCode, type: $type, appsIds: $appsIds, minAppVersion: $minAppVersion, maxAppVersion: $maxAppVersion, testMode: $testMode, linkText: $linkText, titleIcon: $titleIcon, backgroundColor: $backgroundColor, image: $image, titleIconClickSpec: $titleIconClickSpec, linkClickSpec: $linkClickSpec, cardClickSpec: $cardClickSpec, expirationTime: $expirationTime, startTime: $startTime, installedBefore: $installedBefore)';
+    return 'SystemMessage(id: $id, title: $title, content: $content, langCode: $langCode, type: $type, package: $package, minAppVersion: $minAppVersion, maxAppVersion: $maxAppVersion, testMode: $testMode, linkText: $linkText, titleIcon: $titleIcon, backgroundColor: $backgroundColor, image: $image, titleIconClickSpec: $titleIconClickSpec, linkClickSpec: $linkClickSpec, cardClickSpec: $cardClickSpec, expirationTime: $expirationTime, startTime: $startTime, installedBefore: $installedBefore)';
   }
 
   @override
@@ -799,9 +806,9 @@ class _$_SystemMessage implements _SystemMessage {
                     .equals(other.langCode, langCode)) &&
             (identical(other.type, type) ||
                 const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.appsIds, appsIds) ||
+            (identical(other.package, package) ||
                 const DeepCollectionEquality()
-                    .equals(other.appsIds, appsIds)) &&
+                    .equals(other.package, package)) &&
             (identical(other.minAppVersion, minAppVersion) ||
                 const DeepCollectionEquality()
                     .equals(other.minAppVersion, minAppVersion)) &&
@@ -850,7 +857,7 @@ class _$_SystemMessage implements _SystemMessage {
       const DeepCollectionEquality().hash(content) ^
       const DeepCollectionEquality().hash(langCode) ^
       const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(appsIds) ^
+      const DeepCollectionEquality().hash(package) ^
       const DeepCollectionEquality().hash(minAppVersion) ^
       const DeepCollectionEquality().hash(maxAppVersion) ^
       const DeepCollectionEquality().hash(testMode) ^
@@ -865,6 +872,7 @@ class _$_SystemMessage implements _SystemMessage {
       const DeepCollectionEquality().hash(startTime) ^
       const DeepCollectionEquality().hash(installedBefore);
 
+  @JsonKey(ignore: true)
   @override
   _$SystemMessageCopyWith<_SystemMessage> get copyWith =>
       __$SystemMessageCopyWithImpl<_SystemMessage>(this, _$identity);
@@ -882,7 +890,7 @@ abstract class _SystemMessage implements SystemMessage {
       String content,
       String langCode,
       SystemMessageType type,
-      List<String> appsIds,
+      String package,
       double minAppVersion,
       double maxAppVersion,
       bool testMode,
@@ -911,7 +919,7 @@ abstract class _SystemMessage implements SystemMessage {
   @override
   SystemMessageType get type;
   @override
-  List<String> get appsIds;
+  String get package;
   @override
   double get minAppVersion;
   @override
@@ -942,5 +950,6 @@ abstract class _SystemMessage implements SystemMessage {
   @UtcIsoDateConverter()
   DateTime get installedBefore;
   @override
+  @JsonKey(ignore: true)
   _$SystemMessageCopyWith<_SystemMessage> get copyWith;
 }

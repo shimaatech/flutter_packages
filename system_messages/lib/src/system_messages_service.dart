@@ -162,7 +162,7 @@ class SystemMessagesService {
   }
 
   bool isApplicableForPackages(SystemMessage message, List<String> packages) {
-    return message.appsIds.any((appId) => packages.contains(appId));
+    return packages.contains(message.package);
   }
 
   /// save last message so that it will be shown to the user if not dismissed
