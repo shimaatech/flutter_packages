@@ -119,8 +119,7 @@ class SystemMessageCard extends StatelessWidget {
     this.fetchInterval = const Duration(hours: 24),
     this.langCode,
     this.additionalPackages,
-    Key key = const Key('__system_message'),
-  }): super(key: key);
+  });
 
   final SystemMessagesService systemMessagesService;
   final bool dismissible;
@@ -150,7 +149,7 @@ class SystemMessageCard extends StatelessWidget {
         if (snapshot.hasData && snapshot.data != null) {
           SystemMessage message = snapshot.data;
           return DismissibleMessage(
-            key: key,
+            key: Key(message.id),
             message: message,
             dismissible: dismissible,
             onDismiss: () => systemMessagesService.dismissMessage(message.id),
@@ -168,7 +167,6 @@ class SystemMessageCard extends StatelessWidget {
 }
 
 class SystemMessageDialog {
-  static const Key key = const Key('__system_message_dialog');
 
   static void dismissMessage(
       BuildContext context, SystemMessagesService service, String messageId) {
@@ -204,7 +202,7 @@ class SystemMessageDialog {
       ),
       body: DismissibleMessage(
         message: message,
-        key: key,
+        key: Key(message.id),
         navigatorHelper: navigatorHelper,
         backgroundColor: backgroundColor,
         linkColor: linkColor,
