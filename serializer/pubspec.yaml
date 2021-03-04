@@ -1,7 +1,7 @@
 name: serializer
 publish_to: none
 description: json serializer
-version: 0.0.1
+version: 0.0.2
 author:
 homepage:
 
