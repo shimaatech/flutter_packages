@@ -52,9 +52,9 @@ class FirestoreRepository<E extends Entity<String>>
   }
 
   @override
-  Future<E> findById(String id) async {
+  Future<E?> findById(String id) async {
     DocumentSnapshot snapshot = await getSnapshotById(id);
-    return snapshot.exists ? serializer.deserialize(snapshot.data()) : null;
+    return snapshot.exists ? serializer.deserialize(snapshot.data()!) : null;
   }
 
   // TODO maybe list should take a query instead of filter...
@@ -85,7 +85,7 @@ class FirestoreRepository<E extends Entity<String>>
     }
     return (await snapshotsFuture)
         .docs
-        .map((doc) => serializer.deserialize(doc.data()))
+        .map((doc) => serializer.deserialize(doc.data()!))
         .toList();
   }
 
