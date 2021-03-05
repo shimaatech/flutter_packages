@@ -5,8 +5,8 @@ import 'package:flutter_html/style.dart';
 
 class DismissibleCard extends StatefulWidget {
   DismissibleCard({
-    @required Key key,
-    @required this.content,
+    required this.key,
+    required this.content,
     this.title,
     this.isDismissible = true,
     this.onDismiss,
@@ -24,20 +24,21 @@ class DismissibleCard extends StatefulWidget {
     this.imageHeight = 80,
   }) : super(key: key);
 
-  final String title;
+  final Key key;
+  final String? title;
   final String content;
   final bool isDismissible;
-  final VoidCallback onDismiss;
-  final String linkText;
+  final VoidCallback? onDismiss;
+  final String? linkText;
   final Color linkColor;
-  final IconData titleIconData;
-  final VoidCallback onTitleIconClick;
-  final VoidCallback onLinkClick;
-  final VoidCallback onCardClick;
-  final String imageUrl;
-  final Color backgroundColor;
-  final Color titleColor;
-  final Color contentColor;
+  final IconData? titleIconData;
+  final VoidCallback? onTitleIconClick;
+  final VoidCallback? onLinkClick;
+  final VoidCallback? onCardClick;
+  final String? imageUrl;
+  final Color? backgroundColor;
+  final Color? titleColor;
+  final Color? contentColor;
   final double imageWidth;
   final double imageHeight;
 
@@ -46,13 +47,7 @@ class DismissibleCard extends StatefulWidget {
 }
 
 class _DismissibleCardState extends State<DismissibleCard> {
-  bool isDismissed;
-
-  @override
-  void initState() {
-    super.initState();
-    isDismissed = false;
-  }
+  bool isDismissed = false;
 
   void onDismiss() {
     widget.onDismiss?.call();
@@ -116,16 +111,17 @@ class _DismissibleCardState extends State<DismissibleCard> {
   }
 
   buildFooter(BuildContext context) {
-    if (widget.linkText == null) {
+    final linkText = widget.linkText;
+    if (linkText == null) {
       return Container();
     }
-    return FlatButton(
+    return TextButton(
       child: Text(
-        widget.linkText,
+        linkText,
         style: Theme.of(context)
             .textTheme
             .bodyText1
-            .copyWith(color: widget.linkColor),
+            ?.copyWith(color: widget.linkColor),
       ),
       onPressed: widget.onLinkClick,
     );

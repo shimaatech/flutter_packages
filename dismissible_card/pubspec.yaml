@@ -1,18 +1,19 @@
 name: dismissible_card
+publish_to: none
 description: Dismissible Widget
 version: 0.0.1
 author:
 homepage:
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
-  flutter_html: ^1.2.0
-  cached_network_image: ^2.5.0
+  flutter_html:
+  cached_network_image:
 
 dev_dependencies:
   flutter_test:
