@@ -29,7 +29,7 @@ class VerbalTimeLocalizations {
 
   static VerbalTimeLocalizations of(BuildContext context) {
     return Localizations.of<VerbalTimeLocalizations>(
-        context, VerbalTimeLocalizations);
+        context, VerbalTimeLocalizations)!;
   }
 
   static const List<Locale> supportedLocales = const [
