@@ -9,8 +9,8 @@ class WebsiteViewer extends StatefulWidget {
 
   final String url;
 
-  final WebsiteViewerErrorCallback onLoadError;
-  final WebsiteViewerErrorCallback onLoadHttpError;
+  final WebsiteViewerErrorCallback? onLoadError;
+  final WebsiteViewerErrorCallback? onLoadHttpError;
 
   @override
   _WebsiteViewerState createState() => _WebsiteViewerState();
@@ -29,21 +29,16 @@ class _WebsiteViewerState extends State<WebsiteViewer> {
         Expanded(
           child: InAppWebView(
             onLoadError: (controller, url, code, message) {
-              if (widget.onLoadError != null) {
-                widget.onLoadError(code, message);
-              }
+              widget.onLoadError?.call(code, message);
             },
-            onLoadHttpError: (controller, url, code, message) {
-              if (widget.onLoadHttpError != null) {
-                widget.onLoadHttpError(code, message);
-              }
+            onLoadHttpError: (controller, url, code, message) {              
+                widget.onLoadHttpError?.call(code, message);
             },
-            initialUrl: widget.url,
+            initialUrlRequest: URLRequest(url: Uri.dataFromString(widget.url)),
             initialOptions: InAppWebViewGroupOptions(
-              crossPlatform: InAppWebViewOptions(debuggingEnabled: false),
+              crossPlatform: InAppWebViewOptions(),
             ),
             onProgressChanged: (controller, progress) => _setProgress(progress),
-            
           ),
         ),
       ],
