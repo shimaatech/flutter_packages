@@ -31,6 +31,14 @@ abstract class NotificationScheduler {
   Future<void> initialize();
 }
 
+class AndroidNotificationChannel {
+  const AndroidNotificationChannel(this.id, this.name, this.description);
+
+  final String id;
+  final String name;
+  final String description;
+}
+
 class FlutterLocalNotificationsScheduler extends NotificationScheduler {
   final FlutterLocalNotificationsPlugin notificationsPlugin =
       FlutterLocalNotificationsPlugin();
@@ -39,16 +47,14 @@ class FlutterLocalNotificationsScheduler extends NotificationScheduler {
 
   @override
   Future<void> initialize() async {
-    await notificationsPlugin
-        .resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>()
-        ?.createNotificationChannel(androidNotificationChannel);
+    await notificationsPlugin.initialize(InitializationSettings(
+        AndroidInitializationSettings('ic_launcher'),
+        IOSInitializationSettings()));
   }
 
   FlutterLocalNotificationsScheduler(
       InitializationSettings initializationSettings,
       this.androidNotificationChannel) {
-        
     notificationsPlugin.initialize(initializationSettings,
         onSelectNotification: (encodedNotification) async {
       // TODO add fromJson toJson to the NotificationMessage instead of doing
@@ -71,14 +77,18 @@ class FlutterLocalNotificationsScheduler extends NotificationScheduler {
     notificationData['title'] = notification.title;
     notificationData['body'] = notification.body;
     return notificationsPlugin.show(
-        0, notification.title, notification.body, NotificationDetails(
-          android: AndroidNotificationDetails(
+        0,
+        notification.title,
+        notification.body,
+        NotificationDetails(
+          AndroidNotificationDetails(
             androidNotificationChannel.id,
             androidNotificationChannel.name,
             androidNotificationChannel.description,
-            importance: Importance.max,
-            priority: Priority.max,
+            importance: Importance.Max,
+            priority: Priority.Max,
           ),
+          IOSNotificationDetails(),
         ),
         payload: jsonEncode(notificationData));
   }

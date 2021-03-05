@@ -13,18 +13,21 @@ class NotificationsServices {
   static const scheduledNotificationKey = '__SCHEDULED_NOTIFICATION__';
 
   final MessagingServices _messagingServices;
-  final NotificationScheduler _notificationScheduler;
+  final NotificationScheduler? _notificationScheduler;
 
-  StreamSubscription<NotificationMessage> _scheduledNotificationSubscription;
+  late final StreamSubscription<NotificationMessage>
+      _scheduledNotificationSubscription;
 
-  NotificationsServices(this._messagingServices,
-      [this._notificationScheduler]) {
+  NotificationsServices(
+    this._messagingServices, [
+    this._notificationScheduler,
+  ]) {
     _messagingServices.onMessageReceived.listen(_onNotificationReceived);
 
     _messagingServices.onNotificationClicked.listen(_onNotificationClicked);
 
     if (_notificationScheduler != null) {
-      _scheduledNotificationSubscription = _notificationScheduler
+      _scheduledNotificationSubscription = _notificationScheduler!
           .onNotificationClicked
           .listen(_handleScheduledNotification);
     }
@@ -65,12 +68,14 @@ class NotificationsServices {
     if (Platform.isAndroid && _notificationScheduler != null) {
       // mark that the notification was scheduled using this service
       notification.data[scheduledNotificationKey] = true;
-      await _notificationScheduler.showNotification(notification);
+      await _notificationScheduler?.showNotification(notification);
     }
   }
 
-  Future<void> _onNotificationClicked(NotificationMessage notification) async {
-    _notificationClickedSubject.add(notification);
+  Future<void> _onNotificationClicked(NotificationMessage? notification) async {
+    if (notification != null) {
+      _notificationClickedSubject.add(notification);
+    }
   }
 
   Future<void> dispose() async {

@@ -11,12 +11,12 @@ typedef NotificationCallback = Function(NotificationMessage notification);
 
 class NotificationsHandler extends StatefulWidget {
   NotificationsHandler({
-    @required this.child,
-    this.notificationsServices,
-    this.onNotificationClicked,
-    this.onNotificationReceived,
+    required this.child,
+    required this.notificationsServices,
+    required this.onNotificationClicked,
+    required this.onNotificationReceived,
     this.enableAutoHandling=true,
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   final NotificationsServices notificationsServices;
@@ -30,8 +30,8 @@ class NotificationsHandler extends StatefulWidget {
 }
 
 class _NotificationsHandlerState extends State<NotificationsHandler> {
-  StreamSubscription<NotificationMessage> _notificationReceivedSubscription;
-  StreamSubscription<NotificationMessage> _notificationClickedSubscription;
+  late final StreamSubscription<NotificationMessage> _notificationReceivedSubscription;
+  late final StreamSubscription<NotificationMessage> _notificationClickedSubscription;
 
   @override
   void initState() {
