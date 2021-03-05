@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'list_wrappers.dart';
 
@@ -8,6 +8,10 @@ part of 'list_wrappers.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 StringList _$StringListFromJson(Map<String, dynamic> json) {
   return _StringList.fromJson(json);
 }
@@ -16,30 +20,28 @@ StringList _$StringListFromJson(Map<String, dynamic> json) {
 class _$StringListTearOff {
   const _$StringListTearOff();
 
-// ignore: unused_element
-  _StringList call(List<String> data) {
+  _StringList call(List<String>? data) {
     return _StringList(
       data,
     );
   }
 
-// ignore: unused_element
   StringList fromJson(Map<String, Object> json) {
     return StringList.fromJson(json);
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $StringList = _$StringListTearOff();
 
 /// @nodoc
 mixin _$StringList {
-  List<String> get data;
+  List<String>? get data => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson();
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $StringListCopyWith<StringList> get copyWith;
+  $StringListCopyWith<StringList> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -47,7 +49,7 @@ abstract class $StringListCopyWith<$Res> {
   factory $StringListCopyWith(
           StringList value, $Res Function(StringList) then) =
       _$StringListCopyWithImpl<$Res>;
-  $Res call({List<String> data});
+  $Res call({List<String>? data});
 }
 
 /// @nodoc
@@ -60,10 +62,10 @@ class _$StringListCopyWithImpl<$Res> implements $StringListCopyWith<$Res> {
 
   @override
   $Res call({
-    Object data = freezed,
+    Object? data = freezed,
   }) {
     return _then(_value.copyWith(
-      data: data == freezed ? _value.data : data as List<String>,
+      data: data == freezed ? _value.data : data as List<String>?,
     ));
   }
 }
@@ -74,7 +76,7 @@ abstract class _$StringListCopyWith<$Res> implements $StringListCopyWith<$Res> {
           _StringList value, $Res Function(_StringList) then) =
       __$StringListCopyWithImpl<$Res>;
   @override
-  $Res call({List<String> data});
+  $Res call({List<String>? data});
 }
 
 /// @nodoc
@@ -89,10 +91,10 @@ class __$StringListCopyWithImpl<$Res> extends _$StringListCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object data = freezed,
+    Object? data = freezed,
   }) {
     return _then(_StringList(
-      data == freezed ? _value.data : data as List<String>,
+      data == freezed ? _value.data : data as List<String>?,
     ));
   }
 }
@@ -100,18 +102,26 @@ class __$StringListCopyWithImpl<$Res> extends _$StringListCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$_StringList implements _StringList {
-  _$_StringList(this.data) : assert(data != null);
+class _$_StringList with DiagnosticableTreeMixin implements _StringList {
+  _$_StringList(this.data);
 
   factory _$_StringList.fromJson(Map<String, dynamic> json) =>
       _$_$_StringListFromJson(json);
 
   @override
-  final List<String> data;
+  final List<String>? data;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'StringList(data: $data)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'StringList'))
+      ..add(DiagnosticsProperty('data', data));
   }
 
   @override
@@ -138,16 +148,17 @@ class _$_StringList implements _StringList {
 }
 
 abstract class _StringList implements StringList {
-  factory _StringList(List<String> data) = _$_StringList;
+  factory _StringList(List<String>? data) = _$_StringList;
 
   factory _StringList.fromJson(Map<String, dynamic> json) =
       _$_StringList.fromJson;
 
   @override
-  List<String> get data;
+  List<String>? get data => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$StringListCopyWith<_StringList> get copyWith;
+  _$StringListCopyWith<_StringList> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 IntList _$IntListFromJson(Map<String, dynamic> json) {
@@ -158,37 +169,34 @@ IntList _$IntListFromJson(Map<String, dynamic> json) {
 class _$IntListTearOff {
   const _$IntListTearOff();
 
-// ignore: unused_element
-  _IntList call(List<int> data) {
+  _IntList call(List<int>? data) {
     return _IntList(
       data,
     );
   }
 
-// ignore: unused_element
   IntList fromJson(Map<String, Object> json) {
     return IntList.fromJson(json);
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $IntList = _$IntListTearOff();
 
 /// @nodoc
 mixin _$IntList {
-  List<int> get data;
+  List<int>? get data => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson();
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $IntListCopyWith<IntList> get copyWith;
+  $IntListCopyWith<IntList> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $IntListCopyWith<$Res> {
   factory $IntListCopyWith(IntList value, $Res Function(IntList) then) =
       _$IntListCopyWithImpl<$Res>;
-  $Res call({List<int> data});
+  $Res call({List<int>? data});
 }
 
 /// @nodoc
@@ -201,10 +209,10 @@ class _$IntListCopyWithImpl<$Res> implements $IntListCopyWith<$Res> {
 
   @override
   $Res call({
-    Object data = freezed,
+    Object? data = freezed,
   }) {
     return _then(_value.copyWith(
-      data: data == freezed ? _value.data : data as List<int>,
+      data: data == freezed ? _value.data : data as List<int>?,
     ));
   }
 }
@@ -214,7 +222,7 @@ abstract class _$IntListCopyWith<$Res> implements $IntListCopyWith<$Res> {
   factory _$IntListCopyWith(_IntList value, $Res Function(_IntList) then) =
       __$IntListCopyWithImpl<$Res>;
   @override
-  $Res call({List<int> data});
+  $Res call({List<int>? data});
 }
 
 /// @nodoc
@@ -228,10 +236,10 @@ class __$IntListCopyWithImpl<$Res> extends _$IntListCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object data = freezed,
+    Object? data = freezed,
   }) {
     return _then(_IntList(
-      data == freezed ? _value.data : data as List<int>,
+      data == freezed ? _value.data : data as List<int>?,
     ));
   }
 }
@@ -239,18 +247,26 @@ class __$IntListCopyWithImpl<$Res> extends _$IntListCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$_IntList implements _IntList {
-  _$_IntList(this.data) : assert(data != null);
+class _$_IntList with DiagnosticableTreeMixin implements _IntList {
+  _$_IntList(this.data);
 
   factory _$_IntList.fromJson(Map<String, dynamic> json) =>
       _$_$_IntListFromJson(json);
 
   @override
-  final List<int> data;
+  final List<int>? data;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'IntList(data: $data)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'IntList'))
+      ..add(DiagnosticsProperty('data', data));
   }
 
   @override
@@ -277,15 +293,16 @@ class _$_IntList implements _IntList {
 }
 
 abstract class _IntList implements IntList {
-  factory _IntList(List<int> data) = _$_IntList;
+  factory _IntList(List<int>? data) = _$_IntList;
 
   factory _IntList.fromJson(Map<String, dynamic> json) = _$_IntList.fromJson;
 
   @override
-  List<int> get data;
+  List<int>? get data => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$IntListCopyWith<_IntList> get copyWith;
+  _$IntListCopyWith<_IntList> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 DoubleList _$DoubleListFromJson(Map<String, dynamic> json) {
@@ -296,30 +313,28 @@ DoubleList _$DoubleListFromJson(Map<String, dynamic> json) {
 class _$DoubleListTearOff {
   const _$DoubleListTearOff();
 
-// ignore: unused_element
-  _DoubleList call(List<double> data) {
+  _DoubleList call(List<double>? data) {
     return _DoubleList(
       data,
     );
   }
 
-// ignore: unused_element
   DoubleList fromJson(Map<String, Object> json) {
     return DoubleList.fromJson(json);
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $DoubleList = _$DoubleListTearOff();
 
 /// @nodoc
 mixin _$DoubleList {
-  List<double> get data;
+  List<double>? get data => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson();
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $DoubleListCopyWith<DoubleList> get copyWith;
+  $DoubleListCopyWith<DoubleList> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -327,7 +342,7 @@ abstract class $DoubleListCopyWith<$Res> {
   factory $DoubleListCopyWith(
           DoubleList value, $Res Function(DoubleList) then) =
       _$DoubleListCopyWithImpl<$Res>;
-  $Res call({List<double> data});
+  $Res call({List<double>? data});
 }
 
 /// @nodoc
@@ -340,10 +355,10 @@ class _$DoubleListCopyWithImpl<$Res> implements $DoubleListCopyWith<$Res> {
 
   @override
   $Res call({
-    Object data = freezed,
+    Object? data = freezed,
   }) {
     return _then(_value.copyWith(
-      data: data == freezed ? _value.data : data as List<double>,
+      data: data == freezed ? _value.data : data as List<double>?,
     ));
   }
 }
@@ -354,7 +369,7 @@ abstract class _$DoubleListCopyWith<$Res> implements $DoubleListCopyWith<$Res> {
           _DoubleList value, $Res Function(_DoubleList) then) =
       __$DoubleListCopyWithImpl<$Res>;
   @override
-  $Res call({List<double> data});
+  $Res call({List<double>? data});
 }
 
 /// @nodoc
@@ -369,10 +384,10 @@ class __$DoubleListCopyWithImpl<$Res> extends _$DoubleListCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object data = freezed,
+    Object? data = freezed,
   }) {
     return _then(_DoubleList(
-      data == freezed ? _value.data : data as List<double>,
+      data == freezed ? _value.data : data as List<double>?,
     ));
   }
 }
@@ -380,18 +395,26 @@ class __$DoubleListCopyWithImpl<$Res> extends _$DoubleListCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$_DoubleList implements _DoubleList {
-  _$_DoubleList(this.data) : assert(data != null);
+class _$_DoubleList with DiagnosticableTreeMixin implements _DoubleList {
+  _$_DoubleList(this.data);
 
   factory _$_DoubleList.fromJson(Map<String, dynamic> json) =>
       _$_$_DoubleListFromJson(json);
 
   @override
-  final List<double> data;
+  final List<double>? data;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'DoubleList(data: $data)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'DoubleList'))
+      ..add(DiagnosticsProperty('data', data));
   }
 
   @override
@@ -418,14 +441,15 @@ class _$_DoubleList implements _DoubleList {
 }
 
 abstract class _DoubleList implements DoubleList {
-  factory _DoubleList(List<double> data) = _$_DoubleList;
+  factory _DoubleList(List<double>? data) = _$_DoubleList;
 
   factory _DoubleList.fromJson(Map<String, dynamic> json) =
       _$_DoubleList.fromJson;
 
   @override
-  List<double> get data;
+  List<double>? get data => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$DoubleListCopyWith<_DoubleList> get copyWith;
+  _$DoubleListCopyWith<_DoubleList> get copyWith =>
+      throw _privateConstructorUsedError;
 }

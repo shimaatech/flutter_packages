@@ -1,11 +1,12 @@
 name: repository
+publish_to: none
 description: Abstract repository class
-version: 0.0.1
+version: 0.0.2
 author:
 homepage:
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -14,9 +15,9 @@ dependencies:
   hive: ^1.4.4+1
   dio: ^3.0.10
   retrofit: ^1.3.4+1
-  cloud_firestore: ^0.16.0
-  freezed_annotation: ^0.12.0
-  json_annotation: ^3.1.1
+  cloud_firestore: ^1.0.0
+  freezed_annotation: ^0.14.0
+  json_annotation: ^4.0.0
 
 
   serializer:
@@ -29,10 +30,10 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  build_runner: ^1.11.0
-  retrofit_generator: ^1.4.1+2
-  freezed: ^0.12.7
-  json_serializable: ^3.5.1
+  build_runner: ^1.11.5
+  retrofit_generator: ^1.4.1+3
+  freezed: ^0.14.0
+  json_serializable: ^4.0.2
 
 
 

@@ -60,7 +60,7 @@ class DioRemoteRepository<E extends Entity<ID>, ID>
   }
 
   @override
-  Future<List<E>> list({Map<String, dynamic> filter}) {
+  Future<List<E>> list({Map<String, dynamic>? filter}) {
     return dioRestClient.list(filter);
   }
 

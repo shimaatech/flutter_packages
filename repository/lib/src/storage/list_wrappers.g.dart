@@ -8,7 +8,7 @@ part of 'list_wrappers.dart';
 
 _$_StringList _$_$_StringListFromJson(Map json) {
   return _$_StringList(
-    (json['data'] as List)?.map((e) => e as String)?.toList(),
+    (json['data'] as List<dynamic>?)?.map((e) => e as String).toList(),
   );
 }
 
@@ -19,7 +19,7 @@ Map<String, dynamic> _$_$_StringListToJson(_$_StringList instance) =>
 
 _$_IntList _$_$_IntListFromJson(Map json) {
   return _$_IntList(
-    (json['data'] as List)?.map((e) => e as int)?.toList(),
+    (json['data'] as List<dynamic>?)?.map((e) => e as int).toList(),
   );
 }
 
@@ -30,7 +30,9 @@ Map<String, dynamic> _$_$_IntListToJson(_$_IntList instance) =>
 
 _$_DoubleList _$_$_DoubleListFromJson(Map json) {
   return _$_DoubleList(
-    (json['data'] as List)?.map((e) => (e as num)?.toDouble())?.toList(),
+    (json['data'] as List<dynamic>?)
+        ?.map((e) => (e as num).toDouble())
+        .toList(),
   );
 }
 

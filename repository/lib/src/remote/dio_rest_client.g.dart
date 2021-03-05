@@ -7,7 +7,7 @@ part of 'dio_rest_client.dart';
 // **************************************************************************
 
 class __DioRestClient implements _DioRestClient {
-  __DioRestClient(this._dio, {this.baseUrl}) {
+  __DioRestClient(this._dio, this.baseUrl) {
     ArgumentError.checkNotNull(_dio, '_dio');
   }
 

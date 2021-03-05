@@ -21,7 +21,7 @@ class HiveCachedRepository<E extends Entity<ID>, ID> implements StorageCachedRep
   }
 
   @override
-  E findById(ID id) {
+  E? findById(ID id) {
     return _box.get(id);
   }
 
@@ -29,16 +29,16 @@ class HiveCachedRepository<E extends Entity<ID>, ID> implements StorageCachedRep
   Iterable<E> findAll(List<ID> ids) {
     List<E> entities = [];
     for (ID id in ids) {
-      E foundEntity = findById(id);
+      final foundEntity = findById(id);
       if (foundEntity != null) {
-        entities.add(findById(id));
+        entities.add(foundEntity);
       }
     }
     return entities;
   }
 
   @override
-  Iterable<E> list({Map<String, dynamic> filter}) {
+  Iterable<E> list({Map<String, dynamic>? filter}) {
     if (filter != null) {
       throw UnsupportedError('Filtering is not supported');
     }
@@ -90,18 +90,18 @@ class HiveLocalRepository<E extends Entity<ID>, ID>
   }
 
   @override
-  Future<E> findById(ID id) async {
+  Future<E?> findById(ID id) async {
     return _cachedRepository.findById(id);
   }
 
   @override
   Future<List<E>> findAll(List<ID> ids) async {
-    return _cachedRepository.findAll(ids);
+    return _cachedRepository.findAll(ids).toList();
   }
 
   @override
-  Future<List<E>> list({Map<String, dynamic> filter}) async {
-    return _cachedRepository.list(filter: filter);
+  Future<List<E>> list({Map<String, dynamic>? filter}) async {
+    return _cachedRepository.list(filter: filter).toList();
   }
 
   @override

@@ -60,7 +60,7 @@ class FirestoreRepository<E extends Entity<String>>
   // TODO maybe list should take a query instead of filter...
   // But we need to implement it in Java for other repositories implementations
   @override
-  Future<List<E>> list({Map<String, dynamic> filter}) async {
+  Future<List<E>> list({Map<String, dynamic>? filter}) async {
     // TODO maybe limit shouldn't be part of the filter
     Future<QuerySnapshot> snapshotsFuture;
     if (filter == null || filter.isEmpty) {

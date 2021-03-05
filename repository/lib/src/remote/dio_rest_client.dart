@@ -17,7 +17,7 @@ class MapWrapper {
 
 @RestApi()
 abstract class _DioRestClient {
-  factory _DioRestClient(Dio dio, {String baseUrl}) = __DioRestClient;
+  factory _DioRestClient(Dio dio, String baseUrl) = __DioRestClient;
 
   @protected
   @GET('/{id}')
@@ -44,7 +44,7 @@ abstract class _DioRestClient {
 
 class DioRestClient<E> extends __DioRestClient {
   DioRestClient(this.serializer, Dio dio, String baseUrl)
-      : super(dio, baseUrl: baseUrl);
+      : super(dio, baseUrl);
 
   final Serializer<E> serializer;
 
@@ -60,7 +60,7 @@ class DioRestClient<E> extends __DioRestClient {
     return unwrapMultiple(await doGetMultiple(ids));
   }
 
-  Future<List<E>> list(Map<String, dynamic> queries) async {
+  Future<List<E>> list(Map<String, dynamic>? queries) async {
     if (queries == null) {
       queries = const {};
     }

@@ -6,7 +6,7 @@ class EntitiesCache<E extends Entity<ID>, ID> {
   EntitiesCache(List<E> entities)
       : _cache = Map.fromIterable(entities, key: (e) => e.id, value: (e) => e);
 
-  E get(ID id) => _cache[id];
+  E? get(ID id) => _cache[id];
 
   bool exists(ID id) => _cache.containsKey(id);
 

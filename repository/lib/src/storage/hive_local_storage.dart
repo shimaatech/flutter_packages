@@ -8,7 +8,7 @@ class HiveLocalStorage implements LocalStorage {
   HiveLocalStorage(this._box);
 
   @override
-  T get<T>(String key, [T defaultValue]) {
+  T get<T>(String key, [T? defaultValue]) {
     return _box.get(key, defaultValue: defaultValue);
   }
 
