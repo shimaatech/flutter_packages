@@ -323,7 +323,7 @@ packages:
       name: intl
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.16.1"
+    version: "0.17.0"
   io:
     dependency: transitive
     description:
@@ -400,7 +400,7 @@ packages:
       name: multiple_localization
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.1"
+    version: "0.2.0-nullsafety.0"
   package_config:
     dependency: transitive
     description:
