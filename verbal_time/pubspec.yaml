@@ -13,7 +13,7 @@ dependencies:
     sdk: flutter
 
   intl:
-  multiple_localization: ^0.1.1
+  multiple_localization:
 
 
 
