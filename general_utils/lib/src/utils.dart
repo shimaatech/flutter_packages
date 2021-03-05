@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class GeneralUtils {
-  static Future<T> showFullScreenDialog<T>({
-    @required BuildContext context,
-    @required WidgetBuilder builder,
+  static Future<T?> showFullScreenDialog<T>({
+    required BuildContext context,
+    required WidgetBuilder builder,
     bool showCloseButton = true,
   }) {
     return showGeneralDialog<T>(
