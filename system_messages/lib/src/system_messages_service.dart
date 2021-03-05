@@ -6,8 +6,6 @@ import 'package:serializer/serializer.dart';
 
 import '../system_messages.dart';
 
-// TODO add country to the system message...
-
 /// We are using firestore directly here instead of FirestoreRepository.
 /// This is because the RemoteRepository doesn't support complex queries
 /// it supports the equals operator only and it doesn't support streaming also
@@ -19,8 +17,6 @@ class SystemMessagesService {
   static const String lastCheckKey = 'systemMessageService.lastCheck';
   static const String lastMessageKey = 'systemMessageService.lastMessage';
 
-  // TODO I think that langCode should not be passed to constructor... It should
-  // be passed to the method that fetches the messages
   SystemMessagesService(
     this.firestore,
     this.storage,
@@ -45,7 +41,7 @@ class SystemMessagesService {
     return additionalPackages + [package];
   }
 
-  Future<SystemMessage> getLatestUnexpiredMessage(
+  Future<SystemMessage?> getLatestUnexpiredMessage(
     SystemMessageType type,
     String langCode,
     Duration fetchInterval, {
@@ -72,7 +68,12 @@ class SystemMessagesService {
     markFetched();
 
     for (DocumentSnapshot snapshot in snapshots) {
-      Map<String, dynamic> data = snapshot.data();
+      final data = snapshot.data();
+
+      if (data == null) {
+        continue;
+      }
+
       // convert Firestore timestamp to Date...
       // Not sure if this is the correct way... But we cannot change the to/from
       // Json of system message just because of Firestore...
@@ -102,7 +103,7 @@ class SystemMessagesService {
     return getLastMessage(type, additionalPackages);
   }
 
-  bool isValidMessage(SystemMessage message, List<String> packages) =>
+  bool isValidMessage(SystemMessage? message, List<String> packages) =>
       message != null &&
       !isMessageDismissed(message) &&
       isApplicableForAppVersion(message) &&
@@ -112,17 +113,19 @@ class SystemMessagesService {
       isInstalledBeforeValid(message);
 
   bool isStartTimeValid(SystemMessage message) {
-    if (message.startTime == null) {
+    final startTime = message.startTime;
+    if (startTime == null) {
       return true;
     }
-    return message.startTime.isBefore(DateTime.now());
+    return startTime.isBefore(DateTime.now());
   }
 
   bool isInstalledBeforeValid(SystemMessage message) {
-    if (message.installedBefore == null) {
+    final installedBefore = message.installedBefore;
+    if (installedBefore == null) {
       return true;
     }
-    return message.installedBefore.isAfter(installedBefore);
+    return installedBefore.isAfter(this.installedBefore);
   }
 
   Future<void> dismissMessage(String id) {
@@ -138,7 +141,7 @@ class SystemMessagesService {
   List<String> getDismissedMessages() {
     return storage
         .get<StringList>(dismissedMessagesKey, StringList(const []))
-        .data;
+        !.data!;
   }
 
   bool needToFetch(Duration fetchInterval) {
@@ -146,7 +149,7 @@ class SystemMessagesService {
       // always fetch in test mode
       return true;
     }
-    DateTime lastCheckTime = storage.get<DateTime>(lastCheckKey);
+    final lastCheckTime = storage.get<DateTime>(lastCheckKey);
     return lastCheckTime == null ||
         DateTime.now().difference(lastCheckTime) >= fetchInterval;
   }
@@ -174,10 +177,10 @@ class SystemMessagesService {
   }
 
   /// return last message if is applicable and not expired or dismissed yet
-  Future<SystemMessage> getLastMessage(
+  Future<SystemMessage?> getLastMessage(
       SystemMessageType type, List<String> packages) async {
     String key = getMessageStorageKey(type);
-    SystemMessage message = storage.get<SystemMessage>(key);
+    final message = storage.get<SystemMessage>(key);
     if (isValidMessage(message, packages)) {
       return message;
     } else {
@@ -189,7 +192,7 @@ class SystemMessagesService {
   }
 
   bool isExpired(SystemMessage message) {
-    return message.expirationTime.isBefore(DateTime.now());
+    return message.expirationTime?.isBefore(DateTime.now()) ?? false;
   }
 
   String getMessageStorageKey(SystemMessageType type) {

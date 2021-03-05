@@ -19,11 +19,11 @@ enum NavigationType {
 enum SystemMessageType { normal, dialog }
 
 @freezed
-abstract class SystemMessageClickSpec with _$SystemMessageClickSpec {
+class SystemMessageClickSpec with _$SystemMessageClickSpec {
   factory SystemMessageClickSpec({
-    NavigationType navigationType,
-    String url,
-    Map<String, dynamic> args,
+    NavigationType? navigationType,
+    required String url,
+    Map<String, dynamic>? args,
   }) = _SystemMessageClickSpec;
 
   factory SystemMessageClickSpec.fromJson(Map<String, dynamic> json) =>
@@ -36,11 +36,11 @@ abstract class SystemMessageClickSpec with _$SystemMessageClickSpec {
 }
 
 @freezed
-abstract class SystemMessageImage with _$SystemMessageImage {
+class SystemMessageImage with _$SystemMessageImage {
   factory SystemMessageImage({
-    String url,
-    double width,
-    double height,
+    required String url,
+    double? width,
+    double? height,
   }) = _SystemMessageImage;
 
   factory SystemMessageImage.fromJson(Map<String, dynamic> json) =>
@@ -53,27 +53,27 @@ abstract class SystemMessageImage with _$SystemMessageImage {
 }
 
 @freezed
-abstract class SystemMessage extends Entity<String> with _$SystemMessage {
+class SystemMessage extends Entity<String> with _$SystemMessage {
   factory SystemMessage({
-    String id,
-    String title,
-    String content,
-    String langCode,
-    SystemMessageType type,
-    String package,
-    double minAppVersion,
-    double maxAppVersion,
-    bool testMode,
-    String linkText,
-    int titleIcon,
-    int backgroundColor,
-    SystemMessageImage image,
-    SystemMessageClickSpec titleIconClickSpec,
-    SystemMessageClickSpec linkClickSpec,
-    SystemMessageClickSpec cardClickSpec,
-    @UtcIsoDateConverter() DateTime expirationTime,
-    @UtcIsoDateConverter() DateTime startTime,
-    @UtcIsoDateConverter() DateTime installedBefore,
+    required String id,
+    required String title,
+    required String content,
+    required SystemMessageType type,
+    required String package,
+    required double minAppVersion,
+    required double maxAppVersion,
+    String? langCode,
+    bool? testMode,
+    String? linkText,
+    int? titleIcon,
+    int? backgroundColor,
+    SystemMessageImage? image,
+    SystemMessageClickSpec? titleIconClickSpec,
+    SystemMessageClickSpec? linkClickSpec,
+    SystemMessageClickSpec? cardClickSpec,
+    @UtcIsoDateConverter() DateTime? expirationTime,
+    @UtcIsoDateConverter() DateTime? startTime,
+    @UtcIsoDateConverter() DateTime? installedBefore,
   }) = _SystemMessage;
 
   factory SystemMessage.fromJson(Map<String, dynamic> json) =>

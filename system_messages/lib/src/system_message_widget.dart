@@ -18,27 +18,28 @@ typedef ClickEventHandler = Function(
 
 abstract class NavigatorHelper {
   Future<void> navigate(BuildContext context, String routeName,
-      String systemMessageId, Map<String, dynamic> args);
+      String systemMessageId, Map<String, dynamic>? args);
 }
 
 class DismissibleMessage extends StatefulWidget {
   DismissibleMessage({
-    @required this.message,
-    @required Key key,
+    required this.message,
+    required this.key,
     this.dismissible = true,
     this.onDismiss,
     this.backgroundColor,
-    this.linkColor,
+    this.linkColor = Colors.blue,
     this.navigatorHelper,
     this.dismissOnNavigation = true,
   }) : super(key: key);
 
+  final Key key;
   final SystemMessage message;
   final bool dismissible;
-  final VoidCallback onDismiss;
-  final Color backgroundColor;
+  final VoidCallback? onDismiss;
+  final Color? backgroundColor;
   final Color linkColor;
-  final NavigatorHelper navigatorHelper;
+  final NavigatorHelper? navigatorHelper;
   final bool dismissOnNavigation;
 
   @override
@@ -54,14 +55,18 @@ class _DismissibleMessageState extends State<DismissibleMessage> {
     if (isDismissed) {
       return Container();
     }
+
+    final titleIcon = widget.message.titleIcon;
+    final bgColor = widget.message.backgroundColor;
+
     return DismissibleCard(
       key: widget.key,
       content: widget.message.content,
       title: widget.message.title,
       isDismissible: widget.dismissible,
       onDismiss: widget.onDismiss,
-      titleIconData: widget.message.titleIcon != null
-          ? IconData(widget.message.titleIcon, fontFamily: 'MaterialIcons')
+      titleIconData: titleIcon != null
+          ? IconData(titleIcon, fontFamily: 'MaterialIcons')
           : null,
       onTitleIconClick: () =>
           handleClickEvent(context, widget.message.titleIconClickSpec),
@@ -71,9 +76,8 @@ class _DismissibleMessageState extends State<DismissibleMessage> {
       imageUrl: widget.message.image?.url,
       imageWidth: widget.message.image?.width ?? 80,
       imageHeight: widget.message.image?.height ?? 80,
-      backgroundColor: widget.message.backgroundColor != null
-          ? Color(widget.message.backgroundColor)
-          : widget.backgroundColor,
+      backgroundColor:
+          bgColor != null ? Color(bgColor) : widget.backgroundColor,
       linkColor: widget.linkColor,
       onCardClick: () =>
           handleClickEvent(context, widget.message.cardClickSpec),
@@ -81,11 +85,11 @@ class _DismissibleMessageState extends State<DismissibleMessage> {
   }
 
   void handleClickEvent(
-      BuildContext context, SystemMessageClickSpec clickSpec) {
+      BuildContext context, SystemMessageClickSpec? clickSpec) {
     // First dismiss (so that we don't pop the windows that are opened by the
     // click event in case onDismiss() pops something)
     if (widget.dismissOnNavigation) {
-      widget.onDismiss();
+      widget.onDismiss?.call();
       setState(() {
         isDismissed = true;
       });
@@ -95,7 +99,7 @@ class _DismissibleMessageState extends State<DismissibleMessage> {
     }
     if (clickSpec.navigationType == NavigationType.internal) {
       widget.navigatorHelper
-          .navigate(context, clickSpec.url, widget.message.id, clickSpec.args);
+          ?.navigate(context, clickSpec.url, widget.message.id, clickSpec.args);
     } else if (clickSpec.navigationType == NavigationType.embedded) {
       WebsiteViewerDialog.show(context, clickSpec.url);
     } else if (clickSpec.navigationType == NavigationType.upgrade ||
@@ -109,7 +113,8 @@ class _DismissibleMessageState extends State<DismissibleMessage> {
 
 class SystemMessageCard extends StatelessWidget {
   SystemMessageCard({
-    this.systemMessagesService,
+    required this.systemMessagesService,
+    required this.langCode,
     this.dismissible = true,
     this.backgroundColor,
     this.linkColor,
@@ -117,37 +122,37 @@ class SystemMessageCard extends StatelessWidget {
     this.navigatorHelper,
     this.dismissOnNavigation = true,
     this.fetchInterval = const Duration(hours: 24),
-    this.langCode,
     this.additionalPackages,
   });
 
   final SystemMessagesService systemMessagesService;
   final bool dismissible;
-  final Color backgroundColor;
-  final Color linkColor;
-  final Widget onMessageLoading;
-  final NavigatorHelper navigatorHelper;
+  final Color? backgroundColor;
+  final Color? linkColor;
+  final Widget? onMessageLoading;
+  final NavigatorHelper? navigatorHelper;
   final bool dismissOnNavigation;
   final Logger logger = Logger();
   final Duration fetchInterval;
   final String langCode;
-  final List<String> additionalPackages;
+  final List<String>? additionalPackages;
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<SystemMessage>(
+    return FutureBuilder<SystemMessage?>(
       future: systemMessagesService.getLatestUnexpiredMessage(
         SystemMessageType.normal,
         langCode,
         fetchInterval,
-        additionalPackages: additionalPackages,
+        additionalPackages: additionalPackages ?? const [],
       ),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           logger.e('Error while loading system messages: ${snapshot.error}');
         }
-        if (snapshot.hasData && snapshot.data != null) {
-          SystemMessage message = snapshot.data;
+        final snapshotData = snapshot.data;
+        if (snapshot.hasData && snapshotData != null) {
+          SystemMessage message = snapshotData;
           return DismissibleMessage(
             key: Key(message.id),
             message: message,
@@ -155,7 +160,7 @@ class SystemMessageCard extends StatelessWidget {
             onDismiss: () => systemMessagesService.dismissMessage(message.id),
             navigatorHelper: navigatorHelper,
             backgroundColor: backgroundColor,
-            linkColor: linkColor,
+            linkColor: linkColor ?? Colors.blue,
             dismissOnNavigation: dismissOnNavigation,
           );
         } else {
@@ -167,7 +172,6 @@ class SystemMessageCard extends StatelessWidget {
 }
 
 class SystemMessageDialog {
-
   static void dismissMessage(
       BuildContext context, SystemMessagesService service, String messageId) {
     service.dismissMessage(messageId);
@@ -175,19 +179,20 @@ class SystemMessageDialog {
   }
 
   static Future<void> showNewMessage({
-    @required BuildContext context,
-    @required SystemMessagesService service,
-    Color backgroundColor,
-    Color linkColor,
-    NavigatorHelper navigatorHelper,
+    required BuildContext context,
+    required SystemMessagesService service,
+    required String langCode,
+    Color? backgroundColor,
+    Color? linkColor,
+    NavigatorHelper? navigatorHelper,
     bool dismissOnNavigation = true,
     String okButtonText = 'OK',
     Duration fetchInterval = const Duration(hours: 24),
-    String langCode,
-    List<String> additionalPackages,
+    List<String>? additionalPackages,
   }) async {
-    SystemMessage message = await service.getLatestUnexpiredMessage(
-        SystemMessageType.dialog, langCode, fetchInterval, additionalPackages: additionalPackages);
+    final message = await service.getLatestUnexpiredMessage(
+        SystemMessageType.dialog, langCode, fetchInterval,
+        additionalPackages: additionalPackages ?? const []);
     if (message == null) {
       return;
     }
@@ -196,7 +201,7 @@ class SystemMessageDialog {
       context: context,
       dialogBackgroundColor: backgroundColor,
       dialogType: DialogType.NO_HEADER,
-      btnOk: RaisedButton(
+      btnOk: ElevatedButton(
         child: Text(okButtonText),
         onPressed: () => dismissMessage(context, service, message.id),
       ),
@@ -205,7 +210,7 @@ class SystemMessageDialog {
         key: Key(message.id),
         navigatorHelper: navigatorHelper,
         backgroundColor: backgroundColor,
-        linkColor: linkColor,
+        linkColor: linkColor ?? Colors.blue,
         dismissible: false,
         dismissOnNavigation: true,
         onDismiss: () => dismissMessage(context, service, message.id),

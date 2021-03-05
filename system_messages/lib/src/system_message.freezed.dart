@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'system_message.dart';
 
@@ -8,6 +8,10 @@ part of 'system_message.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 SystemMessageClickSpec _$SystemMessageClickSpecFromJson(
     Map<String, dynamic> json) {
   return _SystemMessageClickSpec.fromJson(json);
@@ -17,9 +21,10 @@ SystemMessageClickSpec _$SystemMessageClickSpecFromJson(
 class _$SystemMessageClickSpecTearOff {
   const _$SystemMessageClickSpecTearOff();
 
-// ignore: unused_element
   _SystemMessageClickSpec call(
-      {NavigationType navigationType, String url, Map<String, dynamic> args}) {
+      {NavigationType? navigationType,
+      required String url,
+      Map<String, dynamic>? args}) {
     return _SystemMessageClickSpec(
       navigationType: navigationType,
       url: url,
@@ -27,25 +32,24 @@ class _$SystemMessageClickSpecTearOff {
     );
   }
 
-// ignore: unused_element
   SystemMessageClickSpec fromJson(Map<String, Object> json) {
     return SystemMessageClickSpec.fromJson(json);
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $SystemMessageClickSpec = _$SystemMessageClickSpecTearOff();
 
 /// @nodoc
 mixin _$SystemMessageClickSpec {
-  NavigationType get navigationType;
-  String get url;
-  Map<String, dynamic> get args;
+  NavigationType? get navigationType => throw _privateConstructorUsedError;
+  String get url => throw _privateConstructorUsedError;
+  Map<String, dynamic>? get args => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson();
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SystemMessageClickSpecCopyWith<SystemMessageClickSpec> get copyWith;
+  $SystemMessageClickSpecCopyWith<SystemMessageClickSpec> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -54,7 +58,7 @@ abstract class $SystemMessageClickSpecCopyWith<$Res> {
           $Res Function(SystemMessageClickSpec) then) =
       _$SystemMessageClickSpecCopyWithImpl<$Res>;
   $Res call(
-      {NavigationType navigationType, String url, Map<String, dynamic> args});
+      {NavigationType? navigationType, String url, Map<String, dynamic>? args});
 }
 
 /// @nodoc
@@ -68,16 +72,16 @@ class _$SystemMessageClickSpecCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object navigationType = freezed,
-    Object url = freezed,
-    Object args = freezed,
+    Object? navigationType = freezed,
+    Object? url = freezed,
+    Object? args = freezed,
   }) {
     return _then(_value.copyWith(
       navigationType: navigationType == freezed
           ? _value.navigationType
-          : navigationType as NavigationType,
+          : navigationType as NavigationType?,
       url: url == freezed ? _value.url : url as String,
-      args: args == freezed ? _value.args : args as Map<String, dynamic>,
+      args: args == freezed ? _value.args : args as Map<String, dynamic>?,
     ));
   }
 }
@@ -90,7 +94,7 @@ abstract class _$SystemMessageClickSpecCopyWith<$Res>
       __$SystemMessageClickSpecCopyWithImpl<$Res>;
   @override
   $Res call(
-      {NavigationType navigationType, String url, Map<String, dynamic> args});
+      {NavigationType? navigationType, String url, Map<String, dynamic>? args});
 }
 
 /// @nodoc
@@ -106,16 +110,16 @@ class __$SystemMessageClickSpecCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object navigationType = freezed,
-    Object url = freezed,
-    Object args = freezed,
+    Object? navigationType = freezed,
+    Object? url = freezed,
+    Object? args = freezed,
   }) {
     return _then(_SystemMessageClickSpec(
       navigationType: navigationType == freezed
           ? _value.navigationType
-          : navigationType as NavigationType,
+          : navigationType as NavigationType?,
       url: url == freezed ? _value.url : url as String,
-      args: args == freezed ? _value.args : args as Map<String, dynamic>,
+      args: args == freezed ? _value.args : args as Map<String, dynamic>?,
     ));
   }
 }
@@ -124,17 +128,18 @@ class __$SystemMessageClickSpecCopyWithImpl<$Res>
 
 /// @nodoc
 class _$_SystemMessageClickSpec implements _SystemMessageClickSpec {
-  _$_SystemMessageClickSpec({this.navigationType, this.url, this.args});
+  _$_SystemMessageClickSpec(
+      {this.navigationType, required this.url, this.args});
 
   factory _$_SystemMessageClickSpec.fromJson(Map<String, dynamic> json) =>
       _$_$_SystemMessageClickSpecFromJson(json);
 
   @override
-  final NavigationType navigationType;
+  final NavigationType? navigationType;
   @override
   final String url;
   @override
-  final Map<String, dynamic> args;
+  final Map<String, dynamic>? args;
 
   @override
   String toString() {
@@ -175,22 +180,23 @@ class _$_SystemMessageClickSpec implements _SystemMessageClickSpec {
 
 abstract class _SystemMessageClickSpec implements SystemMessageClickSpec {
   factory _SystemMessageClickSpec(
-      {NavigationType navigationType,
-      String url,
-      Map<String, dynamic> args}) = _$_SystemMessageClickSpec;
+      {NavigationType? navigationType,
+      required String url,
+      Map<String, dynamic>? args}) = _$_SystemMessageClickSpec;
 
   factory _SystemMessageClickSpec.fromJson(Map<String, dynamic> json) =
       _$_SystemMessageClickSpec.fromJson;
 
   @override
-  NavigationType get navigationType;
+  NavigationType? get navigationType => throw _privateConstructorUsedError;
   @override
-  String get url;
+  String get url => throw _privateConstructorUsedError;
   @override
-  Map<String, dynamic> get args;
+  Map<String, dynamic>? get args => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$SystemMessageClickSpecCopyWith<_SystemMessageClickSpec> get copyWith;
+  _$SystemMessageClickSpecCopyWith<_SystemMessageClickSpec> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 SystemMessageImage _$SystemMessageImageFromJson(Map<String, dynamic> json) {
@@ -201,8 +207,8 @@ SystemMessageImage _$SystemMessageImageFromJson(Map<String, dynamic> json) {
 class _$SystemMessageImageTearOff {
   const _$SystemMessageImageTearOff();
 
-// ignore: unused_element
-  _SystemMessageImage call({String url, double width, double height}) {
+  _SystemMessageImage call(
+      {required String url, double? width, double? height}) {
     return _SystemMessageImage(
       url: url,
       width: width,
@@ -210,25 +216,24 @@ class _$SystemMessageImageTearOff {
     );
   }
 
-// ignore: unused_element
   SystemMessageImage fromJson(Map<String, Object> json) {
     return SystemMessageImage.fromJson(json);
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $SystemMessageImage = _$SystemMessageImageTearOff();
 
 /// @nodoc
 mixin _$SystemMessageImage {
-  String get url;
-  double get width;
-  double get height;
+  String get url => throw _privateConstructorUsedError;
+  double? get width => throw _privateConstructorUsedError;
+  double? get height => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson();
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SystemMessageImageCopyWith<SystemMessageImage> get copyWith;
+  $SystemMessageImageCopyWith<SystemMessageImage> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -236,7 +241,7 @@ abstract class $SystemMessageImageCopyWith<$Res> {
   factory $SystemMessageImageCopyWith(
           SystemMessageImage value, $Res Function(SystemMessageImage) then) =
       _$SystemMessageImageCopyWithImpl<$Res>;
-  $Res call({String url, double width, double height});
+  $Res call({String url, double? width, double? height});
 }
 
 /// @nodoc
@@ -250,14 +255,14 @@ class _$SystemMessageImageCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object url = freezed,
-    Object width = freezed,
-    Object height = freezed,
+    Object? url = freezed,
+    Object? width = freezed,
+    Object? height = freezed,
   }) {
     return _then(_value.copyWith(
       url: url == freezed ? _value.url : url as String,
-      width: width == freezed ? _value.width : width as double,
-      height: height == freezed ? _value.height : height as double,
+      width: width == freezed ? _value.width : width as double?,
+      height: height == freezed ? _value.height : height as double?,
     ));
   }
 }
@@ -269,7 +274,7 @@ abstract class _$SystemMessageImageCopyWith<$Res>
           _SystemMessageImage value, $Res Function(_SystemMessageImage) then) =
       __$SystemMessageImageCopyWithImpl<$Res>;
   @override
-  $Res call({String url, double width, double height});
+  $Res call({String url, double? width, double? height});
 }
 
 /// @nodoc
@@ -285,14 +290,14 @@ class __$SystemMessageImageCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object url = freezed,
-    Object width = freezed,
-    Object height = freezed,
+    Object? url = freezed,
+    Object? width = freezed,
+    Object? height = freezed,
   }) {
     return _then(_SystemMessageImage(
       url: url == freezed ? _value.url : url as String,
-      width: width == freezed ? _value.width : width as double,
-      height: height == freezed ? _value.height : height as double,
+      width: width == freezed ? _value.width : width as double?,
+      height: height == freezed ? _value.height : height as double?,
     ));
   }
 }
@@ -301,7 +306,7 @@ class __$SystemMessageImageCopyWithImpl<$Res>
 
 /// @nodoc
 class _$_SystemMessageImage implements _SystemMessageImage {
-  _$_SystemMessageImage({this.url, this.width, this.height});
+  _$_SystemMessageImage({required this.url, this.width, this.height});
 
   factory _$_SystemMessageImage.fromJson(Map<String, dynamic> json) =>
       _$_$_SystemMessageImageFromJson(json);
@@ -309,9 +314,9 @@ class _$_SystemMessageImage implements _SystemMessageImage {
   @override
   final String url;
   @override
-  final double width;
+  final double? width;
   @override
-  final double height;
+  final double? height;
 
   @override
   String toString() {
@@ -349,21 +354,24 @@ class _$_SystemMessageImage implements _SystemMessageImage {
 }
 
 abstract class _SystemMessageImage implements SystemMessageImage {
-  factory _SystemMessageImage({String url, double width, double height}) =
-      _$_SystemMessageImage;
+  factory _SystemMessageImage(
+      {required String url,
+      double? width,
+      double? height}) = _$_SystemMessageImage;
 
   factory _SystemMessageImage.fromJson(Map<String, dynamic> json) =
       _$_SystemMessageImage.fromJson;
 
   @override
-  String get url;
+  String get url => throw _privateConstructorUsedError;
   @override
-  double get width;
+  double? get width => throw _privateConstructorUsedError;
   @override
-  double get height;
+  double? get height => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$SystemMessageImageCopyWith<_SystemMessageImage> get copyWith;
+  _$SystemMessageImageCopyWith<_SystemMessageImage> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 SystemMessage _$SystemMessageFromJson(Map<String, dynamic> json) {
@@ -374,36 +382,35 @@ SystemMessage _$SystemMessageFromJson(Map<String, dynamic> json) {
 class _$SystemMessageTearOff {
   const _$SystemMessageTearOff();
 
-// ignore: unused_element
   _SystemMessage call(
-      {String id,
-      String title,
-      String content,
-      String langCode,
-      SystemMessageType type,
-      String package,
-      double minAppVersion,
-      double maxAppVersion,
-      bool testMode,
-      String linkText,
-      int titleIcon,
-      int backgroundColor,
-      SystemMessageImage image,
-      SystemMessageClickSpec titleIconClickSpec,
-      SystemMessageClickSpec linkClickSpec,
-      SystemMessageClickSpec cardClickSpec,
-      @UtcIsoDateConverter() DateTime expirationTime,
-      @UtcIsoDateConverter() DateTime startTime,
-      @UtcIsoDateConverter() DateTime installedBefore}) {
+      {required String id,
+      required String title,
+      required String content,
+      required SystemMessageType type,
+      required String package,
+      required double minAppVersion,
+      required double maxAppVersion,
+      String? langCode,
+      bool? testMode,
+      String? linkText,
+      int? titleIcon,
+      int? backgroundColor,
+      SystemMessageImage? image,
+      SystemMessageClickSpec? titleIconClickSpec,
+      SystemMessageClickSpec? linkClickSpec,
+      SystemMessageClickSpec? cardClickSpec,
+      @UtcIsoDateConverter() DateTime? expirationTime,
+      @UtcIsoDateConverter() DateTime? startTime,
+      @UtcIsoDateConverter() DateTime? installedBefore}) {
     return _SystemMessage(
       id: id,
       title: title,
       content: content,
-      langCode: langCode,
       type: type,
       package: package,
       minAppVersion: minAppVersion,
       maxAppVersion: maxAppVersion,
+      langCode: langCode,
       testMode: testMode,
       linkText: linkText,
       titleIcon: titleIcon,
@@ -418,44 +425,46 @@ class _$SystemMessageTearOff {
     );
   }
 
-// ignore: unused_element
   SystemMessage fromJson(Map<String, Object> json) {
     return SystemMessage.fromJson(json);
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $SystemMessage = _$SystemMessageTearOff();
 
 /// @nodoc
 mixin _$SystemMessage {
-  String get id;
-  String get title;
-  String get content;
-  String get langCode;
-  SystemMessageType get type;
-  String get package;
-  double get minAppVersion;
-  double get maxAppVersion;
-  bool get testMode;
-  String get linkText;
-  int get titleIcon;
-  int get backgroundColor;
-  SystemMessageImage get image;
-  SystemMessageClickSpec get titleIconClickSpec;
-  SystemMessageClickSpec get linkClickSpec;
-  SystemMessageClickSpec get cardClickSpec;
+  String get id => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
+  String get content => throw _privateConstructorUsedError;
+  SystemMessageType get type => throw _privateConstructorUsedError;
+  String get package => throw _privateConstructorUsedError;
+  double get minAppVersion => throw _privateConstructorUsedError;
+  double get maxAppVersion => throw _privateConstructorUsedError;
+  String? get langCode => throw _privateConstructorUsedError;
+  bool? get testMode => throw _privateConstructorUsedError;
+  String? get linkText => throw _privateConstructorUsedError;
+  int? get titleIcon => throw _privateConstructorUsedError;
+  int? get backgroundColor => throw _privateConstructorUsedError;
+  SystemMessageImage? get image => throw _privateConstructorUsedError;
+  SystemMessageClickSpec? get titleIconClickSpec =>
+      throw _privateConstructorUsedError;
+  SystemMessageClickSpec? get linkClickSpec =>
+      throw _privateConstructorUsedError;
+  SystemMessageClickSpec? get cardClickSpec =>
+      throw _privateConstructorUsedError;
   @UtcIsoDateConverter()
-  DateTime get expirationTime;
+  DateTime? get expirationTime => throw _privateConstructorUsedError;
   @UtcIsoDateConverter()
-  DateTime get startTime;
+  DateTime? get startTime => throw _privateConstructorUsedError;
   @UtcIsoDateConverter()
-  DateTime get installedBefore;
+  DateTime? get installedBefore => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson();
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SystemMessageCopyWith<SystemMessage> get copyWith;
+  $SystemMessageCopyWith<SystemMessage> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -467,27 +476,27 @@ abstract class $SystemMessageCopyWith<$Res> {
       {String id,
       String title,
       String content,
-      String langCode,
       SystemMessageType type,
       String package,
       double minAppVersion,
       double maxAppVersion,
-      bool testMode,
-      String linkText,
-      int titleIcon,
-      int backgroundColor,
-      SystemMessageImage image,
-      SystemMessageClickSpec titleIconClickSpec,
-      SystemMessageClickSpec linkClickSpec,
-      SystemMessageClickSpec cardClickSpec,
-      @UtcIsoDateConverter() DateTime expirationTime,
-      @UtcIsoDateConverter() DateTime startTime,
-      @UtcIsoDateConverter() DateTime installedBefore});
+      String? langCode,
+      bool? testMode,
+      String? linkText,
+      int? titleIcon,
+      int? backgroundColor,
+      SystemMessageImage? image,
+      SystemMessageClickSpec? titleIconClickSpec,
+      SystemMessageClickSpec? linkClickSpec,
+      SystemMessageClickSpec? cardClickSpec,
+      @UtcIsoDateConverter() DateTime? expirationTime,
+      @UtcIsoDateConverter() DateTime? startTime,
+      @UtcIsoDateConverter() DateTime? installedBefore});
 
-  $SystemMessageImageCopyWith<$Res> get image;
-  $SystemMessageClickSpecCopyWith<$Res> get titleIconClickSpec;
-  $SystemMessageClickSpecCopyWith<$Res> get linkClickSpec;
-  $SystemMessageClickSpecCopyWith<$Res> get cardClickSpec;
+  $SystemMessageImageCopyWith<$Res>? get image;
+  $SystemMessageClickSpecCopyWith<$Res>? get titleIconClickSpec;
+  $SystemMessageClickSpecCopyWith<$Res>? get linkClickSpec;
+  $SystemMessageClickSpecCopyWith<$Res>? get cardClickSpec;
 }
 
 /// @nodoc
@@ -501,31 +510,30 @@ class _$SystemMessageCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object id = freezed,
-    Object title = freezed,
-    Object content = freezed,
-    Object langCode = freezed,
-    Object type = freezed,
-    Object package = freezed,
-    Object minAppVersion = freezed,
-    Object maxAppVersion = freezed,
-    Object testMode = freezed,
-    Object linkText = freezed,
-    Object titleIcon = freezed,
-    Object backgroundColor = freezed,
-    Object image = freezed,
-    Object titleIconClickSpec = freezed,
-    Object linkClickSpec = freezed,
-    Object cardClickSpec = freezed,
-    Object expirationTime = freezed,
-    Object startTime = freezed,
-    Object installedBefore = freezed,
+    Object? id = freezed,
+    Object? title = freezed,
+    Object? content = freezed,
+    Object? type = freezed,
+    Object? package = freezed,
+    Object? minAppVersion = freezed,
+    Object? maxAppVersion = freezed,
+    Object? langCode = freezed,
+    Object? testMode = freezed,
+    Object? linkText = freezed,
+    Object? titleIcon = freezed,
+    Object? backgroundColor = freezed,
+    Object? image = freezed,
+    Object? titleIconClickSpec = freezed,
+    Object? linkClickSpec = freezed,
+    Object? cardClickSpec = freezed,
+    Object? expirationTime = freezed,
+    Object? startTime = freezed,
+    Object? installedBefore = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as String,
       title: title == freezed ? _value.title : title as String,
       content: content == freezed ? _value.content : content as String,
-      langCode: langCode == freezed ? _value.langCode : langCode as String,
       type: type == freezed ? _value.type : type as SystemMessageType,
       package: package == freezed ? _value.package : package as String,
       minAppVersion: minAppVersion == freezed
@@ -534,70 +542,77 @@ class _$SystemMessageCopyWithImpl<$Res>
       maxAppVersion: maxAppVersion == freezed
           ? _value.maxAppVersion
           : maxAppVersion as double,
-      testMode: testMode == freezed ? _value.testMode : testMode as bool,
-      linkText: linkText == freezed ? _value.linkText : linkText as String,
-      titleIcon: titleIcon == freezed ? _value.titleIcon : titleIcon as int,
+      langCode: langCode == freezed ? _value.langCode : langCode as String?,
+      testMode: testMode == freezed ? _value.testMode : testMode as bool?,
+      linkText: linkText == freezed ? _value.linkText : linkText as String?,
+      titleIcon: titleIcon == freezed ? _value.titleIcon : titleIcon as int?,
       backgroundColor: backgroundColor == freezed
           ? _value.backgroundColor
-          : backgroundColor as int,
-      image: image == freezed ? _value.image : image as SystemMessageImage,
+          : backgroundColor as int?,
+      image: image == freezed ? _value.image : image as SystemMessageImage?,
       titleIconClickSpec: titleIconClickSpec == freezed
           ? _value.titleIconClickSpec
-          : titleIconClickSpec as SystemMessageClickSpec,
+          : titleIconClickSpec as SystemMessageClickSpec?,
       linkClickSpec: linkClickSpec == freezed
           ? _value.linkClickSpec
-          : linkClickSpec as SystemMessageClickSpec,
+          : linkClickSpec as SystemMessageClickSpec?,
       cardClickSpec: cardClickSpec == freezed
           ? _value.cardClickSpec
-          : cardClickSpec as SystemMessageClickSpec,
+          : cardClickSpec as SystemMessageClickSpec?,
       expirationTime: expirationTime == freezed
           ? _value.expirationTime
-          : expirationTime as DateTime,
+          : expirationTime as DateTime?,
       startTime:
-          startTime == freezed ? _value.startTime : startTime as DateTime,
+          startTime == freezed ? _value.startTime : startTime as DateTime?,
       installedBefore: installedBefore == freezed
           ? _value.installedBefore
-          : installedBefore as DateTime,
+          : installedBefore as DateTime?,
     ));
   }
 
   @override
-  $SystemMessageImageCopyWith<$Res> get image {
+  $SystemMessageImageCopyWith<$Res>? get image {
     if (_value.image == null) {
       return null;
     }
-    return $SystemMessageImageCopyWith<$Res>(_value.image, (value) {
+
+    return $SystemMessageImageCopyWith<$Res>(_value.image!, (value) {
       return _then(_value.copyWith(image: value));
     });
   }
 
   @override
-  $SystemMessageClickSpecCopyWith<$Res> get titleIconClickSpec {
+  $SystemMessageClickSpecCopyWith<$Res>? get titleIconClickSpec {
     if (_value.titleIconClickSpec == null) {
       return null;
     }
-    return $SystemMessageClickSpecCopyWith<$Res>(_value.titleIconClickSpec,
+
+    return $SystemMessageClickSpecCopyWith<$Res>(_value.titleIconClickSpec!,
         (value) {
       return _then(_value.copyWith(titleIconClickSpec: value));
     });
   }
 
   @override
-  $SystemMessageClickSpecCopyWith<$Res> get linkClickSpec {
+  $SystemMessageClickSpecCopyWith<$Res>? get linkClickSpec {
     if (_value.linkClickSpec == null) {
       return null;
     }
-    return $SystemMessageClickSpecCopyWith<$Res>(_value.linkClickSpec, (value) {
+
+    return $SystemMessageClickSpecCopyWith<$Res>(_value.linkClickSpec!,
+        (value) {
       return _then(_value.copyWith(linkClickSpec: value));
     });
   }
 
   @override
-  $SystemMessageClickSpecCopyWith<$Res> get cardClickSpec {
+  $SystemMessageClickSpecCopyWith<$Res>? get cardClickSpec {
     if (_value.cardClickSpec == null) {
       return null;
     }
-    return $SystemMessageClickSpecCopyWith<$Res>(_value.cardClickSpec, (value) {
+
+    return $SystemMessageClickSpecCopyWith<$Res>(_value.cardClickSpec!,
+        (value) {
       return _then(_value.copyWith(cardClickSpec: value));
     });
   }
@@ -614,31 +629,31 @@ abstract class _$SystemMessageCopyWith<$Res>
       {String id,
       String title,
       String content,
-      String langCode,
       SystemMessageType type,
       String package,
       double minAppVersion,
       double maxAppVersion,
-      bool testMode,
-      String linkText,
-      int titleIcon,
-      int backgroundColor,
-      SystemMessageImage image,
-      SystemMessageClickSpec titleIconClickSpec,
-      SystemMessageClickSpec linkClickSpec,
-      SystemMessageClickSpec cardClickSpec,
-      @UtcIsoDateConverter() DateTime expirationTime,
-      @UtcIsoDateConverter() DateTime startTime,
-      @UtcIsoDateConverter() DateTime installedBefore});
+      String? langCode,
+      bool? testMode,
+      String? linkText,
+      int? titleIcon,
+      int? backgroundColor,
+      SystemMessageImage? image,
+      SystemMessageClickSpec? titleIconClickSpec,
+      SystemMessageClickSpec? linkClickSpec,
+      SystemMessageClickSpec? cardClickSpec,
+      @UtcIsoDateConverter() DateTime? expirationTime,
+      @UtcIsoDateConverter() DateTime? startTime,
+      @UtcIsoDateConverter() DateTime? installedBefore});
 
   @override
-  $SystemMessageImageCopyWith<$Res> get image;
+  $SystemMessageImageCopyWith<$Res>? get image;
   @override
-  $SystemMessageClickSpecCopyWith<$Res> get titleIconClickSpec;
+  $SystemMessageClickSpecCopyWith<$Res>? get titleIconClickSpec;
   @override
-  $SystemMessageClickSpecCopyWith<$Res> get linkClickSpec;
+  $SystemMessageClickSpecCopyWith<$Res>? get linkClickSpec;
   @override
-  $SystemMessageClickSpecCopyWith<$Res> get cardClickSpec;
+  $SystemMessageClickSpecCopyWith<$Res>? get cardClickSpec;
 }
 
 /// @nodoc
@@ -654,31 +669,30 @@ class __$SystemMessageCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object id = freezed,
-    Object title = freezed,
-    Object content = freezed,
-    Object langCode = freezed,
-    Object type = freezed,
-    Object package = freezed,
-    Object minAppVersion = freezed,
-    Object maxAppVersion = freezed,
-    Object testMode = freezed,
-    Object linkText = freezed,
-    Object titleIcon = freezed,
-    Object backgroundColor = freezed,
-    Object image = freezed,
-    Object titleIconClickSpec = freezed,
-    Object linkClickSpec = freezed,
-    Object cardClickSpec = freezed,
-    Object expirationTime = freezed,
-    Object startTime = freezed,
-    Object installedBefore = freezed,
+    Object? id = freezed,
+    Object? title = freezed,
+    Object? content = freezed,
+    Object? type = freezed,
+    Object? package = freezed,
+    Object? minAppVersion = freezed,
+    Object? maxAppVersion = freezed,
+    Object? langCode = freezed,
+    Object? testMode = freezed,
+    Object? linkText = freezed,
+    Object? titleIcon = freezed,
+    Object? backgroundColor = freezed,
+    Object? image = freezed,
+    Object? titleIconClickSpec = freezed,
+    Object? linkClickSpec = freezed,
+    Object? cardClickSpec = freezed,
+    Object? expirationTime = freezed,
+    Object? startTime = freezed,
+    Object? installedBefore = freezed,
   }) {
     return _then(_SystemMessage(
       id: id == freezed ? _value.id : id as String,
       title: title == freezed ? _value.title : title as String,
       content: content == freezed ? _value.content : content as String,
-      langCode: langCode == freezed ? _value.langCode : langCode as String,
       type: type == freezed ? _value.type : type as SystemMessageType,
       package: package == freezed ? _value.package : package as String,
       minAppVersion: minAppVersion == freezed
@@ -687,30 +701,31 @@ class __$SystemMessageCopyWithImpl<$Res>
       maxAppVersion: maxAppVersion == freezed
           ? _value.maxAppVersion
           : maxAppVersion as double,
-      testMode: testMode == freezed ? _value.testMode : testMode as bool,
-      linkText: linkText == freezed ? _value.linkText : linkText as String,
-      titleIcon: titleIcon == freezed ? _value.titleIcon : titleIcon as int,
+      langCode: langCode == freezed ? _value.langCode : langCode as String?,
+      testMode: testMode == freezed ? _value.testMode : testMode as bool?,
+      linkText: linkText == freezed ? _value.linkText : linkText as String?,
+      titleIcon: titleIcon == freezed ? _value.titleIcon : titleIcon as int?,
       backgroundColor: backgroundColor == freezed
           ? _value.backgroundColor
-          : backgroundColor as int,
-      image: image == freezed ? _value.image : image as SystemMessageImage,
+          : backgroundColor as int?,
+      image: image == freezed ? _value.image : image as SystemMessageImage?,
       titleIconClickSpec: titleIconClickSpec == freezed
           ? _value.titleIconClickSpec
-          : titleIconClickSpec as SystemMessageClickSpec,
+          : titleIconClickSpec as SystemMessageClickSpec?,
       linkClickSpec: linkClickSpec == freezed
           ? _value.linkClickSpec
-          : linkClickSpec as SystemMessageClickSpec,
+          : linkClickSpec as SystemMessageClickSpec?,
       cardClickSpec: cardClickSpec == freezed
           ? _value.cardClickSpec
-          : cardClickSpec as SystemMessageClickSpec,
+          : cardClickSpec as SystemMessageClickSpec?,
       expirationTime: expirationTime == freezed
           ? _value.expirationTime
-          : expirationTime as DateTime,
+          : expirationTime as DateTime?,
       startTime:
-          startTime == freezed ? _value.startTime : startTime as DateTime,
+          startTime == freezed ? _value.startTime : startTime as DateTime?,
       installedBefore: installedBefore == freezed
           ? _value.installedBefore
-          : installedBefore as DateTime,
+          : installedBefore as DateTime?,
     ));
   }
 }
@@ -720,14 +735,14 @@ class __$SystemMessageCopyWithImpl<$Res>
 /// @nodoc
 class _$_SystemMessage implements _SystemMessage {
   _$_SystemMessage(
-      {this.id,
-      this.title,
-      this.content,
+      {required this.id,
+      required this.title,
+      required this.content,
+      required this.type,
+      required this.package,
+      required this.minAppVersion,
+      required this.maxAppVersion,
       this.langCode,
-      this.type,
-      this.package,
-      this.minAppVersion,
-      this.maxAppVersion,
       this.testMode,
       this.linkText,
       this.titleIcon,
@@ -750,8 +765,6 @@ class _$_SystemMessage implements _SystemMessage {
   @override
   final String content;
   @override
-  final String langCode;
-  @override
   final SystemMessageType type;
   @override
   final String package;
@@ -760,34 +773,36 @@ class _$_SystemMessage implements _SystemMessage {
   @override
   final double maxAppVersion;
   @override
-  final bool testMode;
+  final String? langCode;
   @override
-  final String linkText;
+  final bool? testMode;
   @override
-  final int titleIcon;
+  final String? linkText;
   @override
-  final int backgroundColor;
+  final int? titleIcon;
   @override
-  final SystemMessageImage image;
+  final int? backgroundColor;
   @override
-  final SystemMessageClickSpec titleIconClickSpec;
+  final SystemMessageImage? image;
   @override
-  final SystemMessageClickSpec linkClickSpec;
+  final SystemMessageClickSpec? titleIconClickSpec;
   @override
-  final SystemMessageClickSpec cardClickSpec;
+  final SystemMessageClickSpec? linkClickSpec;
   @override
-  @UtcIsoDateConverter()
-  final DateTime expirationTime;
-  @override
-  @UtcIsoDateConverter()
-  final DateTime startTime;
+  final SystemMessageClickSpec? cardClickSpec;
   @override
   @UtcIsoDateConverter()
-  final DateTime installedBefore;
+  final DateTime? expirationTime;
+  @override
+  @UtcIsoDateConverter()
+  final DateTime? startTime;
+  @override
+  @UtcIsoDateConverter()
+  final DateTime? installedBefore;
 
   @override
   String toString() {
-    return 'SystemMessage(id: $id, title: $title, content: $content, langCode: $langCode, type: $type, package: $package, minAppVersion: $minAppVersion, maxAppVersion: $maxAppVersion, testMode: $testMode, linkText: $linkText, titleIcon: $titleIcon, backgroundColor: $backgroundColor, image: $image, titleIconClickSpec: $titleIconClickSpec, linkClickSpec: $linkClickSpec, cardClickSpec: $cardClickSpec, expirationTime: $expirationTime, startTime: $startTime, installedBefore: $installedBefore)';
+    return 'SystemMessage(id: $id, title: $title, content: $content, type: $type, package: $package, minAppVersion: $minAppVersion, maxAppVersion: $maxAppVersion, langCode: $langCode, testMode: $testMode, linkText: $linkText, titleIcon: $titleIcon, backgroundColor: $backgroundColor, image: $image, titleIconClickSpec: $titleIconClickSpec, linkClickSpec: $linkClickSpec, cardClickSpec: $cardClickSpec, expirationTime: $expirationTime, startTime: $startTime, installedBefore: $installedBefore)';
   }
 
   @override
@@ -801,9 +816,6 @@ class _$_SystemMessage implements _SystemMessage {
             (identical(other.content, content) ||
                 const DeepCollectionEquality()
                     .equals(other.content, content)) &&
-            (identical(other.langCode, langCode) ||
-                const DeepCollectionEquality()
-                    .equals(other.langCode, langCode)) &&
             (identical(other.type, type) ||
                 const DeepCollectionEquality().equals(other.type, type)) &&
             (identical(other.package, package) ||
@@ -815,6 +827,9 @@ class _$_SystemMessage implements _SystemMessage {
             (identical(other.maxAppVersion, maxAppVersion) ||
                 const DeepCollectionEquality()
                     .equals(other.maxAppVersion, maxAppVersion)) &&
+            (identical(other.langCode, langCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.langCode, langCode)) &&
             (identical(other.testMode, testMode) ||
                 const DeepCollectionEquality()
                     .equals(other.testMode, testMode)) &&
@@ -855,11 +870,11 @@ class _$_SystemMessage implements _SystemMessage {
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(title) ^
       const DeepCollectionEquality().hash(content) ^
-      const DeepCollectionEquality().hash(langCode) ^
       const DeepCollectionEquality().hash(type) ^
       const DeepCollectionEquality().hash(package) ^
       const DeepCollectionEquality().hash(minAppVersion) ^
       const DeepCollectionEquality().hash(maxAppVersion) ^
+      const DeepCollectionEquality().hash(langCode) ^
       const DeepCollectionEquality().hash(testMode) ^
       const DeepCollectionEquality().hash(linkText) ^
       const DeepCollectionEquality().hash(titleIcon) ^
@@ -885,71 +900,75 @@ class _$_SystemMessage implements _SystemMessage {
 
 abstract class _SystemMessage implements SystemMessage {
   factory _SystemMessage(
-      {String id,
-      String title,
-      String content,
-      String langCode,
-      SystemMessageType type,
-      String package,
-      double minAppVersion,
-      double maxAppVersion,
-      bool testMode,
-      String linkText,
-      int titleIcon,
-      int backgroundColor,
-      SystemMessageImage image,
-      SystemMessageClickSpec titleIconClickSpec,
-      SystemMessageClickSpec linkClickSpec,
-      SystemMessageClickSpec cardClickSpec,
-      @UtcIsoDateConverter() DateTime expirationTime,
-      @UtcIsoDateConverter() DateTime startTime,
-      @UtcIsoDateConverter() DateTime installedBefore}) = _$_SystemMessage;
+      {required String id,
+      required String title,
+      required String content,
+      required SystemMessageType type,
+      required String package,
+      required double minAppVersion,
+      required double maxAppVersion,
+      String? langCode,
+      bool? testMode,
+      String? linkText,
+      int? titleIcon,
+      int? backgroundColor,
+      SystemMessageImage? image,
+      SystemMessageClickSpec? titleIconClickSpec,
+      SystemMessageClickSpec? linkClickSpec,
+      SystemMessageClickSpec? cardClickSpec,
+      @UtcIsoDateConverter() DateTime? expirationTime,
+      @UtcIsoDateConverter() DateTime? startTime,
+      @UtcIsoDateConverter() DateTime? installedBefore}) = _$_SystemMessage;
 
   factory _SystemMessage.fromJson(Map<String, dynamic> json) =
       _$_SystemMessage.fromJson;
 
   @override
-  String get id;
+  String get id => throw _privateConstructorUsedError;
   @override
-  String get title;
+  String get title => throw _privateConstructorUsedError;
   @override
-  String get content;
+  String get content => throw _privateConstructorUsedError;
   @override
-  String get langCode;
+  SystemMessageType get type => throw _privateConstructorUsedError;
   @override
-  SystemMessageType get type;
+  String get package => throw _privateConstructorUsedError;
   @override
-  String get package;
+  double get minAppVersion => throw _privateConstructorUsedError;
   @override
-  double get minAppVersion;
+  double get maxAppVersion => throw _privateConstructorUsedError;
   @override
-  double get maxAppVersion;
+  String? get langCode => throw _privateConstructorUsedError;
   @override
-  bool get testMode;
+  bool? get testMode => throw _privateConstructorUsedError;
   @override
-  String get linkText;
+  String? get linkText => throw _privateConstructorUsedError;
   @override
-  int get titleIcon;
+  int? get titleIcon => throw _privateConstructorUsedError;
   @override
-  int get backgroundColor;
+  int? get backgroundColor => throw _privateConstructorUsedError;
   @override
-  SystemMessageImage get image;
+  SystemMessageImage? get image => throw _privateConstructorUsedError;
   @override
-  SystemMessageClickSpec get titleIconClickSpec;
+  SystemMessageClickSpec? get titleIconClickSpec =>
+      throw _privateConstructorUsedError;
   @override
-  SystemMessageClickSpec get linkClickSpec;
+  SystemMessageClickSpec? get linkClickSpec =>
+      throw _privateConstructorUsedError;
   @override
-  SystemMessageClickSpec get cardClickSpec;
-  @override
-  @UtcIsoDateConverter()
-  DateTime get expirationTime;
-  @override
-  @UtcIsoDateConverter()
-  DateTime get startTime;
+  SystemMessageClickSpec? get cardClickSpec =>
+      throw _privateConstructorUsedError;
   @override
   @UtcIsoDateConverter()
-  DateTime get installedBefore;
+  DateTime? get expirationTime => throw _privateConstructorUsedError;
+  @override
+  @UtcIsoDateConverter()
+  DateTime? get startTime => throw _privateConstructorUsedError;
+  @override
+  @UtcIsoDateConverter()
+  DateTime? get installedBefore => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$SystemMessageCopyWith<_SystemMessage> get copyWith;
+  _$SystemMessageCopyWith<_SystemMessage> get copyWith =>
+      throw _privateConstructorUsedError;
 }
