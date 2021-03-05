@@ -3,7 +3,7 @@ import 'package:dio_utils/dio_utils.dart';
 
 class DioFactory {
 
-  static Dio create(ApiProperties properties, [List<Interceptor> interceptors]) {
+  static Dio create(ApiProperties properties, [List<Interceptor>? interceptors]) {
     BaseOptions options = BaseOptions(
       baseUrl: properties.baseUrl,
       receiveTimeout: properties.receiveTimeout,

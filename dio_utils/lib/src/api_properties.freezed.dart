@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'api_properties.dart';
 
@@ -9,17 +9,21 @@ part of 'api_properties.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
+/// @nodoc
 class _$ApiPropertiesTearOff {
   const _$ApiPropertiesTearOff();
 
   _ApiProperties call(
-      {String baseUrl,
-      int version,
-      int receiveTimeout,
-      int connectTimeout,
-      String username,
-      String password,
-      String tenant}) {
+      {required String baseUrl,
+      required int version,
+      required int receiveTimeout,
+      required int connectTimeout,
+      required String username,
+      required String password,
+      String? tenant}) {
     return _ApiProperties(
       baseUrl: baseUrl,
       version: version,
@@ -32,21 +36,25 @@ class _$ApiPropertiesTearOff {
   }
 }
 
-// ignore: unused_element
+/// @nodoc
 const $ApiProperties = _$ApiPropertiesTearOff();
 
+/// @nodoc
 mixin _$ApiProperties {
-  String get baseUrl;
-  int get version;
-  int get receiveTimeout;
-  int get connectTimeout;
-  String get username;
-  String get password;
-  String get tenant;
+  String get baseUrl => throw _privateConstructorUsedError;
+  int get version => throw _privateConstructorUsedError;
+  int get receiveTimeout => throw _privateConstructorUsedError;
+  int get connectTimeout => throw _privateConstructorUsedError;
+  String get username => throw _privateConstructorUsedError;
+  String get password => throw _privateConstructorUsedError;
+  String? get tenant => throw _privateConstructorUsedError;
 
-  $ApiPropertiesCopyWith<ApiProperties> get copyWith;
+  @JsonKey(ignore: true)
+  $ApiPropertiesCopyWith<ApiProperties> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
+/// @nodoc
 abstract class $ApiPropertiesCopyWith<$Res> {
   factory $ApiPropertiesCopyWith(
           ApiProperties value, $Res Function(ApiProperties) then) =
@@ -58,9 +66,10 @@ abstract class $ApiPropertiesCopyWith<$Res> {
       int connectTimeout,
       String username,
       String password,
-      String tenant});
+      String? tenant});
 }
 
+/// @nodoc
 class _$ApiPropertiesCopyWithImpl<$Res>
     implements $ApiPropertiesCopyWith<$Res> {
   _$ApiPropertiesCopyWithImpl(this._value, this._then);
@@ -71,13 +80,13 @@ class _$ApiPropertiesCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object baseUrl = freezed,
-    Object version = freezed,
-    Object receiveTimeout = freezed,
-    Object connectTimeout = freezed,
-    Object username = freezed,
-    Object password = freezed,
-    Object tenant = freezed,
+    Object? baseUrl = freezed,
+    Object? version = freezed,
+    Object? receiveTimeout = freezed,
+    Object? connectTimeout = freezed,
+    Object? username = freezed,
+    Object? password = freezed,
+    Object? tenant = freezed,
   }) {
     return _then(_value.copyWith(
       baseUrl: baseUrl == freezed ? _value.baseUrl : baseUrl as String,
@@ -90,11 +99,12 @@ class _$ApiPropertiesCopyWithImpl<$Res>
           : connectTimeout as int,
       username: username == freezed ? _value.username : username as String,
       password: password == freezed ? _value.password : password as String,
-      tenant: tenant == freezed ? _value.tenant : tenant as String,
+      tenant: tenant == freezed ? _value.tenant : tenant as String?,
     ));
   }
 }
 
+/// @nodoc
 abstract class _$ApiPropertiesCopyWith<$Res>
     implements $ApiPropertiesCopyWith<$Res> {
   factory _$ApiPropertiesCopyWith(
@@ -108,9 +118,10 @@ abstract class _$ApiPropertiesCopyWith<$Res>
       int connectTimeout,
       String username,
       String password,
-      String tenant});
+      String? tenant});
 }
 
+/// @nodoc
 class __$ApiPropertiesCopyWithImpl<$Res>
     extends _$ApiPropertiesCopyWithImpl<$Res>
     implements _$ApiPropertiesCopyWith<$Res> {
@@ -123,13 +134,13 @@ class __$ApiPropertiesCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object baseUrl = freezed,
-    Object version = freezed,
-    Object receiveTimeout = freezed,
-    Object connectTimeout = freezed,
-    Object username = freezed,
-    Object password = freezed,
-    Object tenant = freezed,
+    Object? baseUrl = freezed,
+    Object? version = freezed,
+    Object? receiveTimeout = freezed,
+    Object? connectTimeout = freezed,
+    Object? username = freezed,
+    Object? password = freezed,
+    Object? tenant = freezed,
   }) {
     return _then(_ApiProperties(
       baseUrl: baseUrl == freezed ? _value.baseUrl : baseUrl as String,
@@ -142,19 +153,20 @@ class __$ApiPropertiesCopyWithImpl<$Res>
           : connectTimeout as int,
       username: username == freezed ? _value.username : username as String,
       password: password == freezed ? _value.password : password as String,
-      tenant: tenant == freezed ? _value.tenant : tenant as String,
+      tenant: tenant == freezed ? _value.tenant : tenant as String?,
     ));
   }
 }
 
+/// @nodoc
 class _$_ApiProperties implements _ApiProperties {
   _$_ApiProperties(
-      {this.baseUrl,
-      this.version,
-      this.receiveTimeout,
-      this.connectTimeout,
-      this.username,
-      this.password,
+      {required this.baseUrl,
+      required this.version,
+      required this.receiveTimeout,
+      required this.connectTimeout,
+      required this.username,
+      required this.password,
       this.tenant});
 
   @override
@@ -170,7 +182,7 @@ class _$_ApiProperties implements _ApiProperties {
   @override
   final String password;
   @override
-  final String tenant;
+  final String? tenant;
 
   @override
   String toString() {
@@ -214,6 +226,7 @@ class _$_ApiProperties implements _ApiProperties {
       const DeepCollectionEquality().hash(password) ^
       const DeepCollectionEquality().hash(tenant);
 
+  @JsonKey(ignore: true)
   @override
   _$ApiPropertiesCopyWith<_ApiProperties> get copyWith =>
       __$ApiPropertiesCopyWithImpl<_ApiProperties>(this, _$identity);
@@ -221,28 +234,30 @@ class _$_ApiProperties implements _ApiProperties {
 
 abstract class _ApiProperties implements ApiProperties {
   factory _ApiProperties(
-      {String baseUrl,
-      int version,
-      int receiveTimeout,
-      int connectTimeout,
-      String username,
-      String password,
-      String tenant}) = _$_ApiProperties;
+      {required String baseUrl,
+      required int version,
+      required int receiveTimeout,
+      required int connectTimeout,
+      required String username,
+      required String password,
+      String? tenant}) = _$_ApiProperties;
 
   @override
-  String get baseUrl;
+  String get baseUrl => throw _privateConstructorUsedError;
   @override
-  int get version;
+  int get version => throw _privateConstructorUsedError;
   @override
-  int get receiveTimeout;
+  int get receiveTimeout => throw _privateConstructorUsedError;
   @override
-  int get connectTimeout;
+  int get connectTimeout => throw _privateConstructorUsedError;
   @override
-  String get username;
+  String get username => throw _privateConstructorUsedError;
   @override
-  String get password;
+  String get password => throw _privateConstructorUsedError;
   @override
-  String get tenant;
+  String? get tenant => throw _privateConstructorUsedError;
   @override
-  _$ApiPropertiesCopyWith<_ApiProperties> get copyWith;
+  @JsonKey(ignore: true)
+  _$ApiPropertiesCopyWith<_ApiProperties> get copyWith =>
+      throw _privateConstructorUsedError;
 }
