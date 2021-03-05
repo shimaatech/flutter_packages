@@ -7,11 +7,11 @@ part 'app_info.g.dart';
 
 
 @freezed
-abstract class ContactInfo with _$ContactInfo {
+class ContactInfo with _$ContactInfo {
   factory ContactInfo({
-    String title,
-    String subtitle,
-    String url,
+    String? title,
+    String? subtitle,
+    String? url,
     @Default(false) bool hidden,
   }) = _ContactInfo;
 
@@ -24,7 +24,7 @@ abstract class ContactInfo with _$ContactInfo {
 }
 
 @freezed
-abstract class UpdateInfo with _$UpdateInfo {
+class UpdateInfo with _$UpdateInfo {
   factory UpdateInfo({
     @Default(true) bool active,
     @Default(3) int priority,
@@ -39,11 +39,11 @@ abstract class UpdateInfo with _$UpdateInfo {
 }
 
 @freezed
-abstract class AppInfo with _$AppInfo {
+class AppInfo with _$AppInfo {
   factory AppInfo({
-    double latestVersion,
-    ContactInfo contactInfo,
-    UpdateInfo updateInfo,
+    required double latestVersion,
+    ContactInfo? contactInfo,
+    UpdateInfo? updateInfo,
   }) = _AppInfo;
 
   factory AppInfo.fromJson(Map<String, dynamic> json) => _$AppInfoFromJson(json);

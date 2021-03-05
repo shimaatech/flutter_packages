@@ -14,9 +14,9 @@ class AppInfoService {
   final String packageName;
 
   @protected
-  AppInfo appInfo;
+  AppInfo? appInfo;
 
-  Future<AppInfo> getAppInfo({forceFetch = false}) async {
+  Future<AppInfo?> getAppInfo({forceFetch = false}) async {
     if (appInfo == null || forceFetch) {
       appInfo = await fetchAppInfo();
     }
@@ -29,13 +29,15 @@ class AppInfoService {
   }
 
   @protected
-  Future<AppInfo> fetchAppInfo() async {
-    Map<String, dynamic> data = (await firestore
+  Future<AppInfo?> fetchAppInfo() async {
+    final data = (await firestore
             .collection(collectionName)
             .doc(getAppInfoDocument(packageName))
             .get())
         .data();
-    // TODO check if data is not null
-    return AppInfo.serializer.deserialize(data);
+    if (data != null) {
+      return AppInfo.serializer.deserialize(data);
+    }
+    return null;
   }
 }

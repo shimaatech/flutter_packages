@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'app_info.dart';
 
@@ -8,16 +8,20 @@ part of 'app_info.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 ContactInfo _$ContactInfoFromJson(Map<String, dynamic> json) {
   return _ContactInfo.fromJson(json);
 }
 
+/// @nodoc
 class _$ContactInfoTearOff {
   const _$ContactInfoTearOff();
 
-// ignore: unused_element
   _ContactInfo call(
-      {String title, String subtitle, String url, bool hidden = false}) {
+      {String? title, String? subtitle, String? url, bool hidden = false}) {
     return _ContactInfo(
       title: title,
       subtitle: subtitle,
@@ -25,28 +29,37 @@ class _$ContactInfoTearOff {
       hidden: hidden,
     );
   }
+
+  ContactInfo fromJson(Map<String, Object> json) {
+    return ContactInfo.fromJson(json);
+  }
 }
 
-// ignore: unused_element
+/// @nodoc
 const $ContactInfo = _$ContactInfoTearOff();
 
+/// @nodoc
 mixin _$ContactInfo {
-  String get title;
-  String get subtitle;
-  String get url;
-  bool get hidden;
+  String? get title => throw _privateConstructorUsedError;
+  String? get subtitle => throw _privateConstructorUsedError;
+  String? get url => throw _privateConstructorUsedError;
+  bool get hidden => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson();
-  $ContactInfoCopyWith<ContactInfo> get copyWith;
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ContactInfoCopyWith<ContactInfo> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
+/// @nodoc
 abstract class $ContactInfoCopyWith<$Res> {
   factory $ContactInfoCopyWith(
           ContactInfo value, $Res Function(ContactInfo) then) =
       _$ContactInfoCopyWithImpl<$Res>;
-  $Res call({String title, String subtitle, String url, bool hidden});
+  $Res call({String? title, String? subtitle, String? url, bool hidden});
 }
 
+/// @nodoc
 class _$ContactInfoCopyWithImpl<$Res> implements $ContactInfoCopyWith<$Res> {
   _$ContactInfoCopyWithImpl(this._value, this._then);
 
@@ -56,29 +69,31 @@ class _$ContactInfoCopyWithImpl<$Res> implements $ContactInfoCopyWith<$Res> {
 
   @override
   $Res call({
-    Object title = freezed,
-    Object subtitle = freezed,
-    Object url = freezed,
-    Object hidden = freezed,
+    Object? title = freezed,
+    Object? subtitle = freezed,
+    Object? url = freezed,
+    Object? hidden = freezed,
   }) {
     return _then(_value.copyWith(
-      title: title == freezed ? _value.title : title as String,
-      subtitle: subtitle == freezed ? _value.subtitle : subtitle as String,
-      url: url == freezed ? _value.url : url as String,
+      title: title == freezed ? _value.title : title as String?,
+      subtitle: subtitle == freezed ? _value.subtitle : subtitle as String?,
+      url: url == freezed ? _value.url : url as String?,
       hidden: hidden == freezed ? _value.hidden : hidden as bool,
     ));
   }
 }
 
+/// @nodoc
 abstract class _$ContactInfoCopyWith<$Res>
     implements $ContactInfoCopyWith<$Res> {
   factory _$ContactInfoCopyWith(
           _ContactInfo value, $Res Function(_ContactInfo) then) =
       __$ContactInfoCopyWithImpl<$Res>;
   @override
-  $Res call({String title, String subtitle, String url, bool hidden});
+  $Res call({String? title, String? subtitle, String? url, bool hidden});
 }
 
+/// @nodoc
 class __$ContactInfoCopyWithImpl<$Res> extends _$ContactInfoCopyWithImpl<$Res>
     implements _$ContactInfoCopyWith<$Res> {
   __$ContactInfoCopyWithImpl(
@@ -90,34 +105,35 @@ class __$ContactInfoCopyWithImpl<$Res> extends _$ContactInfoCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object title = freezed,
-    Object subtitle = freezed,
-    Object url = freezed,
-    Object hidden = freezed,
+    Object? title = freezed,
+    Object? subtitle = freezed,
+    Object? url = freezed,
+    Object? hidden = freezed,
   }) {
     return _then(_ContactInfo(
-      title: title == freezed ? _value.title : title as String,
-      subtitle: subtitle == freezed ? _value.subtitle : subtitle as String,
-      url: url == freezed ? _value.url : url as String,
+      title: title == freezed ? _value.title : title as String?,
+      subtitle: subtitle == freezed ? _value.subtitle : subtitle as String?,
+      url: url == freezed ? _value.url : url as String?,
       hidden: hidden == freezed ? _value.hidden : hidden as bool,
     ));
   }
 }
 
 @JsonSerializable()
+
+/// @nodoc
 class _$_ContactInfo implements _ContactInfo {
-  _$_ContactInfo({this.title, this.subtitle, this.url, this.hidden = false})
-      : assert(hidden != null);
+  _$_ContactInfo({this.title, this.subtitle, this.url, this.hidden = false});
 
   factory _$_ContactInfo.fromJson(Map<String, dynamic> json) =>
       _$_$_ContactInfoFromJson(json);
 
   @override
-  final String title;
+  final String? title;
   @override
-  final String subtitle;
+  final String? subtitle;
   @override
-  final String url;
+  final String? url;
   @JsonKey(defaultValue: false)
   @override
   final bool hidden;
@@ -150,6 +166,7 @@ class _$_ContactInfo implements _ContactInfo {
       const DeepCollectionEquality().hash(url) ^
       const DeepCollectionEquality().hash(hidden);
 
+  @JsonKey(ignore: true)
   @override
   _$ContactInfoCopyWith<_ContactInfo> get copyWith =>
       __$ContactInfoCopyWithImpl<_ContactInfo>(this, _$identity);
@@ -162,53 +179,63 @@ class _$_ContactInfo implements _ContactInfo {
 
 abstract class _ContactInfo implements ContactInfo {
   factory _ContactInfo(
-      {String title,
-      String subtitle,
-      String url,
+      {String? title,
+      String? subtitle,
+      String? url,
       bool hidden}) = _$_ContactInfo;
 
   factory _ContactInfo.fromJson(Map<String, dynamic> json) =
       _$_ContactInfo.fromJson;
 
   @override
-  String get title;
+  String? get title => throw _privateConstructorUsedError;
   @override
-  String get subtitle;
+  String? get subtitle => throw _privateConstructorUsedError;
   @override
-  String get url;
+  String? get url => throw _privateConstructorUsedError;
   @override
-  bool get hidden;
+  bool get hidden => throw _privateConstructorUsedError;
   @override
-  _$ContactInfoCopyWith<_ContactInfo> get copyWith;
+  @JsonKey(ignore: true)
+  _$ContactInfoCopyWith<_ContactInfo> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 UpdateInfo _$UpdateInfoFromJson(Map<String, dynamic> json) {
   return _UpdateInfo.fromJson(json);
 }
 
+/// @nodoc
 class _$UpdateInfoTearOff {
   const _$UpdateInfoTearOff();
 
-// ignore: unused_element
   _UpdateInfo call({bool active = true, int priority = 3}) {
     return _UpdateInfo(
       active: active,
       priority: priority,
     );
   }
+
+  UpdateInfo fromJson(Map<String, Object> json) {
+    return UpdateInfo.fromJson(json);
+  }
 }
 
-// ignore: unused_element
+/// @nodoc
 const $UpdateInfo = _$UpdateInfoTearOff();
 
+/// @nodoc
 mixin _$UpdateInfo {
-  bool get active;
-  int get priority;
+  bool get active => throw _privateConstructorUsedError;
+  int get priority => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson();
-  $UpdateInfoCopyWith<UpdateInfo> get copyWith;
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $UpdateInfoCopyWith<UpdateInfo> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
+/// @nodoc
 abstract class $UpdateInfoCopyWith<$Res> {
   factory $UpdateInfoCopyWith(
           UpdateInfo value, $Res Function(UpdateInfo) then) =
@@ -216,6 +243,7 @@ abstract class $UpdateInfoCopyWith<$Res> {
   $Res call({bool active, int priority});
 }
 
+/// @nodoc
 class _$UpdateInfoCopyWithImpl<$Res> implements $UpdateInfoCopyWith<$Res> {
   _$UpdateInfoCopyWithImpl(this._value, this._then);
 
@@ -225,8 +253,8 @@ class _$UpdateInfoCopyWithImpl<$Res> implements $UpdateInfoCopyWith<$Res> {
 
   @override
   $Res call({
-    Object active = freezed,
-    Object priority = freezed,
+    Object? active = freezed,
+    Object? priority = freezed,
   }) {
     return _then(_value.copyWith(
       active: active == freezed ? _value.active : active as bool,
@@ -235,6 +263,7 @@ class _$UpdateInfoCopyWithImpl<$Res> implements $UpdateInfoCopyWith<$Res> {
   }
 }
 
+/// @nodoc
 abstract class _$UpdateInfoCopyWith<$Res> implements $UpdateInfoCopyWith<$Res> {
   factory _$UpdateInfoCopyWith(
           _UpdateInfo value, $Res Function(_UpdateInfo) then) =
@@ -243,6 +272,7 @@ abstract class _$UpdateInfoCopyWith<$Res> implements $UpdateInfoCopyWith<$Res> {
   $Res call({bool active, int priority});
 }
 
+/// @nodoc
 class __$UpdateInfoCopyWithImpl<$Res> extends _$UpdateInfoCopyWithImpl<$Res>
     implements _$UpdateInfoCopyWith<$Res> {
   __$UpdateInfoCopyWithImpl(
@@ -254,8 +284,8 @@ class __$UpdateInfoCopyWithImpl<$Res> extends _$UpdateInfoCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object active = freezed,
-    Object priority = freezed,
+    Object? active = freezed,
+    Object? priority = freezed,
   }) {
     return _then(_UpdateInfo(
       active: active == freezed ? _value.active : active as bool,
@@ -265,10 +295,10 @@ class __$UpdateInfoCopyWithImpl<$Res> extends _$UpdateInfoCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
+
+/// @nodoc
 class _$_UpdateInfo implements _UpdateInfo {
-  _$_UpdateInfo({this.active = true, this.priority = 3})
-      : assert(active != null),
-        assert(priority != null);
+  _$_UpdateInfo({this.active = true, this.priority = 3});
 
   factory _$_UpdateInfo.fromJson(Map<String, dynamic> json) =>
       _$_$_UpdateInfoFromJson(json);
@@ -302,6 +332,7 @@ class _$_UpdateInfo implements _UpdateInfo {
       const DeepCollectionEquality().hash(active) ^
       const DeepCollectionEquality().hash(priority);
 
+  @JsonKey(ignore: true)
   @override
   _$UpdateInfoCopyWith<_UpdateInfo> get copyWith =>
       __$UpdateInfoCopyWithImpl<_UpdateInfo>(this, _$identity);
@@ -319,53 +350,65 @@ abstract class _UpdateInfo implements UpdateInfo {
       _$_UpdateInfo.fromJson;
 
   @override
-  bool get active;
+  bool get active => throw _privateConstructorUsedError;
   @override
-  int get priority;
+  int get priority => throw _privateConstructorUsedError;
   @override
-  _$UpdateInfoCopyWith<_UpdateInfo> get copyWith;
+  @JsonKey(ignore: true)
+  _$UpdateInfoCopyWith<_UpdateInfo> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 AppInfo _$AppInfoFromJson(Map<String, dynamic> json) {
   return _AppInfo.fromJson(json);
 }
 
+/// @nodoc
 class _$AppInfoTearOff {
   const _$AppInfoTearOff();
 
-// ignore: unused_element
   _AppInfo call(
-      {double latestVersion, ContactInfo contactInfo, UpdateInfo updateInfo}) {
+      {required double latestVersion,
+      ContactInfo? contactInfo,
+      UpdateInfo? updateInfo}) {
     return _AppInfo(
       latestVersion: latestVersion,
       contactInfo: contactInfo,
       updateInfo: updateInfo,
     );
   }
+
+  AppInfo fromJson(Map<String, Object> json) {
+    return AppInfo.fromJson(json);
+  }
 }
 
-// ignore: unused_element
+/// @nodoc
 const $AppInfo = _$AppInfoTearOff();
 
+/// @nodoc
 mixin _$AppInfo {
-  double get latestVersion;
-  ContactInfo get contactInfo;
-  UpdateInfo get updateInfo;
+  double get latestVersion => throw _privateConstructorUsedError;
+  ContactInfo? get contactInfo => throw _privateConstructorUsedError;
+  UpdateInfo? get updateInfo => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson();
-  $AppInfoCopyWith<AppInfo> get copyWith;
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $AppInfoCopyWith<AppInfo> get copyWith => throw _privateConstructorUsedError;
 }
 
+/// @nodoc
 abstract class $AppInfoCopyWith<$Res> {
   factory $AppInfoCopyWith(AppInfo value, $Res Function(AppInfo) then) =
       _$AppInfoCopyWithImpl<$Res>;
   $Res call(
-      {double latestVersion, ContactInfo contactInfo, UpdateInfo updateInfo});
+      {double latestVersion, ContactInfo? contactInfo, UpdateInfo? updateInfo});
 
-  $ContactInfoCopyWith<$Res> get contactInfo;
-  $UpdateInfoCopyWith<$Res> get updateInfo;
+  $ContactInfoCopyWith<$Res>? get contactInfo;
+  $UpdateInfoCopyWith<$Res>? get updateInfo;
 }
 
+/// @nodoc
 class _$AppInfoCopyWithImpl<$Res> implements $AppInfoCopyWith<$Res> {
   _$AppInfoCopyWithImpl(this._value, this._then);
 
@@ -375,9 +418,9 @@ class _$AppInfoCopyWithImpl<$Res> implements $AppInfoCopyWith<$Res> {
 
   @override
   $Res call({
-    Object latestVersion = freezed,
-    Object contactInfo = freezed,
-    Object updateInfo = freezed,
+    Object? latestVersion = freezed,
+    Object? contactInfo = freezed,
+    Object? updateInfo = freezed,
   }) {
     return _then(_value.copyWith(
       latestVersion: latestVersion == freezed
@@ -385,46 +428,50 @@ class _$AppInfoCopyWithImpl<$Res> implements $AppInfoCopyWith<$Res> {
           : latestVersion as double,
       contactInfo: contactInfo == freezed
           ? _value.contactInfo
-          : contactInfo as ContactInfo,
+          : contactInfo as ContactInfo?,
       updateInfo:
-          updateInfo == freezed ? _value.updateInfo : updateInfo as UpdateInfo,
+          updateInfo == freezed ? _value.updateInfo : updateInfo as UpdateInfo?,
     ));
   }
 
   @override
-  $ContactInfoCopyWith<$Res> get contactInfo {
+  $ContactInfoCopyWith<$Res>? get contactInfo {
     if (_value.contactInfo == null) {
       return null;
     }
-    return $ContactInfoCopyWith<$Res>(_value.contactInfo, (value) {
+
+    return $ContactInfoCopyWith<$Res>(_value.contactInfo!, (value) {
       return _then(_value.copyWith(contactInfo: value));
     });
   }
 
   @override
-  $UpdateInfoCopyWith<$Res> get updateInfo {
+  $UpdateInfoCopyWith<$Res>? get updateInfo {
     if (_value.updateInfo == null) {
       return null;
     }
-    return $UpdateInfoCopyWith<$Res>(_value.updateInfo, (value) {
+
+    return $UpdateInfoCopyWith<$Res>(_value.updateInfo!, (value) {
       return _then(_value.copyWith(updateInfo: value));
     });
   }
 }
 
+/// @nodoc
 abstract class _$AppInfoCopyWith<$Res> implements $AppInfoCopyWith<$Res> {
   factory _$AppInfoCopyWith(_AppInfo value, $Res Function(_AppInfo) then) =
       __$AppInfoCopyWithImpl<$Res>;
   @override
   $Res call(
-      {double latestVersion, ContactInfo contactInfo, UpdateInfo updateInfo});
+      {double latestVersion, ContactInfo? contactInfo, UpdateInfo? updateInfo});
 
   @override
-  $ContactInfoCopyWith<$Res> get contactInfo;
+  $ContactInfoCopyWith<$Res>? get contactInfo;
   @override
-  $UpdateInfoCopyWith<$Res> get updateInfo;
+  $UpdateInfoCopyWith<$Res>? get updateInfo;
 }
 
+/// @nodoc
 class __$AppInfoCopyWithImpl<$Res> extends _$AppInfoCopyWithImpl<$Res>
     implements _$AppInfoCopyWith<$Res> {
   __$AppInfoCopyWithImpl(_AppInfo _value, $Res Function(_AppInfo) _then)
@@ -435,9 +482,9 @@ class __$AppInfoCopyWithImpl<$Res> extends _$AppInfoCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object latestVersion = freezed,
-    Object contactInfo = freezed,
-    Object updateInfo = freezed,
+    Object? latestVersion = freezed,
+    Object? contactInfo = freezed,
+    Object? updateInfo = freezed,
   }) {
     return _then(_AppInfo(
       latestVersion: latestVersion == freezed
@@ -445,16 +492,18 @@ class __$AppInfoCopyWithImpl<$Res> extends _$AppInfoCopyWithImpl<$Res>
           : latestVersion as double,
       contactInfo: contactInfo == freezed
           ? _value.contactInfo
-          : contactInfo as ContactInfo,
+          : contactInfo as ContactInfo?,
       updateInfo:
-          updateInfo == freezed ? _value.updateInfo : updateInfo as UpdateInfo,
+          updateInfo == freezed ? _value.updateInfo : updateInfo as UpdateInfo?,
     ));
   }
 }
 
 @JsonSerializable()
+
+/// @nodoc
 class _$_AppInfo implements _AppInfo {
-  _$_AppInfo({this.latestVersion, this.contactInfo, this.updateInfo});
+  _$_AppInfo({required this.latestVersion, this.contactInfo, this.updateInfo});
 
   factory _$_AppInfo.fromJson(Map<String, dynamic> json) =>
       _$_$_AppInfoFromJson(json);
@@ -462,9 +511,9 @@ class _$_AppInfo implements _AppInfo {
   @override
   final double latestVersion;
   @override
-  final ContactInfo contactInfo;
+  final ContactInfo? contactInfo;
   @override
-  final UpdateInfo updateInfo;
+  final UpdateInfo? updateInfo;
 
   @override
   String toString() {
@@ -493,6 +542,7 @@ class _$_AppInfo implements _AppInfo {
       const DeepCollectionEquality().hash(contactInfo) ^
       const DeepCollectionEquality().hash(updateInfo);
 
+  @JsonKey(ignore: true)
   @override
   _$AppInfoCopyWith<_AppInfo> get copyWith =>
       __$AppInfoCopyWithImpl<_AppInfo>(this, _$identity);
@@ -505,18 +555,20 @@ class _$_AppInfo implements _AppInfo {
 
 abstract class _AppInfo implements AppInfo {
   factory _AppInfo(
-      {double latestVersion,
-      ContactInfo contactInfo,
-      UpdateInfo updateInfo}) = _$_AppInfo;
+      {required double latestVersion,
+      ContactInfo? contactInfo,
+      UpdateInfo? updateInfo}) = _$_AppInfo;
 
   factory _AppInfo.fromJson(Map<String, dynamic> json) = _$_AppInfo.fromJson;
 
   @override
-  double get latestVersion;
+  double get latestVersion => throw _privateConstructorUsedError;
   @override
-  ContactInfo get contactInfo;
+  ContactInfo? get contactInfo => throw _privateConstructorUsedError;
   @override
-  UpdateInfo get updateInfo;
+  UpdateInfo? get updateInfo => throw _privateConstructorUsedError;
   @override
-  _$AppInfoCopyWith<_AppInfo> get copyWith;
+  @JsonKey(ignore: true)
+  _$AppInfoCopyWith<_AppInfo> get copyWith =>
+      throw _privateConstructorUsedError;
 }

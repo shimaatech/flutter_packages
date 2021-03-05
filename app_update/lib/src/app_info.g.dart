@@ -8,10 +8,10 @@ part of 'app_info.dart';
 
 _$_ContactInfo _$_$_ContactInfoFromJson(Map<String, dynamic> json) {
   return _$_ContactInfo(
-    title: json['title'] as String,
-    subtitle: json['subtitle'] as String,
-    url: json['url'] as String,
-    hidden: json['hidden'] as bool ?? false,
+    title: json['title'] as String?,
+    subtitle: json['subtitle'] as String?,
+    url: json['url'] as String?,
+    hidden: json['hidden'] as bool? ?? false,
   );
 }
 
@@ -25,8 +25,8 @@ Map<String, dynamic> _$_$_ContactInfoToJson(_$_ContactInfo instance) =>
 
 _$_UpdateInfo _$_$_UpdateInfoFromJson(Map<String, dynamic> json) {
   return _$_UpdateInfo(
-    active: json['active'] as bool ?? true,
-    priority: json['priority'] as int ?? 3,
+    active: json['active'] as bool? ?? true,
+    priority: json['priority'] as int? ?? 3,
   );
 }
 
@@ -38,7 +38,7 @@ Map<String, dynamic> _$_$_UpdateInfoToJson(_$_UpdateInfo instance) =>
 
 _$_AppInfo _$_$_AppInfoFromJson(Map<String, dynamic> json) {
   return _$_AppInfo(
-    latestVersion: (json['latestVersion'] as num)?.toDouble(),
+    latestVersion: (json['latestVersion'] as num).toDouble(),
     contactInfo: json['contactInfo'] == null
         ? null
         : ContactInfo.fromJson(json['contactInfo'] as Map<String, dynamic>),

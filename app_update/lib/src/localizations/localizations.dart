@@ -14,7 +14,7 @@ class UpdateDialogLocalizations {
 
   static UpdateDialogLocalizations of(BuildContext context) {
     return Localizations.of<UpdateDialogLocalizations>(
-        context, UpdateDialogLocalizations);
+        context, UpdateDialogLocalizations)!;
   }
 
   static const List<Locale> supportedLocales = const [

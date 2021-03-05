@@ -24,16 +24,19 @@ class AppUpdateService {
 
   final LocalStorage localStorage;
   final AppInfoService appInfoService;
-  final daysIntervalByPriority;
+  final int daysIntervalByPriority;
   final double appBuildNumber;
 
   Future<bool> checkForUpdate(BuildContext context) async {
-    AppInfo appInfo = await appInfoService.getAppInfo(forceFetch: false);
+    final appInfo = await appInfoService.getAppInfo(forceFetch: false);
+    if (appInfo == null) {
+      throw Exception('App Info is null!');
+    }
     if (needsUpdate(appInfo) && updateIsActive(appInfo)) {
-      if (needsImmediateUpdate(appInfo.updateInfo.priority)) {
+      if (needsImmediateUpdate(appInfo.updateInfo?.priority)) {
         await showImmediateUpdateDialog(context);
         return true;
-      } else if (shouldSuggestUpdate(appInfo.updateInfo.priority)) {
+      } else if (shouldSuggestUpdate(appInfo.updateInfo?.priority)) {
         unawaited(updateLastUpdateTrial());
         return showFlexibleUpdateDialog(context);
       }
@@ -42,18 +45,24 @@ class AppUpdateService {
   }
 
   Future<bool> canShowUpdateDialog() async {
-    AppInfo appInfo = await appInfoService.getAppInfo(forceFetch: false);
+    final appInfo = await appInfoService.getAppInfo(forceFetch: false);
+    if (appInfo == null) {
+      throw Exception('App info is null!');
+    }
     return needsUpdate(appInfo) &&
         updateIsActive(appInfo) &&
-        (needsImmediateUpdate(appInfo.updateInfo.priority) ||
-            shouldSuggestUpdate(appInfo.updateInfo.priority));
+        (needsImmediateUpdate(appInfo.updateInfo?.priority) ||
+            shouldSuggestUpdate(appInfo.updateInfo?.priority));
   }
 
   /// Can be used to show flexible update dialog with a custom message whenever
   /// you want (of course only if a newer version is available)
   Future<void> showUpdateDialogIfNeedsUpdate(
       BuildContext context, String message) async {
-    AppInfo appInfo = await appInfoService.getAppInfo(forceFetch: false);
+    final appInfo = await appInfoService.getAppInfo(forceFetch: false);
+    if (appInfo == null) {
+      throw Exception('App info is null');
+    }
     if (needsUpdate(appInfo)) {
       return showUpdateDialog(
         context: context,
@@ -70,11 +79,11 @@ class AppUpdateService {
 
   @protected
   bool updateIsActive(AppInfo appInfo) {
-    return appInfo.updateInfo != null && appInfo.updateInfo.active;
+    return appInfo.updateInfo?.active ?? false;
   }
 
   @protected
-  bool needsImmediateUpdate(int priority) {
+  bool needsImmediateUpdate(int? priority) {
     return priority == updateHighestPriority;
   }
 
@@ -111,12 +120,15 @@ class AppUpdateService {
   }
 
   @protected
-  bool shouldSuggestUpdate(int priority) {
-    DateTime lastUpdateTrial = localStorage.get(lastUpdateTrialConfigKey);
+  bool shouldSuggestUpdate(int? priority) {
+    if (priority == null) {
+      return false;
+    }
+    final lastUpdateTrial = localStorage.get(lastUpdateTrialConfigKey);
     if (lastUpdateTrial == null) {
       return true;
     }
-    int trialDaysInterval =
+    final trialDaysInterval =
         (updateHighestPriority - priority) * daysIntervalByPriority;
     return DateTime.now().difference(lastUpdateTrial).inDays >=
         trialDaysInterval;
@@ -129,10 +141,10 @@ class AppUpdateService {
 
   @protected
   Future<void> showUpdateDialog({
-    @required BuildContext context,
-    @required String content,
+    required BuildContext context,
+    required String content,
     bool showLaterButton = true,
-    VoidCallback onUpdatePressed,
+    VoidCallback? onUpdatePressed,
   }) {
     final localizations = UpdateDialogLocalizations.of(context);
     return AwesomeDialog(
@@ -140,17 +152,15 @@ class AppUpdateService {
       context: context,
       title: localizations.title,
       desc: content,
-      btnOk: RaisedButton(
+      btnOk: ElevatedButton(
         child: Text(localizations.update),
         onPressed: () {
-          if (onUpdatePressed != null) {
-            onUpdatePressed.call();
-          }
+          onUpdatePressed?.call();
           launchUpdate();
         },
       ),
       btnCancel: showLaterButton
-          ? FlatButton(
+          ? TextButton(
               child: Text(localizations.later),
               onPressed: () => Navigator.of(context).pop(),
             )
